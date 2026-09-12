@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/German/static/css/main.dac22dbd.css",
+    "main.js": "/German/static/js/main.f4bbae0a.js",
+    "index.html": "/German/index.html",
+    "main.dac22dbd.css.map": "/German/static/css/main.dac22dbd.css.map",
+    "main.f4bbae0a.js.map": "/German/static/js/main.f4bbae0a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dac22dbd.css",
+    "static/js/main.f4bbae0a.js"
+  ]
+}
