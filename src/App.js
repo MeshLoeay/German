@@ -140,10 +140,14 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // الوضع الليلي (0) هو الأساسي افتراضياً
   const [themeLevel, setThemeLevel] = useState(() => {
     const saved = localStorage.getItem('themeLevel');
-    const parsed = saved !== null ? parseInt(saved, 10) : 0;
-    return (parsed === 0 || parsed === 1) ? parsed : 0;
+    if (saved !== null) {
+      const parsed = parseInt(saved, 10);
+      return (parsed === 0 || parsed === 1) ? parsed : 0;
+    }
+    return 0; // الأساسي هو الوضع الليلي
   });
 
   const [isChildMode, setIsChildMode] = useState(false);
@@ -243,7 +247,7 @@ function App() {
             <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#38bdf8', letterSpacing: '0.5px', whiteSpace: 'nowrap', fontFamily: "'Cairo', sans-serif" }}>
               صلى على محمد
               <br/>
-            ❤️ متنساش ❤️ تدعيلى ❤️
+              ❤️ متنساش ❤️ تدعيلى ❤️
             </span>
             <img src="https://meshloeay.github.io/Your-Age/My-img/5.png" alt="Decoration" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(56,189,248,0.7))', flexShrink: 0 }} />
           </div>
@@ -252,7 +256,7 @@ function App() {
 
       <div className="top-right-tools" style={{
         position: 'relative', width: '100%', maxWidth: '540px', display: 'flex',
-        justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
+        justify: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
       }}>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <HomeButton />
@@ -285,7 +289,7 @@ function App() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center'
+              justify: 'center'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '28px', filter: 'drop-shadow(0 2px 8px rgba(251, 191, 36, 0.6))' }}>👑</span>
@@ -353,6 +357,84 @@ function App() {
               </nav>
             </div>
 
+            {/* قسم التواصل مع زر الواتساب والفيسبوك المخصص بنفس ستايل الصورة */}
+            <div style={{ marginTop: '25px', width: '100%', maxWidth: '540px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
+                للتواصل معي
+              </h3>
+              <div style={{ display: 'flex', width: '100%', gap: '12px', justifyContent: 'center', boxSizing: 'border-box' }}>
+                {/* زر الواتساب (على اليمين - باللون الأخضر) */}
+                <a
+                  href="https://wa.me/201003412932"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '10px',
+                    padding: '12px',
+                    borderRadius: '25px 0px 25px 0px',
+                    border: '1px solid #22c55e',
+                    backgroundColor: '#15803d',
+                    color: '#ffffff',
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 10px rgba(34, 197, 94, 0.3)',
+                    fontFamily: "'Cairo', sans-serif"
+                  }}
+                >
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{ width: '22px', height: '22px' }} />
+                  <span>واتساب</span>
+                </a>
+
+                {/* زر الفيسبوك (على الشمال - باللون الأزرق) */}
+                <a
+                  href="https://www.facebook.com/qursan.loeay/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '10px',
+                    padding: '12px',
+                    borderRadius: '0px 25px 0px 25px',
+                    border: '1px solid #60a5fa',
+                    backgroundColor: '#bae6fd',
+                    color: '#0369a1',
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 10px rgba(56, 189, 248, 0.3)',
+                    fontFamily: "'Cairo', sans-serif"
+                  }}
+                >
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook" style={{ width: '22px', height: '22px' }} />
+                  <span>فيسبوك</span>
+                </a>
+              </div>
+            </div>
+
+            {/* قسم قناة الواتساب */}
+            <div style={{ marginTop: '25px', width: '100%', maxWidth: '540px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <h4 style={{ margin: '0 0 10px 0', fontSize: '15px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
+                قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
+              </h4>
+              <a
+                href="https://whatsapp.com/channel/0029VaX" // يمكنك تعديل رابط قناة الواتساب هنا
+                target="_blank"
+                rel="noreferrer"
+                className="nav-link-item"
+                style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif", textDecoration: 'none', display: 'block', boxSizing: 'border-box' }}
+              >
+                قناة الواتس 📢
+              </a>
+            </div>
+
             <div className="contact-section-bottom" style={{
               marginTop: '20px', maxWidth: '540px', display: 'flex', zIndex: 5, boxSizing: 'border-box', scale: 1.3,
             }}>
@@ -388,7 +470,7 @@ function App() {
                 مجالات الأوسبيلدونغ - Ausbildung-Bereiche
               </Link>
 
-              <h2 style={{ marginTop: '30px', marginBottom: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
+              <h2 style={{ marginTop: '30px', marginBottom: 0, fontSize: '25px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
                 تمريض - Krankenpflege
               </h2>
 
