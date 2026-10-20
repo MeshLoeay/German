@@ -242,6 +242,7 @@ function App() {
             <img src="https://meshloeay.github.io/Your-Age/My-img/5.png" alt="Decoration" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(56,189,248,0.7))', flexShrink: 0 }} />
             <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#38bdf8', letterSpacing: '0.5px', whiteSpace: 'nowrap', fontFamily: "'Cairo', sans-serif" }}>
               صلى على محمد
+              <br/>
             ❤️ متنساش ❤️ تدعيلى ❤️
             </span>
             <img src="https://meshloeay.github.io/Your-Age/My-img/5.png" alt="Decoration" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(56,189,248,0.7))', flexShrink: 0 }} />
