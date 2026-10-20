@@ -347,7 +347,7 @@ function App() {
                       fontFamily: "'Cairo', sans-serif"
                     }}
                   >
-                    <span style={{ width: '100%', textAlign: 'center' }}>واتساب</span>
+                    <span style={{ width: '100%', textAlign: 'center',marginLeft:'10%'  }}>واتساب</span>
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                       alt="WhatsApp"
@@ -368,7 +368,6 @@ function App() {
                       justify: 'center',
                       padding: '8px',
                       borderRadius: '0px 25px 0px 25px',
-                      marginRight:'10%',
                       border: '1px solid #60a5fa',
                       backgroundColor: '#bae6fd',
                       color: '#0369a1',
@@ -382,9 +381,9 @@ function App() {
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png"
                       alt="Facebook"
-                      style={{ position: 'absolute', right: '16px', width: '22px', height: '22px' }}
+                      style={{ position: 'absolute', right: '16px', width: '22px', height: '22px'}}
                     />
-                    <span style={{ width: '100%', textAlign: 'center' }}>فيسبوك</span>
+                    <span style={{ width: '100%', textAlign: 'center',marginRight:'10%'  }}>فيسبوك</span>
                   </a>
                 </div>
               </div>
