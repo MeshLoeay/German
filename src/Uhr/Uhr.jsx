@@ -124,10 +124,52 @@ export default function ClockApp() {
 
   return (
     <div style={containerStyle}>
+      <style>{`
+        @keyframes softGlowPink {
+          0% {
+            text-shadow: 0 0 5px rgba(255, 254, 254, 0.6), 0 0 10px rgba(255, 255, 255, 0.4);
+            opacity: 0.92;
+          }
+          50% {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 0 18px rgba(246, 240, 243, 0.65);
+            opacity: 1;
+          }
+          100% {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(231, 222, 226, 0.4);
+            opacity: 0.92;
+          }
+        }
+        @keyframes softGlowBlue {
+          0% {
+            text-shadow: 0 0 5px rgba(56, 189, 248, 0.6), 0 0 10px rgba(56, 189, 248, 0.4);
+            opacity: 0.92;
+          }
+          50% {
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.85), 0 0 18px rgba(56, 189, 248, 0.65);
+            opacity: 1;
+          }
+          100% {
+            text-shadow: 0 0 5px rgba(56, 189, 248, 0.6), 0 0 10px rgba(56, 189, 248, 0.4);
+            opacity: 0.92;
+          }
+        }
+        .glowing-pink {
+          animation: softGlowPink 2.2s infinite ease-in-out;
+        }
+        .glowing-blue {
+          animation: softGlowBlue 2.2s infinite ease-in-out;
+        }
+      `}</style>
+
       <main style={{ width: '100%', maxWidth: '850px', padding: '10px 12px', flex: 1, boxSizing: 'border-box' }}>
-        <p style={{ fontSize: '0.78rem', fontWeight: 'bold', color: '#ec4899', marginBottom: '1px' }}>
-          Zusatzlektion · درس إضافي
-        </p>
+        <div style={{ textAlign: 'center', marginBottom: '15px' }}>
+          <p className="glowing-pink" style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#5fee17', marginBottom: '6px' }}>
+            شكر خاص للبشمهندسه مياده <br/> فى اتقانها فى عمل ساعه حلوه زى دى
+          </p>
+          <p className="glowing-blue" style={{ fontSize: '1.1rem', fontWeight: '700', color: '#38bdf8', marginBottom: '10px' }}>
+            و شكرا لانها ادتهالنا كلنا بكل حب
+          </p>
+        </div>
         <h1 style={{ fontSize: '1.3rem', fontWeight: '800', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '6px' }}>
           Die Uhrzeit — قراءة الساعة
         </h1>
