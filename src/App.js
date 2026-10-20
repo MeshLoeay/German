@@ -337,7 +337,6 @@ function App() {
                       justify: 'center',
                       padding: '8px',
                       borderRadius: '25px 0px 25px 0px',
-                      marginLeft:'10%',
                       border: '1px solid #22c55e',
                       backgroundColor: '#15803d',
                       color: '#ffffff',
