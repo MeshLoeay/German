@@ -405,9 +405,9 @@ function App() {
     textDecoration: "none",
     display: "block",
     boxSizing: "border-box",
-    backgroundColor: rgb(255, 40, 147),
-    color: rgb(255, 255, 255),
-    borderColor: rgb(244, 114, 182),
+    backgroundColor: "rgb(255, 40, 147)",
+    color: "rgb(255, 255, 255)",
+    borderColor: "rgb(244, 114, 182)",
     borderRadius: "25px 25px 100px 100px",
     padding: "8px",
                   }}
