@@ -357,7 +357,7 @@ function App() {
               marginTop: '20px', maxWidth: '540px', display: 'flex', zIndex: 5, boxSizing: 'border-box', scale: 1.3,
             }}>
               <div style={{
-                display: 'flex', alignItems: 'center', gap: '10px', width: "175px",
+                display: 'flex', alignItems: 'center', gap: '10px', width: "175px",marginTop:'20px',
                 background: 'rgba(0, 0, 0, 0.4)', padding: '10px 16px', borderRadius: '20px 6px 20px 6px', backdropFilter: 'blur(5px)'
               }}>
                 <div className="contact-title" style={{ color: '#fff', fontSize: '11px', textAlign: 'right', width: '100%', fontWeight: 'bold', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>للتواصل معي</div>
@@ -373,10 +373,10 @@ function App() {
             </div>
 
             <div style={{
-              marginTop: '30px', width: '90%', maxWidth: '540px', display: 'flex',
+              marginTop: '20px', width: '90%', maxWidth: '540px', display: 'flex',
               flexDirection: 'column', alignItems: 'center', gap: '15px', textAlign: 'center'
             }}>
-              <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
+              <h1 style={{ margin: "20px 0 0 0 ", fontSize: '30px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
                 ألمانيا - Deutschland
               </h1>
 
@@ -384,18 +384,18 @@ function App() {
                 كل ما يخص ألمانيا - Alles über Deutschland
               </h3>
 
-              <Link to="/Aus/GermanJobsTable" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+              <Link to="/Aus/GermanJobsTable" className="nav-link-item" style={{ width: '100%',marginTop:'20px' , textAlign: 'center',fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
                 مجالات الأوسبيلدونغ - Ausbildung-Bereiche
               </Link>
 
-              <h2 style={{ marginTop: '10px', marginBottom: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
+              <h2 style={{ marginTop: '30px', marginBottom: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
                 تمريض - Krankenpflege
               </h2>
 
               <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
                 كل ما يخص التمريض - Alles über Krankenpflege
               </h3>
-              <h3 style={{ margin: 0, fontSize: '16px', textAlign: "center", fontWeight: '600', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
+              <h3 style={{ margin: 0, fontSize: '16px', textAlign: "center", fontWeight: '600',lineHeight:'1.8', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
                 بقا انا بطلب منكو اسئله تمريض
                 <br />
                 تقلولى المريض مريض
