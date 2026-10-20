@@ -317,6 +317,102 @@ function App() {
               }}>
                 الموقع الرايق للناس الرايقه
               </h2>
+
+              {/* قسم التواصل بعد عنوان الرايق */}
+              <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
+                  للتواصل معي
+                </h3>
+                <div style={{ display: 'flex', width: '100%', gap: '12px', justifyContent: 'center', boxSizing: 'border-box' }}>
+                  {/* زر الواتساب: كلمة "واتساب" مسنترة تماماً في منتصف الديف، والأيقونة على الشمال */}
+                  <a
+                    href="https://wa.me/201003412932"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      flex: 1,
+                      position: 'relative',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justify: 'center',
+                      padding: '12px',
+                      borderRadius: '25px 0px 25px 0px',
+                      border: '1px solid #22c55e',
+                      backgroundColor: '#15803d',
+                      color: '#ffffff',
+                      fontWeight: 'bold',
+                      fontSize: '18px',
+                      textDecoration: 'none',
+                      boxShadow: '0 4px 10px rgba(34, 197, 94, 0.3)',
+                      fontFamily: "'Cairo', sans-serif"
+                    }}
+                  >
+                    <span style={{ width: '100%', textAlign: 'center' }}>واتساب</span>
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                      alt="WhatsApp"
+                      style={{ position: 'absolute', left: '16px', width: '22px', height: '22px' }}
+                    />
+                  </a>
+
+                  {/* زر الفيسبوك: كلمة "فيسبوك" مسنترة تماماً في منتصف الديف، والأيقونة على اليمين */}
+                  <a
+                    href="https://www.facebook.com/qursan.loeay/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      flex: 1,
+                      position: 'relative',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justify: 'center',
+                      padding: '12px',
+                      borderRadius: '0px 25px 0px 25px',
+                      border: '1px solid #60a5fa',
+                      backgroundColor: '#bae6fd',
+                      color: '#0369a1',
+                      fontWeight: 'bold',
+                      fontSize: '18px',
+                      textDecoration: 'none',
+                      boxShadow: '0 4px 10px rgba(56, 189, 248, 0.3)',
+                      fontFamily: "'Cairo', sans-serif"
+                    }}
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png"
+                      alt="Facebook"
+                      style={{ position: 'absolute', right: '16px', width: '22px', height: '22px' }}
+                    />
+                    <span style={{ width: '100%', textAlign: 'center' }}>فيسبوك</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* قسم قناة الواتساب (باللون البمبه) */}
+              <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <h4 style={{ margin: '0 0 10px 0', fontSize: '15px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
+                  قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
+                </h4>
+                <a
+                  href="https://whatsapp.com/channel/0029VaX"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="nav-link-item"
+                  style={{
+                    width: '100%',
+                    textAlign: 'center',
+                    fontFamily: "'Cairo', 'Courgette', sans-serif",
+                    textDecoration: 'none',
+                    display: 'block',
+                    boxSizing: 'border-box',
+                    backgroundColor: '#ec4899',
+                    color: '#ffffff',
+                    borderColor: '#f472b6'
+                  }}
+                >
+                  قناة الواتس 📢
+                </a>
+              </div>
             </header>
 
             <div className="main-center-wrapper" style={{
@@ -355,84 +451,6 @@ function App() {
                   </Link>
                 ))}
               </nav>
-            </div>
-
-            {/* قسم التواصل مع زر الواتساب والفيسبوك المخصص بنفس ستايل الصورة */}
-            <div style={{ marginTop: '25px', width: '100%', maxWidth: '540px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
-                للتواصل معي
-              </h3>
-              <div style={{ display: 'flex', width: '100%', gap: '12px', justifyContent: 'center', boxSizing: 'border-box' }}>
-                {/* زر الواتساب (على اليمين - باللون الأخضر) */}
-                <a
-                  href="https://wa.me/201003412932"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justify: 'center',
-                    gap: '10px',
-                    padding: '12px',
-                    borderRadius: '25px 0px 25px 0px',
-                    border: '1px solid #22c55e',
-                    backgroundColor: '#15803d',
-                    color: '#ffffff',
-                    fontWeight: 'bold',
-                    fontSize: '18px',
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 10px rgba(34, 197, 94, 0.3)',
-                    fontFamily: "'Cairo', sans-serif"
-                  }}
-                >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{ width: '22px', height: '22px' }} />
-                  <span>واتساب</span>
-                </a>
-
-                {/* زر الفيسبوك (على الشمال - باللون الأزرق) */}
-                <a
-                  href="https://www.facebook.com/qursan.loeay/"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justify: 'center',
-                    gap: '10px',
-                    padding: '12px',
-                    borderRadius: '0px 25px 0px 25px',
-                    border: '1px solid #60a5fa',
-                    backgroundColor: '#bae6fd',
-                    color: '#0369a1',
-                    fontWeight: 'bold',
-                    fontSize: '18px',
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 10px rgba(56, 189, 248, 0.3)',
-                    fontFamily: "'Cairo', sans-serif"
-                  }}
-                >
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook" style={{ width: '22px', height: '22px' }} />
-                  <span>فيسبوك</span>
-                </a>
-              </div>
-            </div>
-
-            {/* قسم قناة الواتساب */}
-            <div style={{ marginTop: '25px', width: '100%', maxWidth: '540px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <h4 style={{ margin: '0 0 10px 0', fontSize: '15px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
-                قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
-              </h4>
-              <a
-                href="https://whatsapp.com/channel/0029VaX" // يمكنك تعديل رابط قناة الواتساب هنا
-                target="_blank"
-                rel="noreferrer"
-                className="nav-link-item"
-                style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif", textDecoration: 'none', display: 'block', boxSizing: 'border-box' }}
-              >
-                قناة الواتس 📢
-              </a>
             </div>
 
             <div className="contact-section-bottom" style={{
