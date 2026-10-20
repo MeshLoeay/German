@@ -347,7 +347,7 @@ function App() {
                       fontFamily: "'Cairo', sans-serif"
                     }}
                   >
-                    <span style={{ width: '90%', textAlign: 'center' }}>واتساب</span>
+                    <span style={{ width: '100%', textAlign: 'center' }}>واتساب</span>
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                       alt="WhatsApp"
@@ -383,7 +383,7 @@ function App() {
                       alt="Facebook"
                       style={{ position: 'absolute', right: '16px', width: '22px', height: '22px' }}
                     />
-                    <span style={{ width: '90%', textAlign: 'center' }}>فيسبوك</span>
+                    <span style={{ width: '100%', textAlign: 'center' }}>فيسبوك</span>
                   </a>
                 </div>
               </div>
@@ -408,11 +408,11 @@ function App() {
     backgroundColor: "rgb(255, 40, 147)",
     color: "rgb(255, 255, 255)",
     borderColor: "rgb(244, 114, 182)",
-    borderRadius: "25px 25px 100px 100px",
+    borderRadius: "35px 6px",
     padding: "8px",
                   }}
                 >
-                  قناة الواتس 📢
+                  قناة الواتس
                 </a>
               </div>
             </header>
