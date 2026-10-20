@@ -376,9 +376,9 @@ function App() {
               marginTop: '30px', width: '90%', maxWidth: '540px', display: 'flex',
               flexDirection: 'column', alignItems: 'center', gap: '15px', textAlign: 'center'
             }}>
-              <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
+              <h1 style={{ margin: 0, fontSize: '20px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
                 ألمانيا - Deutschland
-              </h2>
+              </h1>
 
               <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
                 كل ما يخص ألمانيا - Alles über Deutschland
