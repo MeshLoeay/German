@@ -17,7 +17,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "loeay": "git add . && git commit -m \"update site\" && git push origin main && npm run deploy"
+    "update": "git add . && git commit -m \"update site\" && git push origin main && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
