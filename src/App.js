@@ -319,7 +319,7 @@ function App() {
               </h2>
 
               {/* قسم التواصل بعد عنوان الرايق */}
-              <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ marginTop: '20px', width: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
                   للتواصل معي
                 </h3>
@@ -335,7 +335,7 @@ function App() {
                       display: 'flex',
                       alignItems: 'center',
                       justify: 'center',
-                      padding: '12px',
+                      padding: '8px',
                       borderRadius: '25px 0px 25px 0px',
                       border: '1px solid #22c55e',
                       backgroundColor: '#15803d',
@@ -347,7 +347,7 @@ function App() {
                       fontFamily: "'Cairo', sans-serif"
                     }}
                   >
-                    <span style={{ width: '100%', textAlign: 'center' }}>واتساب</span>
+                    <span style={{ width: '90%', textAlign: 'center' }}>واتساب</span>
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                       alt="WhatsApp"
@@ -366,7 +366,7 @@ function App() {
                       display: 'flex',
                       alignItems: 'center',
                       justify: 'center',
-                      padding: '12px',
+                      padding: '8px',
                       borderRadius: '0px 25px 0px 25px',
                       border: '1px solid #60a5fa',
                       backgroundColor: '#bae6fd',
@@ -383,7 +383,7 @@ function App() {
                       alt="Facebook"
                       style={{ position: 'absolute', right: '16px', width: '22px', height: '22px' }}
                     />
-                    <span style={{ width: '100%', textAlign: 'center' }}>فيسبوك</span>
+                    <span style={{ width: '90%', textAlign: 'center' }}>فيسبوك</span>
                   </a>
                 </div>
               </div>
@@ -399,13 +399,13 @@ function App() {
                   rel="noreferrer"
                   className="nav-link-item"
                   style={{
-                    width: '100%',
+                    width: '70%',
                     textAlign: 'center',
                     fontFamily: "'Cairo', 'Courgette', sans-serif",
                     textDecoration: 'none',
                     display: 'block',
                     boxSizing: 'border-box',
-                    backgroundColor: '#ec4899',
+                    backgroundColor: '#ff2893',
                     color: '#ffffff',
                     borderColor: '#f472b6'
                   }}
