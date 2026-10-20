@@ -396,7 +396,9 @@ function App() {
                 كل ما يخص التمريض - Alles über Krankenpflege
               </h3>
               <h3 style={{ margin: 0, fontSize: '16px', textAlign: "center", fontWeight: '600', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
-                بقا انا بطلب منكو اسئله تمريض تقلولى المريض مريض
+                بقا انا بطلب منكو اسئله تمريض
+                <br />
+                تقلولى المريض مريض
                 <br />
                 Der Patient ist krank
                 <br />
