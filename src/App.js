@@ -399,15 +399,17 @@ function App() {
                   rel="noreferrer"
                   className="nav-link-item"
                   style={{
-                    width: '70%',
-                    textAlign: 'center',
-                    fontFamily: "'Cairo', 'Courgette', sans-serif",
-                    textDecoration: 'none',
-                    display: 'block',
-                    boxSizing: 'border-box',
-                    backgroundColor: '#ff2893',
-                    color: '#ffffff',
-                    borderColor: '#f472b6'
+                    width: "50%",
+    textAlign: "center",
+    fontFamily: "Cairo, Courgette, sans-serif" ,
+    textDecoration: "none",
+    display: "block",
+    boxSizing: "border-box",
+    backgroundColor: rgb(255, 40, 147),
+    color: rgb(255, 255, 255),
+    borderColor: rgb(244, 114, 182),
+    borderRadius: "25px 25px 100px 100px",
+    padding: "8px",
                   }}
                 >
                   قناة الواتس 📢
