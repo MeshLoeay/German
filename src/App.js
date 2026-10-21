@@ -392,6 +392,8 @@ function App() {
               <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '15px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
                   قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
+                    <br/>
+                   <span style={{fontSize:"25px"}}> من فضلك تابع القناه </span>
                 </h4>
                 <a
                   href="https://whatsapp.com/channel/0029VaX"
