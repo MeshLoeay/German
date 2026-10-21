@@ -366,7 +366,9 @@ export default function GermanNumbersApp() {
             backgroundColor: 'rgba(56, 189, 248, 0.05)'
           }}>
             <div style={{ fontWeight: 'bold', fontSize: '1rem', textAlign: 'center' }}>
-              🎧 استمع لنطق الأرقام متتالية
+              🎧 اسمع الارقام من الرقم اللى انتا عاوزه للرقم اللى انتا عاوزه
+              <br/>
+              <span style={{color:"red"}}>السرعات تطبق على الموقع كله</span>
             </div>
 
             {/* الأزرار الثلاثة لتحديد سرعة النطق جنبًا إلى جنب */}
