@@ -462,7 +462,7 @@ function App() {
                     animation: 'glowAnimation 1.5s infinite alternate'
                   }}
                 >
-                  المواضيع 😎
+                  الزرار به موضوعات مهمه
                 </Link>
 
                 {[
