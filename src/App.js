@@ -441,9 +441,9 @@ function App() {
 
                 {/* عنوان باقي المواضيع وتحته العبارة مع الإيموجي */}
                 <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
-                  باقى المواضيع
+                  الدروس
                   <br />
-                  متيجى نشوف المواضيع
+                  باقى الدروس
                 </h3>
 
                 {/* الزرار يحتوي على المواضيع والإيموجي فقط مع إضاءة باللون الأحمر الغامق */}
@@ -451,14 +451,14 @@ function App() {
                   to="/AllTopic"
                   className="nav-link-item glowing-red-btn"
                   style={{
-                    backgroundColor: '#8b0000',
+                    backgroundColor: '#278b00',
                     color: '#ffffff',
-                    borderColor: '#ef4444',
+                    borderColor: '#278b00',
                     textAlign: 'center',
                     padding: '10px',
                     fontWeight: 'bold',
                     fontFamily: "'Cairo', 'Courgette', sans-serif",
-                    boxShadow: '0 0 15px rgba(239, 68, 68, 0.8), 0 0 25px rgba(185, 28, 28, 0.6)',
+                    boxShadow: '0 0 15px rgba(105, 239, 68, 0.8), 0 0 25px rgba(246, 246, 246, 0.6)',
                     animation: 'glowAnimation 1.5s infinite alternate'
                   }}
                 >
@@ -645,11 +645,11 @@ function App() {
 
         @keyframes glowAnimation {
           0% {
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.7), 0 0 20px rgba(185, 28, 28, 0.5);
+            box-shadow: 0 0 10px rgba(68, 239, 77, 0.7), 0 0 20px white;
             transform: scale(1);
           }
           100% {
-            box-shadow: 0 0 22px rgba(239, 68, 68, 1), 0 0 35px rgba(220, 38, 38, 0.9);
+            box-shadow: 0 0 22px rgba(68, 239, 77, 0.7), 0 0 35px white;
             transform: scale(1.02);
           }
         }
