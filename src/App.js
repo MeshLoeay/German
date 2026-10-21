@@ -400,16 +400,16 @@ function App() {
                   className="nav-link-item"
                   style={{
                     width: "50%",
-    textAlign: "center",
-    fontFamily: "Cairo, Courgette, sans-serif" ,
-    textDecoration: "none",
-    display: "block",
-    boxSizing: "border-box",
-    backgroundColor: "rgb(255, 40, 147)",
-    color: "rgb(255, 255, 255)",
-    borderColor: "rgb(244, 114, 182)",
-    borderRadius: "35px 6px",
-    padding: "8px",
+                    textAlign: "center",
+                    fontFamily: "Cairo, Courgette, sans-serif" ,
+                    textDecoration: "none",
+                    display: "block",
+                    boxSizing: "border-box",
+                    backgroundColor: "rgb(255, 40, 147)",
+                    color: "rgb(255, 255, 255)",
+                    borderColor: "rgb(244, 114, 182)",
+                    borderRadius: "35px 6px",
+                    padding: "8px",
                   }}
                 >
                   قناة الواتس
@@ -433,7 +433,39 @@ function App() {
                   { to: "/Country", label: 'أسماء الدول' },
                   { to: "/Uhr", label: 'الساعه' },
                   { to: "/Music", label: 'التعلم بالاغانى' },
-                  { to: "/AllTopic", label: 'باقى المواضيع' },
+                ].map((item, index) => (
+                  <Link key={index} to={item.to} className="nav-link-item" style={{ fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+                    {item.label}
+                  </Link>
+                ))}
+
+                {/* عنوان باقي المواضيع وتحته العبارة مع الإيموجي */}
+                <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
+                  باقى المواضيع
+                  <br />
+                  متيجى نشوف المواضيع
+                </h3>
+
+                {/* الزرار يحتوي على المواضيع والإيموجي فقط مع إضاءة باللون الأحمر الغامق */}
+                <Link
+                  to="/AllTopic"
+                  className="nav-link-item glowing-red-btn"
+                  style={{
+                    backgroundColor: '#8b0000',
+                    color: '#ffffff',
+                    borderColor: '#ef4444',
+                    textAlign: 'center',
+                    padding: '10px',
+                    fontWeight: 'bold',
+                    fontFamily: "'Cairo', 'Courgette', sans-serif",
+                    boxShadow: '0 0 15px rgba(239, 68, 68, 0.8), 0 0 25px rgba(185, 28, 28, 0.6)',
+                    animation: 'glowAnimation 1.5s infinite alternate'
+                  }}
+                >
+                  المواضيع 😎
+                </Link>
+
+                {[
                   { to: "/lektion3", label: "الأسئلة التعريفية (Vorstellung)" },
                   { to: "/life-sentences", label: "الجمل الحياتية" },
                   { to: "/grad4", label: "الصف الرابع الابتدائي" },
@@ -610,6 +642,17 @@ function App() {
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+        @keyframes glowAnimation {
+          0% {
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.7), 0 0 20px rgba(185, 28, 28, 0.5);
+            transform: scale(1);
+          }
+          100% {
+            box-shadow: 0 0 22px rgba(239, 68, 68, 1), 0 0 35px rgba(220, 38, 38, 0.9);
+            transform: scale(1.02);
+          }
+        }
       `}</style>
     </div>
   );
