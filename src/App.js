@@ -440,11 +440,11 @@ function App() {
                 ))}
 
                 {/* عنوان باقي المواضيع وتحته العبارة مع الإيموجي */}
-                <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
+                {/* <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
                   الدروس
                   <br />
                   الزرار به موضوعات مهمه
-                </h3>
+                </h3> */}
 
                 {/* الزرار يحتوي على المواضيع والإيموجي فقط مع إضاءة باللون الأحمر الغامق */}
                 <Link
