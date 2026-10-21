@@ -17,7 +17,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "up": "git add . && git commit -m \"update\" && git pull origin main --allow-unrelated-histories --strategy-option theirs && git push origin main && npm run deploy"
+    "up": "git add . && git commit -m \"update\" && git push origin v2 && npm run deploy"
   },
   "eslintConfig": {
     "extends": [
