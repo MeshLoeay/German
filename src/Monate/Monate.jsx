@@ -325,9 +325,9 @@ export default function Monate() {
           {/* ملحوظة باللون الأصفر قبل الشهور */}
           <div style={{
             width: '100%',
-            backgroundColor: '#fef08a',
-            color: '#854d0e',
-            border: '1px solid #fde047',
+            backgroundColor: '#000',
+            color: '#fff',
+            border: '1px solid #fff',
             borderRadius: '12px',
             padding: '10px 15px',
             textAlign: 'center',
