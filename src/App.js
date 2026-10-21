@@ -443,7 +443,7 @@ function App() {
                 <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
                   الدروس
                   <br />
-                  باقى الدروس
+                  الزرار به موضوعات مهمه
                 </h3>
 
                 {/* الزرار يحتوي على المواضيع والإيموجي فقط مع إضاءة باللون الأحمر الغامق */}
@@ -462,7 +462,7 @@ function App() {
                     animation: 'glowAnimation 1.5s infinite alternate'
                   }}
                 >
-                  الزرار به موضوعات مهمه
+                  جوايا حجات حلوه
                 </Link>
 
                 {[
