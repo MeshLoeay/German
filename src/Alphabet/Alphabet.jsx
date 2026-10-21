@@ -38,63 +38,63 @@ const alphabetData = [
 const phoneticSectionsImage1 = [
   {
     title: "1. CH",
-    content: "النطق الأول: صوت خنخ\nغالباً لما بيجي فيبل ch أحد حروف العل الخلفية: a - o - u - au\nأمثلة:\n• Buch : كتاب\n• Bauch : بطن\n• Loch : خفرة / حفرة\n• auch : أيضاً\n• machen : يفعل / يعمل\n\nالنطق الثاني: الصوت الخفيف\nبعد الأصوات الأمامية مثل: e - i - ä - ö - ü\nيكون صوت خفيف جداً، قريب من ش خفيفة جداً، ويخرج من مقدمة/وسط سقف الفم.\nأمثلة:\n• ich : أنا\n• Milch : حليب\n• München : ميونخ\n• welche : دأي / واحدة\n• Mädchen : فتاة\n\nملاحظة:\nالصوت ده مش ش ألمانية واضحة زي sch؛ مش لها صوت ش واضح، أما ch في ich فهو صوت مختلف وأخلف."
+    content: "النطق الأول: صوت خنخ\nغالباً لما بيجي فيبل ch أحد حروف العل الخلفية: a - o - u - au\nأمثلة:\nBuch : كتاب\nBauch : بطن\nLoch : خفرة / حفرة\nauch : أيضاً\nmachen : يفعل / يعمل\n\nالنطق الثاني: الصوت الخفيف\nبعد الأصوات الأمامية مثل: e - i - ä - ö - ü\nيكون صوت خفيف جداً، قريب من ش خفيفة جداً، ويخرج من مقدمة/وسط سقف الفم.\nأمثلة:\nich : أنا\nMilch : حليب\nMünchen : ميونخ\nwelche : دأي / واحدة\nMädchen : فتاة\n\nملاحظة:\nالصوت ده مش ش ألمانية واضحة زي sch؛ مش لها صوت ش واضح، أما ch في ich فهو صوت مختلف وأخلف."
   },
   {
     title: "2. CHS",
-    content: "chs بيتنطق كس / x\nأمثلة:\n• Fuchs : ثعلب\n• sechs : ستة\n• wachsen : ينمو\n• Dachs : غرير\n• Ochse : ثور"
+    content: "chs بيتنطق كس / x\nأمثلة:\nFuchs : ثعلب\nsechs : ستة\nwachsen : ينمو\nDachs : غرير\nOchse : ثور\n"
   },
   {
     title: "3. CK",
-    content: "ck بيتنطق ك.\nأمثلة:\n• Zucker : سكر\n• Wecker : منبه\n• Jacke : جاكيت / سترة\n• backen : يخيز\n• Brücke : جسر\n\nie → إي = ei → أي 💡 أحفظها كده:"
+    content: "ck بيتنطق ك.\nأمثلة:\nZucker : سكر\nWecker : منبه\nJacke : جاكيت / سترة\nbacken : يخيز\nBrücke : جسر\n\nie → إي = ei → أي 💡 أحفظها كده:"
   },
   {
     title: "4. IE",
-    content: "ie بيتنطق إي طويلة.\nأمثلة:\n• Tier : حيوان\n• sieben : سبعة\n• fliegen : يطير\n• Liebe : حب\n• spielen : يلعب"
+    content: "ie بيتنطق إي طويلة.\nأمثلة:\nTier : حيوان\nsieben : سبعة\nfliegen : يطير\nLiebe : حب\nspielen : يلعب\n"
   },
   {
     title: "5. EI",
-    content: "ei بيتنطق إي.\nأمثلة:\n• Ei : بيضة\n• Reis : أرز\n• Eis : آيس كريم\n• Eisen : حديد\n• mein : لي / خاصتي\n• klein : صغير"
+    content: "ei بيتنطق إي.\nأمثلة:\nEi : بيضة\nReis : أرز\nEis : آيس كريم\nEisen : حديد\nmein : لي / خاصتي\nklein : صغير\n"
   },
   {
     title: "6. AU",
-    content: "au بيتنطق أو.\nأمثلة:\n• Auto : سيارة\n• Haus : بيت\n• Baum : شجرة\n• Frau : امرأة\n• kaufen : يشتري"
+    content: "au بيتنطق أو.\nأمثلة:\nAuto : سيارة\nHaus : بيت\nBaum : شجرة\nFrau : امرأة\nkaufen : يشتري\n"
   },
   {
     title: "7. EU / ÄU",
-    content: "الاتنين بيتنطقوا تقريباً أوء، أوي.\nEU:\n• Euro : يورو\n• Feuer : نار\n• heute : اليوم\n• Freund : صديق\n• neu : جديد\n\nÄU:\n• Bäume : أشجار\n• Mäuse : فئران\n• Häuser : بيوت\n• Träume : أحلام\n• Häuser : منازل\n\nأوي → eu | أة → äu"
+    content: "الاتنين بيتنطقوا تقريباً أوء، أوي.\nEU:\nEuro : يورو\nFeuer : نار\nheute : اليوم\nFreund : صديق\nneu : جديد\n\nÄU:\nBäume : أشجار\nMäuse : فئران\nHäuser : بيوت\nTräume : أحلام\nHäuser : منازل\n\nأوي → eu | أة → äu"
   },
   {
     title: "8. SCH",
-    content: "sch بيتنطق ش واضحة وقوية نسبياً.\nأمثلة:\n• Schule : مدرسة\n• Schrank : دولاب / خزانة\n• Tasche : شنطة\n• Schuhe : أحذية\n• schön : جميل\n\nو ده مختلف عن ich:\nch = ش واضحة، بينما ch في ich في صوت خفيف مختلف."
+    content: "sch بيتنطق ش واضحة وقوية نسبياً.\nأمثلة:\nSchule : مدرسة\nSchrank : دولاب / خزانة\nTasche : شنطة\nSchuhe : أحذية\nschön : جميل\n\nو ده مختلف عن ich:\nch = ش واضحة، بينما ch في ich في صوت خفيف مختلف."
   },
   {
     title: "9. ST / SP",
-    content: "لما st أو sp بيجي في بداية الكلمة أو بداية مقطع، غالباً بيتنطقوا:\n\nشب ← SP\nأمثلة:\n• Spiel : لعبة\n• Spaß : متعة / مرح\n• Spiegel : مرآة\n• sprechen : يتحدث\n• Sport : رياضة\n\nشت ← ST\nأمثلة:\n• Stuhl : كرسي\n• Straße : شارع\n• stehen : يقف\n• Stadt : مدينة\n• Stein : حجر"
+    content: "لما st أو sp بيجي في بداية الكلمة أو بداية مقطع، غالباً بيتنطقوا:\n\nشب ← SP\nأمثلة:\nSpiel : لعبة\nSpaß : متعة / مرح\nSpiegel : مرآة\nsprechen : يتحدث\nSport : رياضة\n\nشت ← ST\nأمثلة:\nStuhl : كرسي\nStraße : شارع\nstehen : يقف\nStadt : مدينة\nStein : حجر\n"
   },
   {
     title: "10. ER",
-    content: "في نهاية الكلمة، الـ er غالباً لا تنطق كر عربية واضحة، والصوت كله بيطلع بشكل أقرب لصوت مركزي خفيف.\nأمثلة:\n• aber : لكن\n• besser : أفضل\n• Fenster : نافذة\n• Lehrer : معلم\n• Mutter : أم\n\nخصوصاً في نهاية الكلمة، متحاولش تنطق الـ r العربية بقوة."
+    content: "في نهاية الكلمة، الـ er غالباً لا تنطق كر عربية واضحة، والصوت كله بيطلع بشكل أقرب لصوت مركزي خفيف.\nأمثلة:\naber : لكن\nbesser : أفضل\nFenster : نافذة\nLehrer : معلم\nMutter : أم\n\nخصوصاً في نهاية الكلمة، متحاولش تنطق الـ r العربية بقوة."
   },
   {
     title: "11. UR",
-    content: "ur بتدي صوتاً قريباً من أو/أوور.\nأمثلة:\n• Natur : طبيعة\n• Kultur : ثقافة\n• Uhr : ساعة\n• nur : فقط\n• kurz : قصير"
+    content: "ur بتدي صوتاً قريباً من أو/أوور.\nأمثلة:\nNatur : طبيعة\nKultur : ثقافة\nUhr : ساعة\nnur : فقط\nkurz : قصير\n"
   },
   {
     title: "12. QU",
-    content: "qu في الألماني بيتنطق تقريباً كڤ / kv.\nأمثلة:\n• Quelle : نبع\n• Quatsch : هراء / كلام فارغ\n• Quark : جبنة فريش\n• Qualität : جودة\n• Quadrat : مربع\n\nيعني مش \"كو\" بالإنجليزية:\nالصوت الألماني فيه ك + ف."
+    content: "qu في الألماني بيتنطق تقريباً كڤ / kv.\nأمثلة:\nQuelle : نبع\nQuatsch : هراء / كلام فارغ\nQuark : جبنة فريش\nQualität : جودة\nQuadrat : مربع\n\nيعني مش \"كو\" بالإنجليزية:\nالصوت الألماني فيه ك + ف."
   },
   {
     title: "13. PF",
-    content: "pf صوت مركب سريع ب + ف.\nأمثلة:\n• Apfel : تفاحة\n• Topf : حلة / إناء\n• Pferd : حصان\n• Pfanne : مقلاة\n• Pflanze : نبات\n\nلازم الصوتين يندمجوا مع بعض بسرعة، مش تنطقهم منفصلين بوضوح شديد."
+    content: "pf صوت مركب سريع ب + ف.\nأمثلة:\nApfel : تفاحة\nTopf : حلة / إناء\nPferd : حصان\nPfanne : مقلاة\nPflanze : نبات\n\nلازم الصوتين يندمجوا مع بعض بسرعة، مش تنطقهم منفصلين بوضوح شديد."
   },
   {
     title: "14. -IG",
-    content: "-ig لما تيجي في نهاية الكلمة. في النطق الألماني القياسي بألمانيا غالباً بتكون قريبة من الصوت الخفيف الموجود في ich.\nأمثلة:\n• zwanzig : عشرون\n• richtig : صحيح\n• wichtig : مهم\n• lustig : مضحك\n• fertig : انتهى / جاهز\n\nوفي بعض المناطق واللهجات ممكن تسمع النهاية أقرب إلى i-، بصوت g وده طبيعي."
+    content: "-ig لما تيجي في نهاية الكلمة. في النطق الألماني القياسي بألمانيا غالباً بتكون قريبة من الصوت الخفيف الموجود في ich.\nأمثلة:\nzwanzig : عشرون\nrichtig : صحيح\nwichtig : مهم\nlustig : مضحك\nfertig : انتهى / جاهز\n\nوفي بعض المناطق واللهجات ممكن تسمع النهاية أقرب إلى i-، بصوت g وده طبيعي."
   },
   {
     title: "15. -TION",
-    content: "-tion في الكلمات الألمانية ذات الأصل اللاتيني/الفرنسي غالباً بيتنطق تسيون.\nأمثلة:\n• Lektion : درس\n• Information : معلومة / معلومات\n• Situation : موقف / حالة\n• Station : محطة\n• Nation : أمة / دولة\n\nيعني:\n-tion → -تسيون"
+    content: "-tion في الكلمات الألمانية ذات الأصل اللاتيني/الفرنسي غالباً بيتنطق تسيون.\nأمثلة:\nLektion : درس\nInformation : معلومة / معلومات\nSituation : موقف / حالة\nStation : محطة\nNation : أمة / دولة\n\nيعني:\n-tion → -تسيون"
   }
 ];
 
@@ -201,6 +201,55 @@ export default function GermanApp() {
     }
   };
 
+  // دالة لنطق كل الحروف تباعاً
+  const speakAllLetters = () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      alphabetData.forEach((item, index) => {
+        const cleanLetter = item.letter.split(' ')[0];
+        const utterance = new SpeechSynthesisUtterance(cleanLetter);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.9;
+        // تأخير زمني تراكمي لكل حرف
+        setTimeout(() => {
+          window.speechSynthesis.speak(utterance);
+        }, index * 700);
+      });
+    }
+  };
+
+  // دالة لنطق كل الحروف والكلمات التي تحتها تباعاً
+  const speakAllLettersAndWords = () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      let delay = 0;
+      alphabetData.forEach((item) => {
+        const cleanLetter = item.letter.split(' ')[0];
+
+        // نطق الحرف
+        const uLetter = new SpeechSynthesisUtterance(cleanLetter);
+        uLetter.lang = 'de-DE';
+        uLetter.rate = 0.9;
+        setTimeout(() => { window.speechSynthesis.speak(uLetter); }, delay);
+        delay += 600;
+
+        // نطق الكلمة الأولى
+        const uWord1 = new SpeechSynthesisUtterance(item.words[0].de);
+        uWord1.lang = 'de-DE';
+        uWord1.rate = 0.9;
+        setTimeout(() => { window.speechSynthesis.speak(uWord1); }, delay);
+        delay += 700;
+
+        // نطق الكلمة الثانية
+        const uWord2 = new SpeechSynthesisUtterance(item.words[1].de);
+        uWord2.lang = 'de-DE';
+        uWord2.rate = 0.9;
+        setTimeout(() => { window.speechSynthesis.speak(uWord2); }, delay);
+        delay += 900;
+      });
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -273,6 +322,43 @@ export default function GermanApp() {
             <h3 className="mobile-bordered-title" style={{ borderBottom: '2px solid #ffee00', paddingBottom: '10px', color: '#ffee00' }}>
               اضغط على النطق للاستماع للحرف
             </h3>
+
+            {/* الأزرار العامة الجديدة قبل الحروف */}
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+              <button
+                onClick={speakAllLetters}
+                style={{
+                  background: '#3498db',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '30px 6px',
+                  padding: '10px 15px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  flex: 1
+                }}
+              >
+                🔊 نطق كل الحروف
+              </button>
+              <button
+                onClick={speakAllLettersAndWords}
+                style={{
+                  background: '#2ecc71',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '30px 6px',
+                  padding: '10px 15px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  flex: 1
+                }}
+              >
+                🔊 نطق كل الحروف والكلمات
+              </button>
+            </div>
+
             <div className="alphabet-grid">
               {alphabetData.map((item, index) => {
                 const cleanLetter = item.letter.split(' ')[0];

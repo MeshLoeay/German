@@ -20,7 +20,12 @@ export default function Colors() {
     { ar: 'أسود', de: 'Schwarz', quizDe: 'schwarz', className: 'card-black' },
     { ar: 'أبيض', de: 'Weiß', quizDe: 'weiß', className: 'card-white' },
     { ar: 'رمادي', de: 'Grau', quizDe: 'grau', className: 'card-grey', light: '#cbd5e1', lightText: '#0f172a', dark: '#334155', darkText: '#ffffff', lightDe: 'hellgrau', darkDe: 'dunkelgrau' },
-    { ar: 'تركواز', de: 'Türkis', quizDe: 'türkis', className: 'card-turquoise', light: '#99f6e4', lightText: '#0f172a', dark: '#0f766e', darkText: '#ffffff', lightDe: 'helltürkis', darkDe: 'dunkeltürkis' }
+    { ar: 'تركواز', de: 'Türkis', quizDe: 'türkis', className: 'card-turquoise', light: '#99f6e4', lightText: '#0f172a', dark: '#0f766e', darkText: '#ffffff', lightDe: 'helltürkis', darkDe: 'dunkeltürkis' },
+    { ar: 'بينك', de: 'Pink', quizDe: 'pink', className: 'card-pink-hot', light: '#f472b6', lightText: '#0f172a', dark: '#db2777', darkText: '#ffffff', lightDe: 'hellpink', darkDe: 'dunkelpink' },
+    { ar: 'أرجواني فاتح', de: 'Flieder', quizDe: 'flieder', className: 'card-flieder', light: '#f3e8ff', lightText: '#1e293b', dark: '#9333ea', darkText: '#ffffff', lightDe: 'hellflieder', darkDe: 'dunkelflieder' },
+    { ar: 'ذهبي', de: 'Gold', quizDe: 'gold', className: 'card-gold' },
+    { ar: 'نحاسي', de: 'Kupfer', quizDe: 'kupfer', className: 'card-copper' },
+    { ar: 'فضي', de: 'Silber', quizDe: 'silber', className: 'card-silver' }
   ];
 
   const speakText = (text) => {
@@ -30,6 +35,69 @@ export default function Colors() {
       utterance.lang = 'de-DE';
       utterance.rate = 0.85;
       window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // زر لنطق الكلمات التمهيدية (لون، ألوان، فاتح، غامق) ثم كل الألوان بالتتابع
+  const speakAllColors = () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+
+      const introWords = ['Die Farbe', 'die Farben', 'hell', 'dunkel'];
+      let delay = 0;
+
+      // 1. نطق الكلمات التمهيدية أولاً
+      introWords.forEach((word) => {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        setTimeout(() => {
+          window.speechSynthesis.speak(utterance);
+        }, delay);
+        delay += 850;
+      });
+
+      // 2. نطق جميع الألوان بعد ذلك
+      colorsData.forEach((item) => {
+        const utterance = new SpeechSynthesisUtterance(item.de);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        setTimeout(() => {
+          window.speechSynthesis.speak(utterance);
+        }, delay);
+        delay += 800;
+      });
+    }
+  };
+
+  // زر لنطق كل لون مع الفاتح والغامق اللذين يليه لو كانا موجودين
+  const speakAllColorsWithShades = () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      let delay = 0;
+      colorsData.forEach((item) => {
+        const utteranceMain = new SpeechSynthesisUtterance(item.de);
+        utteranceMain.lang = 'de-DE';
+        utteranceMain.rate = 0.85;
+        setTimeout(() => { window.speechSynthesis.speak(utteranceMain); }, delay);
+        delay += 750;
+
+        if (item.lightDe) {
+          const utteranceLight = new SpeechSynthesisUtterance(item.lightDe);
+          utteranceLight.lang = 'de-DE';
+          utteranceLight.rate = 0.85;
+          setTimeout(() => { window.speechSynthesis.speak(utteranceLight); }, delay);
+          delay += 750;
+        }
+
+        if (item.darkDe) {
+          const utteranceDark = new SpeechSynthesisUtterance(item.darkDe);
+          utteranceDark.lang = 'de-DE';
+          utteranceDark.rate = 0.85;
+          setTimeout(() => { window.speechSynthesis.speak(utteranceDark); }, delay);
+          delay += 750;
+        }
+      });
     }
   };
 
@@ -146,9 +214,74 @@ export default function Colors() {
             لون ومعناه بالألمانية (Farbe und ihre Bedeutung)
           </h3>
 
-          {/* مفرد لون (Die Farbe) - بدون خلفية وبدون ظل */}
+          {/* أزرار التحكم بالنطق الجماعي */}
+          <div style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '14px' }}>
+            <button
+              onClick={speakAllColors}
+              style={{
+                flex: 1,
+                padding: '10px 12px',
+                borderRadius: '30px 6px 30px 6px',
+                border: 'none',
+                backgroundColor: '#3b82f6',
+                color: '#ffffff',
+                fontSize: '0.95rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.1)',
+                fontFamily: "'Courgette', cursive, sans-serif"
+              }}
+            >
+              🔊 نطق الألوان
+            </button>
+            <button
+              onClick={speakAllColorsWithShades}
+              style={{
+                flex: 1,
+                padding: '10px 12px',
+                borderRadius: '30px 6px 30px 6px',
+                border: 'none',
+                backgroundColor: '#2ecc71',
+                color: '#ffffff',
+                fontSize: '0.95rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.1)',
+                fontFamily: "'Courgette', cursive, sans-serif"
+              }}
+            >
+              🔊 الألوان ودرجاتها
+            </button>
+          </div>
+
+          {/* مفرد لون (Die Farbe) */}
           <div
             onClick={() => speakText('Die Farbe')}
+            style={{
+              position: 'relative',
+              width: '100%',
+              backgroundColor: 'transparent',
+              color: 'var(--text-color, #0f172a)',
+              borderRadius: '30px 6px 30px 6px',
+              padding: '12px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '15px',
+              marginBottom: '10px',
+              cursor: 'pointer',
+              userSelect: 'none',
+              border: '1px solid rgba(148, 163, 184, 0.3)'
+            }}
+          >
+            <span style={{ position: 'absolute', right: '18px', fontSize: '1.2rem', color: '#94a3b8' }}>🔊</span>
+            <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>لون</span>
+            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>Die Farbe</span>
+          </div>
+
+          {/* جمع الألوان (die Farben) */}
+          <div
+            onClick={() => speakText('die Farben')}
             style={{
               position: 'relative',
               width: '100%',
@@ -167,8 +300,8 @@ export default function Colors() {
             }}
           >
             <span style={{ position: 'absolute', right: '18px', fontSize: '1.2rem', color: '#94a3b8' }}>🔊</span>
-            <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>لون</span>
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>Die Farbe</span>
+            <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>ألوان (الجمع)</span>
+            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>die Farben</span>
           </div>
 
           {/* التوضيح العلوي */}
@@ -178,7 +311,6 @@ export default function Colors() {
             width: '100%',
             marginBottom: '20px'
           }}>
-            {/* الفاتح (يمين) */}
             <div
               onClick={() => speakText('hell')}
               style={{
@@ -200,7 +332,6 @@ export default function Colors() {
               <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>hell</span>
             </div>
 
-            {/* الغامق (شمال) */}
             <div
               onClick={() => speakText('dunkel')}
               style={{
@@ -234,7 +365,13 @@ export default function Colors() {
                   <div
                     className={`color-card ${item.className}`}
                     onClick={() => {
-                      speakText(item.de);
+                      if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        const utteranceSingular = new SpeechSynthesisUtterance(item.de);
+                        utteranceSingular.lang = 'de-DE';
+                        utteranceSingular.rate = 0.85;
+                        window.speechSynthesis.speak(utteranceSingular);
+                      }
                       if (item.light) openColor(index);
                     }}
                     style={{
@@ -650,6 +787,11 @@ export default function Colors() {
         .card-white { background-color: #ffffff; color: #0f172a; border: 2px solid #000000; }
         .card-grey { background-color: #64748b; color: #ffffff; }
         .card-turquoise { background-color: #14b8a6; color: #ffffff; }
+        .card-gold { background-color: #ca8a04; color: #ffffff; }
+        .card-silver { background-color: #94a3b8; color: #ffffff; }
+        .card-copper { background-color: #c2410c; color: #ffffff; }
+        .card-pink-hot { background-color: #ec4899; color: #ffffff; }
+        .card-flieder { background-color: #c084fc; color: #ffffff; }
 
         /* إطار أبيض للون الأسود في الوضع المظلم */
         @media (prefers-color-scheme: dark) {
