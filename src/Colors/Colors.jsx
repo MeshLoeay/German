@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 export default function Colors() {
   const [activeTab, setActiveTab] = useState('words'); // 'words' أو 'quiz'
@@ -7,6 +7,9 @@ export default function Colors() {
 
   // حالة التحكم بإظهار التدرجات في قسم الكلمات (أول لون مفتوح افتراضياً)
   const [expandedColors, setExpandedColors] = useState({ 0: true });
+
+  // مرجع لتخزين مؤقتات النطق المتسلسل لإمكانية إلغائها فوراً
+  const timersRef = useRef([]);
 
   const colorsData = [
     { ar: 'أحمر', de: 'Rot', quizDe: 'rot', className: 'card-red', light: '#fca5a5', lightText: '#1e293b', dark: '#b91c1c', darkText: '#ffffff', lightDe: 'hellrot', darkDe: 'dunkelrot', lightAr: 'أحمر فاتح', darkAr: 'أحمر غامق' },
@@ -28,9 +31,19 @@ export default function Colors() {
     { ar: 'فضي', de: 'Silber', quizDe: 'silber', className: 'card-silver' }
   ];
 
-  const speakText = (text) => {
+  // دالة مسح جميع المؤقتات وإيقاف الصوت تماماً
+  const stopSpeech = () => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
+    }
+    // مسح كافة مؤقتات النطق المتسلسل المنتظرة في الطابور
+    timersRef.current.forEach(timer => clearTimeout(timer));
+    timersRef.current = [];
+  };
+
+  const speakText = (text) => {
+    stopSpeech();
+    if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE';
       utterance.rate = 0.85;
@@ -38,63 +51,71 @@ export default function Colors() {
     }
   };
 
-  // زر لنطق الكلمات التمهيدية (لون، ألوان، فاتح، غامق) ثم كل الألوان بالتتابع
+  // زر لنطق الكلمات التمهيدية ثم الألوان مع دعم الإيقاف الفوري
   const speakAllColors = () => {
+    stopSpeech();
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-
       const introWords = ['Die Farbe', 'die Farben', 'hell', 'dunkel'];
       let delay = 0;
 
-      // 1. نطق الكلمات التمهيدية أولاً
       introWords.forEach((word) => {
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'de-DE';
-        utterance.rate = 0.85;
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.lang = 'de-DE';
+          utterance.rate = 0.85;
           window.speechSynthesis.speak(utterance);
         }, delay);
+        timersRef.current.push(timer);
         delay += 850;
       });
 
-      // 2. نطق جميع الألوان بعد ذلك
       colorsData.forEach((item) => {
-        const utterance = new SpeechSynthesisUtterance(item.de);
-        utterance.lang = 'de-DE';
-        utterance.rate = 0.85;
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          const utterance = new SpeechSynthesisUtterance(item.de);
+          utterance.lang = 'de-DE';
+          utterance.rate = 0.85;
           window.speechSynthesis.speak(utterance);
         }, delay);
+        timersRef.current.push(timer);
         delay += 800;
       });
     }
   };
 
-  // زر لنطق كل لون مع الفاتح والغامق اللذين يليه لو كانا موجودين
+  // زر لنطق كل لون مع الفاتح والغامق مع دعم الإيقاف الفوري
   const speakAllColorsWithShades = () => {
+    stopSpeech();
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
       let delay = 0;
       colorsData.forEach((item) => {
-        const utteranceMain = new SpeechSynthesisUtterance(item.de);
-        utteranceMain.lang = 'de-DE';
-        utteranceMain.rate = 0.85;
-        setTimeout(() => { window.speechSynthesis.speak(utteranceMain); }, delay);
+        const timerMain = setTimeout(() => {
+          const utteranceMain = new SpeechSynthesisUtterance(item.de);
+          utteranceMain.lang = 'de-DE';
+          utteranceMain.rate = 0.85;
+          window.speechSynthesis.speak(utteranceMain);
+        }, delay);
+        timersRef.current.push(timerMain);
         delay += 750;
 
         if (item.lightDe) {
-          const utteranceLight = new SpeechSynthesisUtterance(item.lightDe);
-          utteranceLight.lang = 'de-DE';
-          utteranceLight.rate = 0.85;
-          setTimeout(() => { window.speechSynthesis.speak(utteranceLight); }, delay);
+          const timerLight = setTimeout(() => {
+            const utteranceLight = new SpeechSynthesisUtterance(item.lightDe);
+            utteranceLight.lang = 'de-DE';
+            utteranceLight.rate = 0.85;
+            window.speechSynthesis.speak(utteranceLight);
+          }, delay);
+          timersRef.current.push(timerLight);
           delay += 750;
         }
 
         if (item.darkDe) {
-          const utteranceDark = new SpeechSynthesisUtterance(item.darkDe);
-          utteranceDark.lang = 'de-DE';
-          utteranceDark.rate = 0.85;
-          setTimeout(() => { window.speechSynthesis.speak(utteranceDark); }, delay);
+          const timerDark = setTimeout(() => {
+            const utteranceDark = new SpeechSynthesisUtterance(item.darkDe);
+            utteranceDark.lang = 'de-DE';
+            utteranceDark.rate = 0.85;
+            window.speechSynthesis.speak(utteranceDark);
+          }, delay);
+          timersRef.current.push(timerDark);
           delay += 750;
         }
       });
@@ -146,7 +167,7 @@ export default function Colors() {
         justifyContent: 'center'
       }}>
         <button
-          onClick={() => setActiveTab('words')}
+          onClick={() => { stopSpeech(); setActiveTab('words'); }}
           style={{
             flex: 1,
             padding: '10px 20px',
@@ -164,7 +185,7 @@ export default function Colors() {
           كلمات الألوان
         </button>
         <button
-          onClick={() => setActiveTab('quiz')}
+          onClick={() => { stopSpeech(); setActiveTab('quiz'); }}
           style={{
             flex: 1,
             padding: '10px 20px',
@@ -215,15 +236,55 @@ export default function Colors() {
           </h3>
 
           {/* أزرار التحكم بالنطق الجماعي */}
-          <div style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
+              <button
+                onClick={speakAllColors}
+                style={{
+                  flex: 1,
+                  padding: '10px 12px',
+                  borderRadius: '30px 6px 30px 6px',
+                  border: 'none',
+                  backgroundColor: '#3b82f6',
+                  color: '#ffffff',
+                  fontSize: '0.95rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  boxShadow: '0 3px 8px rgba(0, 0, 0, 0.1)',
+                  fontFamily: "'Courgette', cursive, sans-serif"
+                }}
+              >
+                🔊 نطق الألوان
+              </button>
+              <button
+                onClick={speakAllColorsWithShades}
+                style={{
+                  flex: 1,
+                  padding: '10px 12px',
+                  borderRadius: '30px 6px 30px 6px',
+                  border: 'none',
+                  backgroundColor: '#2ecc71',
+                  color: '#ffffff',
+                  fontSize: '0.95rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  boxShadow: '0 3px 8px rgba(0, 0, 0, 0.1)',
+                  fontFamily: "'Courgette', cursive, sans-serif"
+                }}
+              >
+                🔊 الألوان ودرجاتها
+              </button>
+            </div>
+
+            {/* زر إيقاف النطق باللون الأحمر */}
             <button
-              onClick={speakAllColors}
+              onClick={stopSpeech}
               style={{
-                flex: 1,
+                width: '100%',
                 padding: '10px 12px',
                 borderRadius: '30px 6px 30px 6px',
                 border: 'none',
-                backgroundColor: '#3b82f6',
+                backgroundColor: '#ef4444',
                 color: '#ffffff',
                 fontSize: '0.95rem',
                 fontWeight: 'bold',
@@ -232,25 +293,7 @@ export default function Colors() {
                 fontFamily: "'Courgette', cursive, sans-serif"
               }}
             >
-              🔊 نطق الألوان
-            </button>
-            <button
-              onClick={speakAllColorsWithShades}
-              style={{
-                flex: 1,
-                padding: '10px 12px',
-                borderRadius: '30px 6px 30px 6px',
-                border: 'none',
-                backgroundColor: '#2ecc71',
-                color: '#ffffff',
-                fontSize: '0.95rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.1)',
-                fontFamily: "'Courgette', cursive, sans-serif"
-              }}
-            >
-              🔊 الألوان ودرجاتها
+              ⏹️ إيقاف النطق
             </button>
           </div>
 
@@ -365,13 +408,7 @@ export default function Colors() {
                   <div
                     className={`color-card ${item.className}`}
                     onClick={() => {
-                      if ('speechSynthesis' in window) {
-                        window.speechSynthesis.cancel();
-                        const utteranceSingular = new SpeechSynthesisUtterance(item.de);
-                        utteranceSingular.lang = 'de-DE';
-                        utteranceSingular.rate = 0.85;
-                        window.speechSynthesis.speak(utteranceSingular);
-                      }
+                      speakText(item.de);
                       if (item.light) openColor(index);
                     }}
                     style={{

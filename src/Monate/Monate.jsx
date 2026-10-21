@@ -8,7 +8,8 @@ export default function Monate() {
   const timeUnitsData = [
     { ar: 'شهر', de: 'der Monat', quizDe: 'der monat', className: 'card-time' },
     { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
-    { ar: 'فصل (من فصول السنة)', de: 'die Jahreszeit', quizDe: 'die jahreszeit', className: 'card-time' }
+    { ar: 'فصل مفرد', de: 'die Jahreszeit', quizDe: 'die jahreszeit', className: 'card-time' },
+    { ar: 'فصول جمع', de: 'die Jahreszeiten', quizDe: 'die jahreszeiten', className: 'card-time' }
   ];
 
   // فصول السنة الأربعة مع ألوانها المميزة
@@ -44,6 +45,13 @@ export default function Monate() {
     { ar: 'ديسمبر', de: 'Dezember', quizDe: 'dezember', className: 'card-winter-month' }
   ];
 
+  const stopSpeech = (e) => {
+    if (e) e.stopPropagation();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
   const speakText = (text, e) => {
     if (e) e.stopPropagation();
     if ('speechSynthesis' in window) {
@@ -53,6 +61,27 @@ export default function Monate() {
       utterance.rate = 0.85;
       window.speechSynthesis.speak(utterance);
     }
+  };
+
+  // دالة لنطق قائمة من العناصر تباعاً بشكل متسلسل
+  const speakSequence = (items) => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+
+    let index = 0;
+    const playNext = () => {
+      if (index < items.length) {
+        const utterance = new SpeechSynthesisUtterance(items[index].de);
+        utterance.lang = 'de-DE';
+        utterance.rate = 0.85;
+        utterance.onend = () => {
+          index++;
+          setTimeout(playNext, 300);
+        };
+        window.speechSynthesis.speak(utterance);
+      }
+    };
+    playNext();
   };
 
   const handleInputChange = (key, value) => {
@@ -145,6 +174,71 @@ export default function Monate() {
             <span>Die Monate & Jahreszeiten</span>
             <span style={{ fontSize: '1.4rem' }} title="استمع">🔊</span>
           </h1>
+
+          {/* أزرار النطق مع زر الإيقاف باللون الأحمر */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', marginBottom: '15px' }}>
+            <button
+              onClick={() => speakSequence(seasonsData)}
+              style={{
+                padding: '10px',
+                borderRadius: '6px 30px 6px 30px',
+                border: '1px solid #10b981',
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                color: 'var(--text-color, #0f172a)',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              🔊 استمع إلى فصول السنة
+            </button>
+            <button
+              onClick={() => speakSequence(monthsData)}
+              style={{
+                padding: '10px',
+                borderRadius: '6px 30px 6px 30px',
+                border: '1px solid #f97316',
+                backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                color: 'var(--text-color, #0f172a)',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              🔊 استمع إلى الشهور
+            </button>
+            <button
+              onClick={() => speakSequence([...timeUnitsData, ...seasonsData, ...monthsData])}
+              style={{
+                padding: '10px',
+                borderRadius: '6px 30px 6px 30px',
+                border: '1px solid #8b5cf6',
+                backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                color: 'var(--text-color, #0f172a)',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              🔊 استمع إلى كل الزراير التي تحت
+            </button>
+            <button
+              onClick={stopSpeech}
+              style={{
+                padding: '10px',
+                borderRadius: '6px 30px 6px 30px',
+                border: '1px solid #ef4444',
+                backgroundColor: 'rgba(239, 68, 68, 0.9)',
+                color: '#ffffff',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '0.95rem'
+              }}
+            >
+              ⏹️ إيقاف النطق الصوتي
+            </button>
+          </div>
+
           <p style={{ textAlign: 'center', color: '#64748b', fontSize: '1.05rem', fontStyle: 'italic', marginBottom: '8px', fontWeight: 500 }}>
             ملاحظة: أسماء الشهور والفصول في الألمانية تأتي دائماً بحرف كبير.
           </p>
@@ -228,6 +322,23 @@ export default function Monate() {
             ))}
           </div>
 
+          {/* ملحوظة باللون الأصفر قبل الشهور */}
+          <div style={{
+            width: '100%',
+            backgroundColor: '#fef08a',
+            color: '#854d0e',
+            border: '1px solid #fde047',
+            borderRadius: '12px',
+            padding: '10px 15px',
+            textAlign: 'center',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            marginTop: '10px',
+            marginBottom: '5px'
+          }}>
+            💡 كل شهر ملون ب لون فصول السنه بتعته
+          </div>
+
           {/* شهور السنة مرتبطة من يناير إلى ديسمبر */}
           <div style={{ width: '100%', margin: '10px 0 5px 0', textAlign: 'right' }}>
             <h3 style={{ fontSize: '1.2rem', color: 'var(--text-color, #0f172a)', fontWeight: 'bold' }}>شهور السنة (Die Monate):</h3>
@@ -294,7 +405,7 @@ export default function Monate() {
             fontWeight: 'bold',
             padding: '10px 35px',
             border: 'none',
-            borderRadius: '12px',
+            borderRadius: '30px 6px 30px 6px',
             cursor: 'pointer',
             boxShadow: '0 4px 6px rgba(59, 130, 246, 0.2)'
           }}>

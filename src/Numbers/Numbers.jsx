@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function GermanNumbersApp() {
   const [activeTab, setActiveTab] = useState('numbers'); // 'numbers' or 'training'
   const [searchVal, setSearchVal] = useState('');
   const [minRange, setMinRange] = useState('');
   const [maxRange, setMaxRange] = useState('');
+
+  // شريط الاستماع المتتابع للأرقام
+  const [listenFrom, setListenFrom] = useState('0');
+  const [listenTo, setListenTo] = useState('10');
+  const [isPlayingSequence, setIsPlayingSequence] = useState(false);
+
+  // التحكم في سرعة النطق ('normal' = 0.8x, 'fast' = 1.15x, 'veryFast' = 1.5x)
+  const [speechSpeed, setSpeechSpeed] = useState('normal');
+
   const [currentList, setCurrentList] = useState([]);
   const [trainingList, setTrainingList] = useState([]);
   const [checkedAnswers, setCheckedAnswers] = useState(false);
+
+  // مرجع للتحكم في استمرار أو إيقاف السلسلة الصوتية
+  const isSpeakingRef = useRef(false);
 
   const getArabicWord = (n) => {
     const arabicWords = {
@@ -18,7 +30,7 @@ export default function GermanNumbersApp() {
       30: "ثلاثون", 40: "أربعون", 50: "خمسون", 60: "ستون", 70: "سبعون", 80: "ثمانون", 90: "تسعون", 100: "مائة", 1000: "ألف", 1000000: "مليون"
     };
     if (arabicWords[n]) return arabicWords[n];
-    return n.toLocaleString();
+    return n.toLocaleString('ar-EG');
   };
 
   const generateRandomList = (min, max, count = 15) => {
@@ -41,28 +53,57 @@ export default function GermanNumbersApp() {
     generateRandomList(0, 100, 15);
   }, []);
 
-  const speakText = (text) => {
+  // إيقاف الصوت في حال تغيير الصفحة أو إغلاق المكون
+  useEffect(() => {
+    return () => {
+      isSpeakingRef.current = false;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  // تحديد قيمة معامل السرعة برمجياً
+  const getRateValue = () => {
+    if (speechSpeed === 'veryFast') return 1.5;
+    if (speechSpeed === 'fast') return 1.15;
+    return 0.8; // normal
+  };
+
+  // تحسين محرك النطق وجودة الصوت مع دعم السرعات المتعددة
+  const speakText = (text, onEndCallback = null) => {
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+      window.speechSynthesis.cancel(); // إلغاء أي نطق معلق سابقاً
 
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE';
-      utterance.rate = 0.75;
+
+      // ضبط السرعة بناءً على اختيار المستخدم
+      utterance.rate = getRateValue();
       utterance.pitch = 1.0;
 
-      const setBestVoice = () => {
+      const setBestVoiceAndSpeak = () => {
         const voices = window.speechSynthesis.getVoices();
         const bestVoice = voices.find(v =>
-          v.lang === 'de-DE' && (
+          v.lang.startsWith('de') && (
             v.name.toLowerCase().includes('natural') ||
             v.name.toLowerCase().includes('google') ||
             v.name.toLowerCase().includes('online') ||
-            v.name.toLowerCase().includes('premium')
+            v.name.toLowerCase().includes('premium') ||
+            v.name.toLowerCase().includes('enhanced')
           )
-        ) || voices.find(v => v.lang === 'de-DE');
+        ) || voices.find(v => v.lang.startsWith('de'));
 
         if (bestVoice) {
           utterance.voice = bestVoice;
+        }
+
+        if (onEndCallback) {
+          utterance.onend = onEndCallback;
+          utterance.onerror = () => {
+            setIsPlayingSequence(false);
+            isSpeakingRef.current = false;
+          };
         }
 
         window.speechSynthesis.speak(utterance);
@@ -70,13 +111,60 @@ export default function GermanNumbersApp() {
 
       const voices = window.speechSynthesis.getVoices();
       if (voices.length > 0) {
-        setBestVoice();
+        setBestVoiceAndSpeak();
       } else {
         window.speechSynthesis.onvoiceschanged = () => {
-          setBestVoice();
+          setBestVoiceAndSpeak();
         };
       }
     }
+  };
+
+  // وظيفة تشغيل قراءة سلسلة من الأرقام بالتتابع
+  const playSequence = (fromNum, toNum) => {
+    const start = parseInt(fromNum);
+    const end = parseInt(toNum);
+
+    if (isNaN(start) || isNaN(end) || start > end || start < 0) {
+      alert("برجاء أدخال نطاق أرقام صحيح (مثال: من 0 إلى 10)");
+      return;
+    }
+
+    if (isPlayingSequence) {
+      // إذا كان يعمل بالفعل وتضغط مرة أخرى: يتم الإيقاف
+      isSpeakingRef.current = false;
+      setIsPlayingSequence(false);
+      window.speechSynthesis.cancel();
+      return;
+    }
+
+    setIsPlayingSequence(true);
+    isSpeakingRef.current = true;
+
+    let current = start;
+
+    const speakNext = () => {
+      if (!isSpeakingRef.current || current > end) {
+        setIsPlayingSequence(false);
+        isSpeakingRef.current = false;
+        return;
+      }
+
+      const numData = getGermanNumberData(current);
+      speakText(numData.pure, () => {
+        current++;
+        // مهلة قصيرة بين كل رقم والتالي لنطق سلس وطبيعي (تتأثر بالسرعة)
+        let delay = 300;
+        if (speechSpeed === 'fast') delay = 150;
+        if (speechSpeed === 'veryFast') delay = 50;
+
+        setTimeout(() => {
+          speakNext();
+        }, delay);
+      });
+    };
+
+    speakNext();
   };
 
   const units = ["Null", "Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun"];
@@ -193,6 +281,13 @@ export default function GermanNumbersApp() {
     setTrainingList(updated);
   };
 
+  // نص الزر الخاص بالسرعة الحالية
+  const getSpeedLabel = () => {
+    if (speechSpeed === 'veryFast') return 'سريع جداً';
+    if (speechSpeed === 'fast') return 'سريع';
+    return 'عادي';
+  };
+
   return (
     <div style={{
       padding: '30px 20px',
@@ -255,6 +350,126 @@ export default function GermanNumbersApp() {
       {/* محتوى قسم الأرقام */}
       {activeTab === 'numbers' && (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+          {/* قسم الاستماع لنطاق خاص من الأرقام بالصوت بالتتابع */}
+          <div style={{
+            width: '100%',
+            maxWidth: '450px',
+            border: '2px dashed #38bdf8',
+            borderRadius: '20px',
+            padding: '15px',
+            marginBottom: '35px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            backgroundColor: 'rgba(56, 189, 248, 0.05)'
+          }}>
+            <div style={{ fontWeight: 'bold', fontSize: '1rem', textAlign: 'center' }}>
+              🎧 استمع لنطق الأرقام متتالية
+            </div>
+
+            {/* الأزرار الثلاثة لتحديد سرعة النطق جنبًا إلى جنب */}
+            <div style={{ display: 'flex', gap: '6px', width: '100%', justifyContent: 'center' }}>
+              <button
+                onClick={() => setSpeechSpeed('normal')}
+                style={{
+                  ...buttonStyle,
+                  minWidth: 'auto',
+                  padding: '6px 8px',
+                  fontSize: '0.8rem',
+                  backgroundColor: speechSpeed === 'normal' ? '#38bdf8' : 'transparent',
+                  color: speechSpeed === 'normal' ? '#000' : 'inherit',
+                  borderColor: '#38bdf8'
+                }}
+              >
+                🐢 عادي
+              </button>
+
+              <button
+                onClick={() => setSpeechSpeed('fast')}
+                style={{
+                  ...buttonStyle,
+                  minWidth: 'auto',
+                  padding: '6px 8px',
+                  fontSize: '0.8rem',
+                  backgroundColor: speechSpeed === 'fast' ? '#38bdf8' : 'transparent',
+                  color: speechSpeed === 'fast' ? '#000' : 'inherit',
+                  borderColor: '#38bdf8'
+                }}
+              >
+                🚀 سريع
+              </button>
+
+              <button
+                onClick={() => setSpeechSpeed('veryFast')}
+                style={{
+                  ...buttonStyle,
+                  minWidth: 'auto',
+                  padding: '6px 8px',
+                  fontSize: '0.8rem',
+                  backgroundColor: speechSpeed === 'veryFast' ? '#38bdf8' : 'transparent',
+                  color: speechSpeed === 'veryFast' ? '#000' : 'inherit',
+                  borderColor: '#38bdf8'
+                }}
+              >
+                ⚡ سريع جداً
+              </button>
+            </div>
+
+            {/* أزرار سريعة للنطاقات (من 0 لـ 20) و (من 0 لـ 100) */}
+            <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center' }}>
+              <button
+                onClick={() => { setListenFrom('0'); setListenTo('20'); }}
+                style={{ ...buttonStyle, minWidth: 'auto', padding: '6px 12px', fontSize: '0.85rem' }}
+              >
+                من 0 لـ 20
+              </button>
+              <button
+                onClick={() => { setListenFrom('0'); setListenTo('100'); }}
+                style={{ ...buttonStyle, minWidth: 'auto', padding: '6px 12px', fontSize: '0.85rem' }}
+              >
+                من 0 لـ 100
+              </button>
+            </div>
+
+            {/* الإنبوت الأول والثاني لتحديد الرقمين */}
+            <div style={{ display: 'flex', gap: '10px', width: '100%', alignItems: 'center' }}>
+              <input
+                type="number"
+                value={listenFrom}
+                onChange={(e) => setListenFrom(e.target.value)}
+                placeholder="من"
+                style={{ ...inputStyle, padding: '8px 10px', fontSize: '0.95rem' }}
+              />
+              <span>إلى</span>
+              <input
+                type="number"
+                value={listenTo}
+                onChange={(e) => setListenTo(e.target.value)}
+                placeholder="إلى"
+                style={{ ...inputStyle, padding: '8px 10px', fontSize: '0.95rem' }}
+              />
+            </div>
+
+            {/* زر تشغيل النطق المتتابع */}
+            <button
+              onClick={() => playSequence(listenFrom, listenTo)}
+              style={{
+                ...buttonStyle,
+                width: '100%',
+                backgroundColor: isPlayingSequence ? '#ef4444' : '#38bdf8',
+                color: '#fff',
+                border: 'none',
+                padding: '10px',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {isPlayingSequence ? '⏹️ إيقاف النطق' : `🔊 نطق الأرقام (${getSpeedLabel()})`}
+            </button>
+          </div>
+
           <div style={{
             display: 'flex',
             flexDirection: 'column',

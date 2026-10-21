@@ -4,6 +4,7 @@ export default function Wochentage() {
   const [activeTab, setActiveTab] = useState('words'); // 'words' أو 'quiz'
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState({});
+  const [speechRate, setSpeechRate] = useState(0.85); // '0.85' عادي أو '0.55' بطيء
 
   const timeUnitsData = [
     { ar: 'يوم', de: 'der Tag', quizDe: 'der tag', className: 'card-time' },
@@ -28,8 +29,38 @@ export default function Wochentage() {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE';
-      utterance.rate = 0.85;
+      utterance.rate = speechRate;
       window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // دالة إيقاف النطق فوراً
+  const stopSpeech = (e) => {
+    if (e) e.stopPropagation();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  // دالة لنطق كافة العناصر بالترتيب
+  const speakAll = (e) => {
+    if (e) e.stopPropagation();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+
+      const allTextsToSpeak = [
+        ...timeUnitsData.map(item => item.de),
+        'Die Wochentage',
+        'die Monate',
+        ...daysData.map(item => item.de)
+      ];
+
+      allTextsToSpeak.forEach(text => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = speechRate;
+        window.speechSynthesis.speak(utterance);
+      });
     }
   };
 
@@ -70,7 +101,7 @@ export default function Wochentage() {
           style={{
             flex: 1,
             padding: '10px 20px',
-            borderRadius: '12px',
+            borderRadius: '30px 6px 30px 6px',
             border: 'none',
             fontSize: '1.1rem',
             fontWeight: 'bold',
@@ -87,7 +118,7 @@ export default function Wochentage() {
           style={{
             flex: 1,
             padding: '10px 20px',
-            borderRadius: '12px',
+            borderRadius: '30px 6px 30px 6px',
             border: 'none',
             fontSize: '1.1rem',
             fontWeight: 'bold',
@@ -130,6 +161,105 @@ export default function Wochentage() {
             🔊 اضغط على أي يوم أو وحدة زمنية لكي تستمع إليها.
           </p>
 
+          {/* قسم التحكم بالنطق والسرعات بالترتيب المطلوب */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '15px' }}>
+
+            {/* الصف الأول: أزرار السرعة جنب بعض */}
+            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+              <button
+                onClick={() => setSpeechRate(0.85)}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  borderRadius: '30px 6px 30px 6px',
+                  border: speechRate === 0.85 ? '2px solid #3b82f6' : '2px solid #cbd5e1',
+                  backgroundColor: speechRate === 0.85 ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                  color: speechRate === 0.85 ? '#2563eb' : 'var(--text-color, #0f172a)',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <span>⚡ سرعة عادية</span>
+              </button>
+
+              <button
+                onClick={() => setSpeechRate(0.55)}
+                style={{
+                  flex: 1,
+                  padding: '10px',
+                  borderRadius: '30px 6px 30px 6px',
+                  border: speechRate === 0.55 ? '2px solid #f59e0b' : '2px solid #cbd5e1',
+                  backgroundColor: speechRate === 0.55 ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
+                  color: speechRate === 0.55 ? '#d97706' : 'var(--text-color, #0f172a)',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <span>🐢 سرعة بطيئة</span>
+              </button>
+            </div>
+
+            {/* الصف الثاني: زر نطق الكلمات كلها */}
+            <button
+              onClick={speakAll}
+              style={{
+                width: '100%',
+                padding: '12px 20px',
+                borderRadius: '30px 6px 30px 6px',
+                border: '2px solid #3b82f6',
+                backgroundColor: 'transparent',
+                color: '#1d4ed8',
+                fontSize: '1.15rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                boxShadow: '0 2px 6px rgba(59, 130, 246, 0.15)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span style={{ fontSize: '1.3rem' }}>🔊</span>
+              <span>نطق جميع الكلمات والأيام بالترتيب</span>
+            </button>
+
+            {/* الصف الثالث: زر إيقاف النطق */}
+            <button
+              onClick={stopSpeech}
+              style={{
+                width: '100%',
+                padding: '10px 20px',
+                borderRadius: '30px 6px 30px 6px',
+                border: '2px solid #ef4444',
+                backgroundColor: 'transparent',
+                color: '#ef4444',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span>⏹️ إيقاف النطق</span>
+            </button>
+          </div>
+
           {/* وحدات الزمن (شبكة مربعات) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '15px' }}>
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
@@ -139,9 +269,9 @@ export default function Wochentage() {
                   onClick={(e) => speakText(item.de, e)}
                   style={{
                     flex: 1,
-                    backgroundColor: 'var(--card-bg, #f8fafc)',
+                    backgroundColor: 'transparent',
                     border: '1.5px solid #e2e8f0',
-                    borderRadius: '16px',
+                    borderRadius: '30px 6px 30px 6px',
                     padding: '10px 8px',
                     textAlign: 'center',
                     cursor: 'pointer',
@@ -166,9 +296,9 @@ export default function Wochentage() {
                     onClick={(e) => speakText(item.de, e)}
                     style={{
                       flex: 1,
-                      backgroundColor: 'var(--card-bg, #f8fafc)',
+                      backgroundColor: 'transparent',
                       border: '1.5px solid #e2e8f0',
-                      borderRadius: '16px',
+                      borderRadius: '30px 6px 30px 6px',
                       padding: '10px 8px',
                       textAlign: 'center',
                       cursor: 'pointer',
@@ -187,6 +317,73 @@ export default function Wochentage() {
             </div>
           </div>
 
+          {/* الزران اللذان تم إضافتهما قبل أيام الأسبوع */}
+          <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '12px' }}>
+            {/* زر أيام الأسبوع */}
+            <div
+              onClick={(e) => speakText('Die Wochentage', e)}
+              className="day-card"
+              style={{
+                flex: 1,
+                position: 'relative',
+                backgroundColor: 'transparent',
+                border: '2px solid #cbd5e1',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '12px 16px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                textAlign: 'center',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
+                cursor: 'pointer',
+                minHeight: '58px',
+                userSelect: 'none'
+              }}
+            >
+              <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
+                أيام الأسبوع
+              </span>
+              <span className="de-text" style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', color: '#3b82f6' }}>
+                Die Wochentage
+              </span>
+            </div>
+
+            {/* زر الشهور */}
+            <div
+              onClick={(e) => speakText('die Monate', e)}
+              className="day-card"
+              style={{
+                flex: 1,
+                position: 'relative',
+                backgroundColor: 'transparent',
+                border: '2px solid #cbd5e1',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '12px 16px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                textAlign: 'center',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
+                cursor: 'pointer',
+                minHeight: '58px',
+                userSelect: 'none'
+              }}
+            >
+              <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
+                شهور
+              </span>
+              <span className="de-text" style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', color: '#8b5cf6' }}>
+                die Monate
+              </span>
+            </div>
+          </div>
+
           {/* قائمة الأيام */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
             {daysData.map((item, index) => (
@@ -196,7 +393,7 @@ export default function Wochentage() {
                 onClick={(e) => speakText(item.de, e)}
                 style={{
                   position: 'relative',
-                  backgroundColor: 'var(--card-bg, #ffffff)',
+                  backgroundColor: 'transparent',
                   border: '2px solid #cbd5e1',
                   borderRadius: '30px 6px 30px 6px',
                   padding: '12px 24px',
@@ -252,7 +449,7 @@ export default function Wochentage() {
             fontWeight: 'bold',
             padding: '10px 35px',
             border: 'none',
-            borderRadius: '12px',
+            borderRadius: '30px 6px 30px 6px',
             cursor: 'pointer',
             boxShadow: '0 4px 6px rgba(59, 130, 246, 0.2)'
           }}>
@@ -279,7 +476,7 @@ export default function Wochentage() {
                     boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)',
                     minHeight: '60px',
                     width: '100%',
-                    backgroundColor: 'var(--card-bg, #ffffff)',
+                    backgroundColor: 'transparent',
                     border: '2px solid #cbd5e1'
                   }}
                 >
@@ -317,7 +514,7 @@ export default function Wochentage() {
                           ? (isCorrect ? '#22c55e' : '#ef4444')
                           : 'rgba(0, 0, 0, 0.15)'
                       }`,
-                      borderRadius: '20px',
+                      borderRadius: '30px 6px 30px 6px',
                       padding: '4px 10px',
                       transition: 'all 0.3s ease'
                     }}>

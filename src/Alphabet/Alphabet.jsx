@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 // الأبجدية الألمانية
 const alphabetData = [
@@ -163,9 +163,26 @@ const phoneticSectionsImage1 = [
 // ];
 
 export default function GermanApp() {
-  const speakText = (text) => {
+  // مرجع لتخزين معرفات المؤقتات لإلغائها تماماً عند الإيقاف
+  const timerIdsRef = useRef([]);
+
+  // دالة مساعدة لتصفية كافة المؤقتات
+  const clearAllTimers = () => {
+    timerIdsRef.current.forEach((id) => clearTimeout(id));
+    timerIdsRef.current = [];
+  };
+
+  // دالة إيقاف النطق الشاملة
+  const stopSpeaking = () => {
+    clearAllTimers();
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
+    }
+  };
+
+  const speakText = (text) => {
+    stopSpeaking();
+    if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE';
       utterance.rate = 0.8;
@@ -174,9 +191,9 @@ export default function GermanApp() {
   };
 
   const speakLetterAndWords = (letter, word1, word2) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+    stopSpeaking();
 
+    if ('speechSynthesis' in window) {
       const utteranceLetter = new SpeechSynthesisUtterance(letter);
       utteranceLetter.lang = 'de-DE';
       utteranceLetter.rate = 0.8;
@@ -191,37 +208,44 @@ export default function GermanApp() {
 
       window.speechSynthesis.speak(utteranceLetter);
 
-      setTimeout(() => {
+      const t1 = setTimeout(() => {
         window.speechSynthesis.speak(utteranceWord1);
       }, 400);
 
-      setTimeout(() => {
+      const t2 = setTimeout(() => {
         window.speechSynthesis.speak(utteranceWord2);
       }, 1000);
+
+      timerIdsRef.current.push(t1, t2);
     }
   };
 
   // دالة لنطق كل الحروف تباعاً
   const speakAllLetters = () => {
+    stopSpeaking();
+
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
       alphabetData.forEach((item, index) => {
         const cleanLetter = item.letter.split(' ')[0];
         const utterance = new SpeechSynthesisUtterance(cleanLetter);
         utterance.lang = 'de-DE';
         utterance.rate = 0.9;
+
         // تأخير زمني تراكمي لكل حرف
-        setTimeout(() => {
+        const tId = setTimeout(() => {
           window.speechSynthesis.speak(utterance);
         }, index * 700);
+
+        timerIdsRef.current.push(tId);
       });
     }
   };
 
   // دالة لنطق كل الحروف والكلمات التي تحتها تباعاً
   const speakAllLettersAndWords = () => {
+    stopSpeaking();
+
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
       let delay = 0;
       alphabetData.forEach((item) => {
         const cleanLetter = item.letter.split(' ')[0];
@@ -230,21 +254,24 @@ export default function GermanApp() {
         const uLetter = new SpeechSynthesisUtterance(cleanLetter);
         uLetter.lang = 'de-DE';
         uLetter.rate = 0.9;
-        setTimeout(() => { window.speechSynthesis.speak(uLetter); }, delay);
+        const t1 = setTimeout(() => { window.speechSynthesis.speak(uLetter); }, delay);
+        timerIdsRef.current.push(t1);
         delay += 600;
 
         // نطق الكلمة الأولى
         const uWord1 = new SpeechSynthesisUtterance(item.words[0].de);
         uWord1.lang = 'de-DE';
         uWord1.rate = 0.9;
-        setTimeout(() => { window.speechSynthesis.speak(uWord1); }, delay);
+        const t2 = setTimeout(() => { window.speechSynthesis.speak(uWord1); }, delay);
+        timerIdsRef.current.push(t2);
         delay += 700;
 
         // نطق الكلمة الثانية
         const uWord2 = new SpeechSynthesisUtterance(item.words[1].de);
         uWord2.lang = 'de-DE';
         uWord2.rate = 0.9;
-        setTimeout(() => { window.speechSynthesis.speak(uWord2); }, delay);
+        const t3 = setTimeout(() => { window.speechSynthesis.speak(uWord2); }, delay);
+        timerIdsRef.current.push(t3);
         delay += 900;
       });
     }
@@ -277,6 +304,11 @@ export default function GermanApp() {
             border: 1px solid rgba(128, 128, 128, 0.5) !important;
             border-radius: 15px 4px !important;
             display: inline-block;
+          }
+          /* جعل زر إيقاف النطق يأخذ السطر كاملاً أسفل الزرين في شاشة الموبايل */
+          .stop-btn-mobile {
+            flex-basis: 100% !important;
+            width: 100% !important;
           }
         }
 
@@ -355,7 +387,24 @@ export default function GermanApp() {
                   flex: 1
                 }}
               >
-                🔊 نطق كل الحروف والكلمات
+                🔊نطق الحروف والكلمات
+              </button>
+              <button
+                className="stop-btn-mobile"
+                onClick={stopSpeaking}
+                style={{
+                  background: '#e74c3c',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '30px 6px',
+                  padding: '10px 15px',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  flex: 1
+                }}
+              >
+                ⏹️ إيقاف النطق
               </button>
             </div>
 
