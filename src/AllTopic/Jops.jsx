@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const jobsData = [
   // 1. مفردات عامة عن العمل
   { id: 1, categoryNum: "1", categoryTitle: "مفردات عامة عن العمل", german: "der Beruf", arabic: "المهنة", pronunciation: "دِر بروف" },
@@ -379,7 +380,7 @@ const jobsData = [
   { id: 269, categoryNum: "54", categoryTitle: "حالات وقضايا العمل", german: "arbeitslos", arabic: "عاطل عن العمل", pronunciation: "أربايتس لوس" }
 ];
 
-export default function GermanVocabPage() {
+export default function JobsAndCareersPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const speakGerman = (text) => {
@@ -394,20 +395,21 @@ export default function GermanVocabPage() {
 
   const renderColoredGermanWord = (germanStr) => {
     const parts = germanStr.split(' ');
-    if (parts.length > 1) {
-      const article = parts[0].toLowerCase();
-      const rest = parts.slice(1).join(' ');
-      let articleColor = 'inherit';
+    if (parts.length > 0) {
+      const firstWord = parts[0].toLowerCase();
+      let wordColor = 'inherit';
 
-      if (article === 'der') articleColor = '#00bfff'; // لبنى للمذكر
-      else if (article === 'das') articleColor = '#22c55e'; // أخضر للمحايد
-      else if (article === 'die') articleColor = '#ec4899'; // بمبي للمؤنث والجمع
+      if (firstWord === 'der') wordColor = '#00bfff'; // لبنى
+      else if (firstWord === 'das') wordColor = '#22c55e'; // أخضر
+      else if (firstWord === 'die') wordColor = '#ec4899'; // بمبي
 
-      return (
-        <span>
-          <span style={{ color: articleColor, fontWeight: 'bold' }}>{parts[0]}</span> {rest}
-        </span>
-      );
+      if (wordColor !== 'inherit') {
+        return (
+          <span>
+            <span style={{ color: wordColor, fontWeight: 'bold' }}>{parts[0]}</span> {parts.slice(1).join(' ')}
+          </span>
+        );
+      }
     }
     return germanStr;
   };
@@ -416,10 +418,9 @@ export default function GermanVocabPage() {
     (item) =>
       item.german.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.arabic.includes(searchTerm) ||
-      item.categoryTitle.toLowerCase().includes(searchTerm.toLowerCase())
+      (item.categoryTitle && item.categoryTitle.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  // تجميع العناصر حسب رقم العنوان (Category) لتنظيم العرض
   let lastCategoryNum = null;
 
   return (
@@ -427,8 +428,8 @@ export default function GermanVocabPage() {
       <style>{`
         .page-title {
           text-align: center;
-          font-size: 1.6rem;
-          font-weight: bold;
+          font-size: 1.5rem;
+          font-weight: 900;
           margin-bottom: 15px;
           color: inherit;
         }
@@ -445,16 +446,17 @@ export default function GermanVocabPage() {
           border: 1px solid currentColor;
           background: transparent;
           color: inherit;
-          font-size: 0.95rem;
+          font-size: 0.88rem;
+          font-weight: 700;
           outline: none;
           box-sizing: border-box;
           direction: rtl;
         }
         .category-heading {
           text-align: center;
-          font-size: 1.1rem;
-          font-weight: bold;
-          margin: 30px 0 15px 0;
+          font-size: 1.0rem;
+          font-weight: 900;
+          margin: 35px 0 15px 0;
           color: #00bfff;
           display: flex;
           justify-content: center;
@@ -470,7 +472,8 @@ export default function GermanVocabPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.75rem;
+          font-size: 0.7rem;
+          font-weight: bold;
         }
         .cards-container {
           display: flex;
@@ -485,15 +488,18 @@ export default function GermanVocabPage() {
           max-width: 400px;
           border: 2px solid currentColor;
           border-radius: 30px 6px;
-          padding: 10px 16px 8px 16px;
+          padding: 14px 16px 14px 16px;
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           color: inherit;
           background: transparent;
           box-sizing: border-box;
           cursor: pointer;
           user-select: none;
           transition: border-color 0.2s ease;
+          min-height: 55px;
         }
         .vocab-card:hover {
           border-color: #00bfff;
@@ -516,45 +522,63 @@ export default function GermanVocabPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.65rem;
+          font-size: 0.6rem;
           font-weight: bold;
           z-index: 2;
         }
-        .audio-icon {
+        .pronunciation-wrapper {
           position: absolute;
-          top: -11px;
+          top: -12px;
           left: 50%;
           transform: translateX(-50%);
-          font-size: 1.1rem;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .pronunciation-text {
-          position: absolute;
-          top: 4px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.85rem;
-          color: #00bfff;
-          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #ffffff;
+          color: #ff3333;
+          border: 1px solid #ffffff;
+          padding: 2px 14px;
+          border-radius: 14px;
+          font-size: 0.78rem;
+          font-weight: 900;
           z-index: 2;
           white-space: nowrap;
           pointer-events: none;
         }
+        .speaker-left {
+          position: absolute;
+          left: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-130deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
+        .speaker-right {
+          position: absolute;
+          right: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-50deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
         .arabic-word {
-          font-size: 1.15rem;
-          font-weight: bold;
+          font-size: 1.1rem;
+          font-weight: 900;
           text-align: right;
+          display: flex;
+          align-items: center;
         }
         .german-word {
-          font-size: 1.1rem;
+          font-size: 1.0rem;
           font-weight: bold;
           direction: ltr;
           text-align: left;
+          display: flex;
+          align-items: center;
         }
       `}</style>
 
-      <h1 className="page-title">المهن والعمل</h1>
+      <h1 className="page-title">الوظائف والمهن (Berufe und Arbeit)</h1>
 
       {/* حقل البحث */}
       <div className="search-container">
@@ -567,7 +591,7 @@ export default function GermanVocabPage() {
         />
       </div>
 
-      {/* حاوية الكروت مع العناوين المقسمة */}
+      {/* حاوية الكروت */}
       <div className="cards-container">
         {filteredData.map((item, index) => {
           const showHeading = item.categoryNum !== lastCategoryNum;
@@ -585,16 +609,17 @@ export default function GermanVocabPage() {
                 className="vocab-card"
                 onClick={() => speakGerman(item.german)}
               >
-                {/* رقم الكارت على الشمال */}
+                {/* رقم الكارت */}
                 <div className="item-number">{index + 1}</div>
 
-                {/* أيقونة السماعة */}
-                <div className="audio-icon">🔊</div>
+                {/* شريط النطق */}
+                <div className="pronunciation-wrapper">
+                  <span className="speaker-left">🔊</span>
+                  <span>{item.pronunciation}</span>
+                  <span className="speaker-right">🔊</span>
+                </div>
 
-                {/* نطق الكلمة */}
-                <div className="pronunciation-text">{item.pronunciation}</div>
-
-                {/* الصف الرئيسي (عربي يمين، ألماني يسار مع تلوين الأدوات) */}
+                {/* الكلمات */}
                 <div className="vocab-main-row">
                   <div className="arabic-word">{item.arabic}</div>
                   <div className="german-word">{renderColoredGermanWord(item.german)}</div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// يمكنك إضافة باقي الـ 1000 كلمة هنا بنفس الهيكل
 const schoolData = [
   // مجموعة 1: المفردات المدرسية والأدوات الأساسية (الصورة 1)
   { id: 1, german: "die Schule", arabic: "المدرسة", pronunciation: "دي شوله", group: "المدرسة والأدوات الأساسية" },
@@ -1137,20 +1138,21 @@ export default function SchoolAndEducationPage() {
 
   const renderColoredGermanWord = (germanStr) => {
     const parts = germanStr.split(' ');
-    if (parts.length > 1) {
-      const article = parts[0].toLowerCase();
-      const rest = parts.slice(1).join(' ');
-      let articleColor = 'inherit';
+    if (parts.length > 0) {
+      const firstWord = parts[0].toLowerCase();
+      let wordColor = 'inherit';
 
-      if (article === 'der') articleColor = '#00bfff'; // لبنى
-      else if (article === 'das') articleColor = '#22c55e'; // أخضر
-      else if (article === 'die') articleColor = '#ec4899'; // بمبي
+      if (firstWord === 'der') wordColor = '#00bfff'; // لبنى
+      else if (firstWord === 'das') wordColor = '#22c55e'; // أخضر
+      else if (firstWord === 'die') wordColor = '#ec4899'; // بمبي
 
-      return (
-        <span>
-          <span style={{ color: articleColor, fontWeight: 'bold' }}>{parts[0]}</span> {rest}
-        </span>
-      );
+      if (wordColor !== 'inherit') {
+        return (
+          <span>
+            <span style={{ color: wordColor, fontWeight: 'bold' }}>{parts[0]}</span> {parts.slice(1).join(' ')}
+          </span>
+        );
+      }
     }
     return germanStr;
   };
@@ -1158,85 +1160,97 @@ export default function SchoolAndEducationPage() {
   const filteredData = schoolData.filter(
     (item) =>
       item.german.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.arabic.includes(searchTerm)
+      item.arabic.includes(searchTerm) ||
+      (item.group && item.group.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
+  // تجميع العناصر حسب الـ group للحفاظ على ترتيب المجموعات وعرض الأرقام تلقائياً
   const groupedData = filteredData.reduce((acc, item) => {
-    if (!acc[item.group]) {
-      acc[item.group] = [];
+    const groupName = item.group || 'أخرى';
+    if (!acc[groupName]) {
+      acc[groupName] = [];
     }
-    acc[item.group].push(item);
+    acc[groupName].push(item);
     return acc;
   }, {});
 
   return (
-    <div style={{ padding: '15px 10px 40px 10px', color: 'inherit', background: 'transparent', width: '100%', boxSizing: 'border-box' }}>
+    <div style={{ padding: '15px 15px 40px 15px', color: 'inherit', background: 'transparent' }}>
       <style>{`
         .page-title {
           text-align: center;
-          font-size: 1.6rem;
-          font-weight: bold;
-          margin-bottom: 20px;
+          font-size: 1.5rem;
+          font-weight: 900;
+          margin-bottom: 15px;
           color: inherit;
         }
         .search-container {
           display: flex;
           justify-content: center;
           margin-bottom: 30px;
-          width: 100%;
-          padding: 0 10px;
-          box-sizing: border-box;
         }
         .search-input {
           width: 100%;
-          max-width: 500px;
-          padding: 10px 16px;
-          border-radius: 25px;
+          max-width: 400px;
+          padding: 8px 12px;
+          border-radius: 20px;
           border: 1px solid currentColor;
           background: transparent;
           color: inherit;
-          font-size: 1rem;
+          font-size: 0.88rem;
+          font-weight: 700;
           outline: none;
           box-sizing: border-box;
           direction: rtl;
         }
-        .group-title {
-          font-size: 1.25rem;
-          font-weight: bold;
-          margin: 35px 0 20px 0;
+        .category-heading {
           text-align: center;
+          font-size: 1.0rem;
+          font-weight: 900;
+          margin: 35px 0 15px 0;
           color: #00bfff;
-          border-bottom: 2px dashed currentColor;
-          padding-bottom: 8px;
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+        .category-badge {
+          background-color: #ff3333;
+          color: #ffffff;
+          border-radius: 50%;
+          width: 22px;
+          height: 22px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.7rem;
+          font-weight: bold;
         }
         .cards-container {
           display: flex;
           flex-direction: column;
-          /* الفارق 20 بكسل بين الكروت */
-          gap: 20px;
+          gap: 25px;
           align-items: center;
           width: 100%;
-          padding: 0 10px;
-          box-sizing: border-box;
         }
         .vocab-card {
           position: relative;
           width: 100%;
-          max-width: 500px;
+          max-width: 400px;
           border: 2px solid currentColor;
-          border-radius: 25px 8px;
-          padding: 14px 18px 12px 18px;
+          border-radius: 30px 6px;
+          padding: 14px 16px 14px 16px;
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           color: inherit;
           background: transparent;
           box-sizing: border-box;
           cursor: pointer;
           user-select: none;
           transition: border-color 0.2s ease;
+          min-height: 55px;
         }
         .vocab-card:hover {
           border-color: #00bfff;
@@ -1246,68 +1260,72 @@ export default function SchoolAndEducationPage() {
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          flex-wrap: wrap;
-          gap: 10px;
         }
         .item-number {
           position: absolute;
-          top: -11px;
+          top: -10px;
           left: 20px;
-          width: 22px;
-          height: 22px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
           background-color: #ff3333;
           color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.7rem;
+          font-size: 0.6rem;
           font-weight: bold;
           z-index: 2;
         }
-        .audio-icon {
+        .pronunciation-wrapper {
           position: absolute;
           top: -12px;
           left: 50%;
           transform: translateX(-50%);
-          font-size: 1.15rem;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .pronunciation-text {
-          position: absolute;
-          top: 4px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.85rem;
-          color: #00bfff;
-          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #ffffff;
+          color: #ff3333;
+          border: 1px solid #ffffff;
+          padding: 2px 14px;
+          border-radius: 14px;
+          font-size: 0.78rem;
+          font-weight: 900;
           z-index: 2;
           white-space: nowrap;
           pointer-events: none;
         }
+        .speaker-left {
+          position: absolute;
+          left: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-130deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
+        .speaker-right {
+          position: absolute;
+          right: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-50deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
         .arabic-word {
-          font-size: 1.2rem;
-          font-weight: bold;
+          font-size: 1.1rem;
+          font-weight: 900;
           text-align: right;
+          display: flex;
+          align-items: center;
         }
         .german-word {
-          font-size: 1.15rem;
+          font-size: 1.0rem;
           font-weight: bold;
           direction: ltr;
           text-align: left;
-        }
-
-        @media (max-width: 480px) {
-          .vocab-card {
-            padding: 16px 14px 12px 14px;
-          }
-          .arabic-word {
-            font-size: 1.1rem;
-          }
-          .german-word {
-            font-size: 1.05rem;
-          }
+          display: flex;
+          align-items: center;
         }
       `}</style>
 
@@ -1317,18 +1335,21 @@ export default function SchoolAndEducationPage() {
       <div className="search-container">
         <input
           type="text"
-          placeholder="ابحث عن كلمة بالعربية أو الألمانية..."
+          placeholder="ابحث عن كلمة ألمانية أو عربية..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
       </div>
 
-      {/* عرض الكروت مقسمة حسب المجموعات والعناوين */}
+      {/* حاوية الكروت متضمنة رقم المجموعة المضيء قبل العنوان */}
       <div className="cards-container">
-        {Object.keys(groupedData).map((groupName) => (
-          <div key={groupName} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-            <h2 className="group-title">{groupName}</h2>
+        {Object.keys(groupedData).map((groupName, groupIndex) => (
+          <div key={groupName} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+            <div className="category-heading">
+              <span className="category-badge">{groupIndex + 1}</span>
+              <span>{groupName}</span>
+            </div>
             {groupedData[groupName].map((item) => (
               <div
                 key={item.id}
@@ -1338,13 +1359,14 @@ export default function SchoolAndEducationPage() {
                 {/* رقم الكارت */}
                 <div className="item-number">{item.id}</div>
 
-                {/* أيقونة السماعة */}
-                <div className="audio-icon">🔊</div>
+                {/* شريط النطق */}
+                <div className="pronunciation-wrapper">
+                  <span className="speaker-left">🔊</span>
+                  <span>{item.pronunciation}</span>
+                  <span className="speaker-right">🔊</span>
+                </div>
 
-                {/* نطق الكلمة */}
-                <div className="pronunciation-text">{item.pronunciation}</div>
-
-                {/* الصف الرئيسي */}
+                {/* الكلمات */}
                 <div className="vocab-main-row">
                   <div className="arabic-word">{item.arabic}</div>
                   <div className="german-word">{renderColoredGermanWord(item.german)}</div>

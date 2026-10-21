@@ -218,7 +218,7 @@ const travelData = [
   { id: 200, german: "die Grenzpolizei", arabic: "شرطة الحدود / أمن المنافذ", pronunciation: "دي غرينتس بوليتساي", group: "المطارات والإجراءات الجمركية" }
 ];
 
-export default function TravelPage() {
+export default function TravelAndTourismPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const speakGerman = (text) => {
@@ -233,20 +233,21 @@ export default function TravelPage() {
 
   const renderColoredGermanWord = (germanStr) => {
     const parts = germanStr.split(' ');
-    if (parts.length > 1) {
-      const article = parts[0].toLowerCase();
-      const rest = parts.slice(1).join(' ');
-      let articleColor = 'inherit';
+    if (parts.length > 0) {
+      const firstWord = parts[0].toLowerCase();
+      let wordColor = 'inherit';
 
-      if (article === 'der') articleColor = '#00bfff'; // لبنى
-      else if (article === 'das') articleColor = '#22c55e'; // أخضر
-      else if (article === 'die') articleColor = '#ec4899'; // بمبي
+      if (firstWord === 'der') wordColor = '#00bfff'; // لبنى
+      else if (firstWord === 'das') wordColor = '#22c55e'; // أخضر
+      else if (firstWord === 'die') wordColor = '#ec4899'; // بمبي
 
-      return (
-        <span>
-          <span style={{ color: articleColor, fontWeight: 'bold' }}>{parts[0]}</span> {rest}
-        </span>
-      );
+      if (wordColor !== 'inherit') {
+        return (
+          <span>
+            <span style={{ color: wordColor, fontWeight: 'bold' }}>{parts[0]}</span> {parts.slice(1).join(' ')}
+          </span>
+        );
+      }
     }
     return germanStr;
   };
@@ -257,82 +258,60 @@ export default function TravelPage() {
       item.arabic.includes(searchTerm)
   );
 
-  const groupedData = filteredData.reduce((acc, item) => {
-    if (!acc[item.group]) {
-      acc[item.group] = [];
-    }
-    acc[item.group].push(item);
-    return acc;
-  }, {});
-
   return (
-    <div style={{ padding: '15px 10px 40px 10px', color: 'inherit', background: 'transparent', width: '100%', boxSizing: 'border-box' }}>
+    <div style={{ padding: '15px 15px 40px 15px', color: 'inherit', background: 'transparent' }}>
       <style>{`
         .page-title {
           text-align: center;
-          font-size: 1.6rem;
-          font-weight: bold;
-          margin-bottom: 20px;
+          font-size: 1.5rem;
+          font-weight: 900;
+          margin-bottom: 15px;
           color: inherit;
         }
         .search-container {
           display: flex;
           justify-content: center;
           margin-bottom: 30px;
-          width: 100%;
-          padding: 0 10px;
-          box-sizing: border-box;
         }
         .search-input {
           width: 100%;
-          max-width: 500px;
-          padding: 10px 16px;
-          border-radius: 25px;
+          max-width: 400px;
+          padding: 8px 12px;
+          border-radius: 20px;
           border: 1px solid currentColor;
           background: transparent;
           color: inherit;
-          font-size: 1rem;
+          font-size: 0.88rem;
+          font-weight: 700;
           outline: none;
           box-sizing: border-box;
           direction: rtl;
         }
-        .group-title {
-          font-size: 1.25rem;
-          font-weight: bold;
-          margin: 35px 0 20px 0;
-          text-align: center;
-          color: #00bfff;
-          border-bottom: 2px dashed currentColor;
-          padding-bottom: 8px;
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
-        }
         .cards-container {
           display: flex;
           flex-direction: column;
-          /* تم تعيين المسافة بين كل كارت والآخر إلى 20 بكسل بالضبط */
-          gap: 20px;
+          gap: 25px;
           align-items: center;
           width: 100%;
-          padding: 0 10px;
-          box-sizing: border-box;
         }
         .vocab-card {
           position: relative;
           width: 100%;
-          max-width: 500px;
+          max-width: 400px;
           border: 2px solid currentColor;
-          border-radius: 25px 8px;
-          padding: 14px 18px 12px 18px;
+          border-radius: 30px 6px;
+          padding: 14px 16px 14px 16px;
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           color: inherit;
           background: transparent;
           box-sizing: border-box;
           cursor: pointer;
           user-select: none;
           transition: border-color 0.2s ease;
+          min-height: 55px;
         }
         .vocab-card:hover {
           border-color: #00bfff;
@@ -342,111 +321,111 @@ export default function TravelPage() {
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          flex-wrap: wrap;
-          gap: 10px;
         }
         .item-number {
           position: absolute;
-          top: -11px;
+          top: -10px;
           left: 20px;
-          width: 22px;
-          height: 22px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
           background-color: #ff3333;
           color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.7rem;
+          font-size: 0.6rem;
           font-weight: bold;
           z-index: 2;
         }
-        .audio-icon {
+        .pronunciation-wrapper {
           position: absolute;
           top: -12px;
           left: 50%;
           transform: translateX(-50%);
-          font-size: 1.15rem;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .pronunciation-text {
-          position: absolute;
-          top: 4px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.85rem;
-          color: #00bfff;
-          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #ffffff;
+          color: #ff3333;
+          border: 1px solid #ffffff;
+          padding: 2px 14px;
+          border-radius: 14px;
+          font-size: 0.78rem;
+          font-weight: 900;
           z-index: 2;
           white-space: nowrap;
           pointer-events: none;
         }
+        .speaker-left {
+          position: absolute;
+          left: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-130deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
+        .speaker-right {
+          position: absolute;
+          right: -20px;
+          top: 20%;
+          transform: translateY(-50%) rotate(-50deg);
+          font-size: 0.78rem;
+          display: inline-block;
+        }
         .arabic-word {
-          font-size: 1.2rem;
-          font-weight: bold;
+          font-size: 1.1rem;
+          font-weight: 900;
           text-align: right;
+          display: flex;
+          align-items: center;
         }
         .german-word {
-          font-size: 1.15rem;
+          font-size: 1.0rem;
           font-weight: bold;
           direction: ltr;
           text-align: left;
-        }
-
-        @media (max-width: 480px) {
-          .vocab-card {
-            padding: 16px 14px 12px 14px;
-          }
-          .arabic-word {
-            font-size: 1.1rem;
-          }
-          .german-word {
-            font-size: 1.05rem;
-          }
+          display: flex;
+          align-items: center;
         }
       `}</style>
 
-      <h1 className="page-title">السفر والسياحة (Das Reisen)</h1>
+      <h1 className="page-title">السفر والسياحة (Reise und Tourismus)</h1>
 
       {/* حقل البحث */}
       <div className="search-container">
         <input
           type="text"
-          placeholder="ابحث عن كلمة بالعربية أو الألمانية..."
+          placeholder="ابحث عن كلمة ألمانية أو عربية..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search-input"
         />
       </div>
 
-      {/* عرض الكروت مقسمة حسب المجموعات والعناوين */}
+      {/* حاوية الكروت */}
       <div className="cards-container">
-        {Object.keys(groupedData).map((groupName) => (
-          <div key={groupName} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-            <h2 className="group-title">{groupName}</h2>
-            {groupedData[groupName].map((item) => (
-              <div
-                key={item.id}
-                className="vocab-card"
-                onClick={() => speakGerman(item.german)}
-              >
-                {/* رقم الكارت */}
-                <div className="item-number">{item.id}</div>
+        {filteredData.map((item, index) => (
+          <div
+            key={item.id}
+            className="vocab-card"
+            onClick={() => speakGerman(item.german)}
+          >
+            {/* رقم الكارت */}
+            <div className="item-number">{index + 1}</div>
 
-                {/* أيقونة السماعة */}
-                <div className="audio-icon">🔊</div>
+            {/* شريط النطق */}
+            <div className="pronunciation-wrapper">
+              <span className="speaker-left">🔊</span>
+              <span>{item.pronunciation}</span>
+              <span className="speaker-right">🔊</span>
+            </div>
 
-                {/* نطق الكلمة */}
-                <div className="pronunciation-text">{item.pronunciation}</div>
-
-                {/* الصف الرئيسي */}
-                <div className="vocab-main-row">
-                  <div className="arabic-word">{item.arabic}</div>
-                  <div className="german-word">{renderColoredGermanWord(item.german)}</div>
-                </div>
-              </div>
-            ))}
+            {/* الكلمات */}
+            <div className="vocab-main-row">
+              <div className="arabic-word">{item.arabic}</div>
+              <div className="german-word">{renderColoredGermanWord(item.german)}</div>
+            </div>
           </div>
         ))}
       </div>
