@@ -387,7 +387,7 @@ export default function GermanApp() {
                   flex: 1
                 }}
               >
-                🔊نطق الحروف والكلمات
+                🔊 الحروف والكلمات
               </button>
               <button
                 className="stop-btn-mobile"
@@ -401,7 +401,7 @@ export default function GermanApp() {
                   cursor: 'pointer',
                   fontSize: '0.9rem',
                   fontWeight: 'bold',
-                  flex: 1
+                  // flex: 1
                 }}
               >
                 ⏹️ إيقاف النطق

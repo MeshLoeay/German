@@ -281,7 +281,8 @@ export default function Colors() {
             <button
               onClick={stopSpeech}
               style={{
-                width: '100%',
+                width: '50%',
+                margin:'0 auto',
                 padding: '10px 12px',
                 borderRadius: '30px 6px 30px 6px',
                 border: 'none',
