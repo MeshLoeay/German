@@ -37,7 +37,6 @@ export default function Colors() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
-    // مسح كافة مؤقتات النطق المتسلسل المنتظرة في الطابور
     timersRef.current.forEach(timer => clearTimeout(timer));
     timersRef.current = [];
   };
@@ -52,7 +51,6 @@ export default function Colors() {
     }
   };
 
-  // زر لنطق الكلمات التمهيدية ثم الألوان مع دعم الإيقاف الفوري
   const speakAllColors = () => {
     stopSpeech();
     if ('speechSynthesis' in window) {
@@ -83,7 +81,6 @@ export default function Colors() {
     }
   };
 
-  // زر لنطق كل لون مع الفاتح والغامق مع دعم الإيقاف الفوري
   const speakAllColorsWithShades = () => {
     stopSpeech();
     if ('speechSynthesis' in window) {
@@ -201,7 +198,7 @@ export default function Colors() {
             fontFamily: "'Courgette', cursive, sans-serif"
           }}
         >
-          اختبار الألوان
+          اختبر نفسك
         </button>
       </div>
 
@@ -277,7 +274,6 @@ export default function Colors() {
               </button>
             </div>
 
-            {/* زر إيقاف النطق باللون الأحمر */}
             <button
               onClick={stopSpeech}
               style={{
@@ -299,14 +295,7 @@ export default function Colors() {
             </button>
           </div>
 
-          {/* مفرد لون و جمع الألوان بجانب بعضهما */}
-          <div style={{
-            display: 'flex',
-            gap: '8px',
-            width: '100%',
-            marginBottom: '12px'
-          }}>
-            {/* مفرد لون (Die Farbe) */}
+          <div style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '12px' }}>
             <div
               onClick={() => speakText('Die Farbe')}
               style={{
@@ -329,7 +318,6 @@ export default function Colors() {
               <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>Die Farbe</span>
             </div>
 
-            {/* جمع الألوان (die Farben) بدون كلمة جمع */}
             <div
               onClick={() => speakText('die Farben')}
               style={{
@@ -353,13 +341,7 @@ export default function Colors() {
             </div>
           </div>
 
-          {/* التوضيح العلوي (فاتح / غامق) */}
-          <div style={{
-            display: 'flex',
-            gap: '8px',
-            width: '100%',
-            marginBottom: '40px'
-          }}>
+          <div style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '40px' }}>
             <div
               onClick={() => speakText('hell')}
               style={{
@@ -410,7 +392,6 @@ export default function Colors() {
 
               return (
                 <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
-                  {/* كارت اللون الأساسي */}
                   <div
                     className={`color-card ${item.className}`}
                     onClick={() => {
@@ -442,20 +423,20 @@ export default function Colors() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: '#94a3b8',
-                      pointerEvents: 'none'
+                      pointerEvents: 'none',
+                      zIndex: 2
                     }}>
                       🔊
                     </span>
 
-                    <span style={{ fontSize: '1.2rem', fontWeight: 600, opacity: 0.95 }}>
+                    <span style={{ fontSize: '1.2rem', fontWeight: 600, opacity: 0.95, zIndex: 2 }}>
                       {item.ar}
                     </span>
-                    <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>
+                    <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif", zIndex: 2 }}>
                       {item.de}
                     </span>
                   </div>
 
-                  {/* الدرجات الفاتح والغامق */}
                   {item.light && isExpanded && (
                     <div style={{
                       display: 'flex',
@@ -463,7 +444,6 @@ export default function Colors() {
                       width: '100%',
                       animation: 'fadeIn 0.3s ease'
                     }}>
-                      {/* الفاتح (يمين) - يظهر النص العربي للون الأول (الأحمر) فقط */}
                       <div
                         onClick={() => speakText(item.lightDe)}
                         style={{
@@ -485,7 +465,6 @@ export default function Colors() {
                         <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>{item.lightDe}</span>
                       </div>
 
-                      {/* الغامق (شمال) - يظهر النص العربي للون الأول (الأحمر) فقط */}
                       <div
                         onClick={() => speakText(item.darkDe)}
                         style={{
@@ -571,7 +550,6 @@ export default function Colors() {
 
               return (
                 <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
-                  {/* كارت اللون الأساسي */}
                   <div
                     className={`color-card ${item.className}`}
                     style={{
@@ -587,11 +565,11 @@ export default function Colors() {
                       width: '100%'
                     }}
                   >
-                    <span style={{ fontSize: '1.2rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '1.2rem', fontWeight: 'bold', whiteSpace: 'nowrap', zIndex: 2 }}>
                       {item.ar}
                     </span>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '55%' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '55%', zIndex: 2 }}>
                       <div style={{
                         fontSize: '1.1rem',
                         fontWeight: 'bold',
@@ -648,7 +626,6 @@ export default function Colors() {
                     </div>
                   </div>
 
-                  {/* كارت كامل مستمر للون الفاتح */}
                   {item.light && (
                     <div
                       style={{
@@ -728,7 +705,6 @@ export default function Colors() {
                     </div>
                   )}
 
-                  {/* كارت كامل مستمر للون الغامق */}
                   {item.dark && (
                     <div
                       style={{
@@ -830,14 +806,114 @@ export default function Colors() {
         .card-white { background-color: #ffffff; color: #0f172a; border: 2px solid #000000; }
         .card-grey { background-color: #64748b; color: #ffffff; }
         .card-turquoise { background-color: #14b8a6; color: #ffffff; }
-        .card-gold { background-color: #ca8a04; color: #ffffff; }
-        .card-silver { background-color: #94a3b8; color: #ffffff; }
-        .card-copper { background-color: #c2410c; color: #ffffff; }
+
+        /* ضبط الموضع للألوان المعدنية الثلاثة */
+        .card-gold, .card-silver, .card-copper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-gold {
+            background: linear-gradient(135deg, #d97706 0%, #fef08a 50%, #b45309 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-silver {
+            background: linear-gradient(135deg, #64748b 0%, #f1f5f99d 50%, #334155 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(148, 163, 184, 0.35);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-copper {
+            background: linear-gradient(135deg, #9a3412 0%, #ffedd567 50%, #7c2d12 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(194, 64, 12, 0.47);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 1. لمعة الذهبي (ساطعة وواضحة) */
+        .card-gold::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.15) 40%,
+                rgba(255, 255, 255, 0.45) 50%,
+                rgba(255, 255, 255, 0.15) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            pointer-events: none;
+            animation: sequentialShine 6s infinite ease-in-out 0s;
+        }
+
+        /* 2. لمعة الفضي (تم خفض حدة السطوع في المنتصف إلى النمط الهادئ 0.09) */
+        .card-silver::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.03) 40%,
+                rgba(255, 255, 255, 0.09) 50%,
+                rgba(255, 255, 255, 0.03) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            pointer-events: none;
+            animation: sequentialShine 6s infinite ease-in-out 2s;
+        }
+
+        /* 3. لمعة النحاسي (تم خفض حدة السطوع في المنتصف إلى النمط الهادئ 0.09) */
+        .card-copper::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.03) 40%,
+                rgba(255, 255, 255, 0.09) 50%,
+                rgba(255, 255, 255, 0.03) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            pointer-events: none;
+            animation: sequentialShine 6s infinite ease-in-out 4s;
+        }
+
+        /* توقيت التتابع المتناسق (كل ثانيتين لون) */
+        @keyframes sequentialShine {
+            0% {
+                left: -150%;
+            }
+            33.33% {
+                left: 150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
         .card-pink-hot { background-color: #ec4899; color: #ffffff; }
         .card-flieder { background-color: #c084fc; color: #ffffff; }
         .card-beige { background-color: #fef3c7; color: #1e293b; }
 
-        /* إطار أبيض للون الأسود في الوضع المظلم */
         @media (prefers-color-scheme: dark) {
           .card-black {
             border: 2px solid rgba(255, 255, 255, 0.7) !important;

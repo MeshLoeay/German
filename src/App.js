@@ -73,6 +73,23 @@ import Tamreed from './Tamreed/Tamreed';
 import Tamreed2 from './Tamreed/Tamreed2';
 // End Tamreed
 
+// دالة نطق آمنة عالمية: تمنع أي انهيار أو ظهور رسائل خطأ إذا توقف النطق أو لم يدعمه المتصفح
+export const safeSpeak = (text, lang = 'de-DE') => {
+  try {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel(); // إيقاف أي نطق سابق لمنع التداخل
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.onerror = (e) => {
+        // صمت تام عند حدوث خطأ في النطق لعدم إزعاج المستخدم
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+  } catch (error) {
+    // صمت تام - يستمر الموقع في العمل بشكل طبيعي كأن شيئاً لم يكن
+  }
+};
+
 function EmptyPage() {
   const navigate = useNavigate();
   return (
@@ -140,14 +157,13 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // الوضع الليلي (0) هو الأساسي افتراضياً
   const [themeLevel, setThemeLevel] = useState(() => {
     const saved = localStorage.getItem('themeLevel');
     if (saved !== null) {
       const parsed = parseInt(saved, 10);
       return (parsed === 0 || parsed === 1) ? parsed : 0;
     }
-    return 0; // الأساسي هو الوضع الليلي
+    return 0;
   });
 
   const [isChildMode, setIsChildMode] = useState(false);
@@ -256,7 +272,7 @@ function App() {
 
       <div className="top-right-tools" style={{
         position: 'relative', width: '100%', maxWidth: '540px', display: 'flex',
-        justify: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
+        justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
       }}>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <HomeButton />
@@ -289,7 +305,7 @@ function App() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justify: 'center'
+              justifyContent: 'center'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '28px', filter: 'drop-shadow(0 2px 8px rgba(251, 191, 36, 0.6))' }}>👑</span>
@@ -318,13 +334,11 @@ function App() {
                 الموقع الرايق للناس الرايقه
               </h2>
 
-              {/* قسم التواصل بعد عنوان الرايق */}
               <div style={{ marginTop: '20px', width: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h3 style={{ margin: '0 0 12px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
                   للتواصل معي
                 </h3>
                 <div style={{ display: 'flex', width: '100%', gap: '12px', justifyContent: 'center', boxSizing: 'border-box' }}>
-                  {/* زر الواتساب: كلمة "واتساب" مسنترة تماماً في منتصف الديف، والأيقونة على الشمال */}
                   <a
                     href="https://wa.me/201003412932"
                     target="_blank"
@@ -334,7 +348,7 @@ function App() {
                       position: 'relative',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center',
+                      justifyContent: 'center',
                       padding: '8px',
                       borderRadius: '25px 0px 25px 0px',
                       border: '1px solid #22c55e',
@@ -347,7 +361,7 @@ function App() {
                       fontFamily: "'Cairo', sans-serif"
                     }}
                   >
-                    <span style={{ width: '100%', textAlign: 'center',marginLeft:'10%'  }}>واتساب</span>
+                    <span style={{ width: '100%', textAlign: 'center', marginLeft: '10%' }}>واتساب</span>
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                       alt="WhatsApp"
@@ -355,7 +369,6 @@ function App() {
                     />
                   </a>
 
-                  {/* زر الفيسبوك: كلمة "فيسبوك" مسنترة تماماً في منتصف الديف، والأيقونة على اليمين */}
                   <a
                     href="https://www.facebook.com/qursan.loeay/"
                     target="_blank"
@@ -365,7 +378,7 @@ function App() {
                       position: 'relative',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center',
+                      justifyContent: 'center',
                       padding: '8px',
                       borderRadius: '0px 25px 0px 25px',
                       border: '1px solid #60a5fa',
@@ -381,19 +394,18 @@ function App() {
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png"
                       alt="Facebook"
-                      style={{ position: 'absolute', right: '16px', width: '22px', height: '22px'}}
+                      style={{ position: 'absolute', right: '16px', width: '22px', height: '22px' }}
                     />
-                    <span style={{ width: '100%', textAlign: 'center',marginRight:'10%'  }}>فيسبوك</span>
+                    <span style={{ width: '100%', textAlign: 'center', marginRight: '10%' }}>فيسبوك</span>
                   </a>
                 </div>
               </div>
 
-              {/* قسم قناة الواتساب (باللون البمبه) */}
               <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
                   قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
-                    <br/>
-                   <span style={{fontSize:"25px"}}> من فضلك تابع القناه </span>
+                  <br/>
+                   <span style={{fontSize: "25px"}}> من فضلك تابع القناه </span>
                 </h4>
                 <a
                   href="https://whatsapp.com/channel/0029VaX"
@@ -403,7 +415,7 @@ function App() {
                   style={{
                     width: "50%",
                     textAlign: "center",
-                    fontFamily: "Cairo, Courgette, sans-serif" ,
+                    fontFamily: "Cairo, Courgette, sans-serif",
                     textDecoration: "none",
                     display: "block",
                     boxSizing: "border-box",
@@ -441,14 +453,6 @@ function App() {
                   </Link>
                 ))}
 
-                {/* عنوان باقي المواضيع وتحته العبارة مع الإيموجي */}
-                {/* <h3 style={{ margin: '15px 0 5px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', fontFamily: "'Cairo', sans-serif" }}>
-                  الدروس
-                  <br />
-                  الزرار به موضوعات مهمه
-                </h3> */}
-
-                {/* الزرار يحتوي على المواضيع والإيموجي فقط مع إضاءة باللون الأحمر الغامق */}
                 <Link
                   to="/AllTopic"
                   className="nav-link-item glowing-red-btn"
@@ -493,7 +497,7 @@ function App() {
               marginTop: '20px', maxWidth: '540px', display: 'flex', zIndex: 5, boxSizing: 'border-box', scale: 1.3,
             }}>
               <div style={{
-                display: 'flex', alignItems: 'center', gap: '10px', width: "175px",marginTop:'20px',
+                display: 'flex', alignItems: 'center', gap: '10px', width: "175px", marginTop: '20px',
                 background: 'rgba(0, 0, 0, 0.4)', padding: '10px 16px', borderRadius: '20px 6px 20px 6px', backdropFilter: 'blur(5px)'
               }}>
                 <div className="contact-title" style={{ color: '#fff', fontSize: '11px', textAlign: 'right', width: '100%', fontWeight: 'bold', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>للتواصل معي</div>
@@ -512,7 +516,7 @@ function App() {
               marginTop: '20px', width: '90%', maxWidth: '540px', display: 'flex',
               flexDirection: 'column', alignItems: 'center', gap: '15px', textAlign: 'center'
             }}>
-              <h1 style={{ margin: "20px 0 0 0 ", fontSize: '30px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
+              <h1 style={{ margin: "20px 0 0 0", fontSize: '30px', fontWeight: 'bold', color: 'var(--text-color, inherit)' }}>
                 ألمانيا - Deutschland
               </h1>
 
@@ -520,7 +524,7 @@ function App() {
                 كل ما يخص ألمانيا - Alles über Deutschland
               </h3>
 
-              <Link to="/Aus/GermanJobsTable" className="nav-link-item" style={{ width: '100%',marginTop:'20px' , textAlign: 'center',fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+              <Link to="/Aus/GermanJobsTable" className="nav-link-item" style={{ width: '100%', marginTop: '20px', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
                 مجالات الأوسبيلدونغ - Ausbildung-Bereiche
               </Link>
 
@@ -531,7 +535,7 @@ function App() {
               <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
                 كل ما يخص التمريض - Alles über Krankenpflege
               </h3>
-              <h3 style={{ margin: 0, fontSize: '16px', textAlign: "center", fontWeight: '600',lineHeight:'1.8', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
+              <h3 style={{ margin: 0, fontSize: '16px', textAlign: "center", fontWeight: '600', lineHeight: '1.8', opacity: 0.85, color: 'var(--text-color, inherit)' }}>
                 بقا انا بطلب منكو اسئله تمريض
                 <br />
                 تقلولى المريض مريض
@@ -545,9 +549,8 @@ function App() {
                 نعم للتنمر 😂 😂
               </h3>
 
-              {/* أزرار التمريض */}
               <Link to="/tamreed" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                أعضاء الجسم الخارجية - Äußere Körperteile
+                أضاء الجسم الخارجية - Äußere Körperteile
               </Link>
 
               <Link to="/tamreed2" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
