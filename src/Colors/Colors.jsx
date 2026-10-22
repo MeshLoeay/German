@@ -828,9 +828,9 @@ export default function Colors() {
         }
 
         .card-copper {
-            background: linear-gradient(135deg, #9a3412 0%, #ffedd567 50%, #7c2d12 100%);
+            background: linear-gradient(135deg, #9a3412 0%, rgba(255, 237, 213, 0.38) 50%, #7c2d12 100%);
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(194, 64, 12, 0.47);
+            box-shadow: 0 4px 15px rgba(194, 64, 12, 0.40);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
