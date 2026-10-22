@@ -5,8 +5,8 @@ export default function Colors() {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState({});
 
-  // حالة التحكم بإظهار التدرجات في قسم الكلمات (أول لون مفتوح افتراضياً)
-  const [expandedColors, setExpandedColors] = useState({ 0: true });
+  // حالة التحكم بإظهار التدرجات في قسم الكلمات (كل الألوان مغلقة افتراضياً)
+  const [expandedColors, setExpandedColors] = useState({});
 
   // مرجع لتخزين مؤقتات النطق المتسلسل لإمكانية إلغائها فوراً
   const timersRef = useRef([]);
@@ -299,57 +299,61 @@ export default function Colors() {
             </button>
           </div>
 
-          {/* مفرد لون (Die Farbe) */}
-          <div
-            onClick={() => speakText('Die Farbe')}
-            style={{
-              position: 'relative',
-              width: '100%',
-              backgroundColor: 'transparent',
-              color: 'var(--text-color, #0f172a)',
-              borderRadius: '30px 6px 30px 6px',
-              padding: '12px 24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '15px',
-              marginBottom: '10px',
-              cursor: 'pointer',
-              userSelect: 'none',
-              border: '1px solid rgba(148, 163, 184, 0.3)'
-            }}
-          >
-            <span style={{ position: 'absolute', right: '18px', fontSize: '1.2rem', color: '#94a3b8' }}>🔊</span>
-            <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>لون</span>
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>Die Farbe</span>
+          {/* مفرد لون و جمع الألوان بجانب بعضهما */}
+          <div style={{
+            display: 'flex',
+            gap: '8px',
+            width: '100%',
+            marginBottom: '12px'
+          }}>
+            {/* مفرد لون (Die Farbe) */}
+            <div
+              onClick={() => speakText('Die Farbe')}
+              style={{
+                flex: 1,
+                backgroundColor: 'transparent',
+                color: 'var(--text-color, #0f172a)',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '10px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                userSelect: 'none',
+                border: '1px solid rgba(148, 163, 184, 0.3)',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)'
+              }}
+            >
+              <span style={{ fontSize: '1rem', fontWeight: 600 }}>لون</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>Die Farbe</span>
+            </div>
+
+            {/* جمع الألوان (die Farben) بدون كلمة جمع */}
+            <div
+              onClick={() => speakText('die Farben')}
+              style={{
+                flex: 1,
+                backgroundColor: 'transparent',
+                color: 'var(--text-color, #0f172a)',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '10px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                userSelect: 'none',
+                border: '1px solid rgba(148, 163, 184, 0.3)',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)'
+              }}
+            >
+              <span style={{ fontSize: '1rem', fontWeight: 600 }}>ألوان</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>die Farben</span>
+            </div>
           </div>
 
-          {/* جمع الألوان (die Farben) */}
-          <div
-            onClick={() => speakText('die Farben')}
-            style={{
-              position: 'relative',
-              width: '100%',
-              backgroundColor: 'transparent',
-              color: 'var(--text-color, #0f172a)',
-              borderRadius: '30px 6px 30px 6px',
-              padding: '12px 24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '15px',
-              marginBottom: '12px',
-              cursor: 'pointer',
-              userSelect: 'none',
-              border: '1px solid rgba(148, 163, 184, 0.3)'
-            }}
-          >
-            <span style={{ position: 'absolute', right: '18px', fontSize: '1.2rem', color: '#94a3b8' }}>🔊</span>
-            <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>ألوان (الجمع)</span>
-            <span style={{ fontSize: '1.5rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>die Farben</span>
-          </div>
-
-          {/* التوضيح العلوي */}
+          {/* التوضيح العلوي (فاتح / غامق) */}
           <div style={{
             display: 'flex',
             gap: '8px',
