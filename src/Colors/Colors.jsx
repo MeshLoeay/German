@@ -13,19 +13,20 @@ export default function Colors() {
 
   const colorsData = [
     { ar: 'أحمر', de: 'Rot', quizDe: 'rot', className: 'card-red', light: '#fca5a5', lightText: '#1e293b', dark: '#b91c1c', darkText: '#ffffff', lightDe: 'hellrot', darkDe: 'dunkelrot', lightAr: 'أحمر فاتح', darkAr: 'أحمر غامق' },
-    { ar: 'أزرق', de: 'Blau', quizDe: 'blau', className: 'card-blue', light: '#38bdf8', lightText: '#0f172a', dark: '#1e3a8a', darkText: '#ffffff', lightDe: 'hellblau', darkDe: 'dunkelblau' },
-    { ar: 'أخضر', de: 'Grün', quizDe: 'grün', className: 'card-green', light: '#86efac', lightText: '#0f172a', dark: '#166534', darkText: '#ffffff', lightDe: 'hellgrün', darkDe: 'dunkelgrün' },
-    { ar: 'أصفر', de: 'Gelb', quizDe: 'gelb', className: 'card-yellow', light: '#fef08a', lightText: '#1e293b', dark: '#ca8a04', darkText: '#ffffff', lightDe: 'hellgelb', darkDe: 'dunkelgelb' },
-    { ar: 'برتقالي', de: 'Orange', quizDe: 'orange', className: 'card-orange', light: '#fed7aa', lightText: '#1e293b', dark: '#c2410c', darkText: '#ffffff', lightDe: 'hellorange', darkDe: 'dunkelorange' },
-    { ar: 'بنفسجي', de: 'Lila', quizDe: 'lila', className: 'card-purple', light: '#e9d5ff', lightText: '#1e293b', dark: '#6b21a8', darkText: '#ffffff', lightDe: 'helllila', darkDe: 'dunkellila' },
-    { ar: 'وردي', de: 'Rosa', quizDe: 'rosa', className: 'card-pink', light: '#fbcfe8', lightText: '#1e293b', dark: '#be185d', darkText: '#ffffff', lightDe: 'hellrosa', darkDe: 'dunkelrosa' },
-    { ar: 'بني', de: 'Braun', quizDe: 'braun', className: 'card-brown', light: '#d97706', lightText: '#ffffff', dark: '#451a03', darkText: '#ffffff', lightDe: 'hellbraun', darkDe: 'dunkelbraun' },
+    { ar: 'أزرق', de: 'Blau', quizDe: 'blau', className: 'card-blue', light: '#38bdf8', lightText: '#0f172a', dark: '#1e3a8a', darkText: '#ffffff', lightDe: 'hellblau', darkDe: 'dunkelblau', lightAr: 'أزرق فاتح', darkAr: 'أزرق غامق' },
+    { ar: 'أخضر', de: 'Grün', quizDe: 'grün', className: 'card-green', light: '#86efac', lightText: '#0f172a', dark: '#166534', darkText: '#ffffff', lightDe: 'hellgrün', darkDe: 'dunkelgrün', lightAr: 'أخضر فاتح', darkAr: 'أخضر غامق' },
+    { ar: 'أصفر', de: 'Gelb', quizDe: 'gelb', className: 'card-yellow', light: '#fef08a', lightText: '#1e293b', dark: '#ca8a04', darkText: '#ffffff', lightDe: 'hellgelb', darkDe: 'dunkelgelb', lightAr: 'أصفر فاتح', darkAr: 'أصفر غامق' },
+    { ar: 'برتقالي', de: 'Orange', quizDe: 'orange', className: 'card-orange', light: '#fed7aa', lightText: '#1e293b', dark: '#c2410c', darkText: '#ffffff', lightDe: 'hellorange', darkDe: 'dunkelorange', lightAr: 'برتقالي فاتح', darkAr: 'برتقالي غامق' },
+    { ar: 'بنفسجي', de: 'Lila', quizDe: 'lila', className: 'card-purple', light: '#e9d5ff', lightText: '#1e293b', dark: '#6b21a8', darkText: '#ffffff', lightDe: 'helllila', darkDe: 'dunkellila', lightAr: 'بنفسجي فاتح', darkAr: 'بنفسجي غامق' },
+    { ar: 'وردي', de: 'Rosa', quizDe: 'rosa', className: 'card-pink', light: '#fbcfe8', lightText: '#1e293b', dark: '#be185d', darkText: '#ffffff', lightDe: 'hellrosa', darkDe: 'dunkelrosa', lightAr: 'وردي فاتح', darkAr: 'وردي غامق' },
+    { ar: 'بني', de: 'Braun', quizDe: 'braun', className: 'card-brown', light: '#d97706', lightText: '#ffffff', dark: '#451a03', darkText: '#ffffff', lightDe: 'hellbraun', darkDe: 'dunkelbraun', lightAr: 'بني فاتح', darkAr: 'بني غامق' },
     { ar: 'أسود', de: 'Schwarz', quizDe: 'schwarz', className: 'card-black' },
     { ar: 'أبيض', de: 'Weiß', quizDe: 'weiß', className: 'card-white' },
-    { ar: 'رمادي', de: 'Grau', quizDe: 'grau', className: 'card-grey', light: '#cbd5e1', lightText: '#0f172a', dark: '#334155', darkText: '#ffffff', lightDe: 'hellgrau', darkDe: 'dunkelgrau' },
-    { ar: 'تركواز', de: 'Türkis', quizDe: 'türkis', className: 'card-turquoise', light: '#99f6e4', lightText: '#0f172a', dark: '#0f766e', darkText: '#ffffff', lightDe: 'helltürkis', darkDe: 'dunkeltürkis' },
-    { ar: 'بينك', de: 'Pink', quizDe: 'pink', className: 'card-pink-hot', light: '#f472b6', lightText: '#0f172a', dark: '#db2777', darkText: '#ffffff', lightDe: 'hellpink', darkDe: 'dunkelpink' },
-    { ar: 'أرجواني فاتح', de: 'Flieder', quizDe: 'flieder', className: 'card-flieder', light: '#f3e8ff', lightText: '#1e293b', dark: '#9333ea', darkText: '#ffffff', lightDe: 'hellflieder', darkDe: 'dunkelflieder' },
+    { ar: 'رمادي', de: 'Grau', quizDe: 'grau', className: 'card-grey', light: '#cbd5e1', lightText: '#0f172a', dark: '#334155', darkText: '#ffffff', lightDe: 'hellgrau', darkDe: 'dunkelgrau', lightAr: 'رمادي فاتح', darkAr: 'رمادي غامق' },
+    { ar: 'تركواز', de: 'Türkis', quizDe: 'türkis', className: 'card-turquoise', light: '#99f6e4', lightText: '#0f172a', dark: '#0f766e', darkText: '#ffffff', lightDe: 'helltürkis', darkDe: 'dunkeltürkis', lightAr: 'تركواز فاتح', darkAr: 'تركواز غامق' },
+    { ar: 'بينك', de: 'Pink', quizDe: 'pink', className: 'card-pink-hot', light: '#f472b6', lightText: '#0f172a', dark: '#db2777', darkText: '#ffffff', lightDe: 'hellpink', darkDe: 'dunkelpink', lightAr: 'بينك فاتح', darkAr: 'بينك غامق' },
+    { ar: 'أرجواني فاتح', de: 'Flieder', quizDe: 'flieder', className: 'card-flieder', light: '#f3e8ff', lightText: '#1e293b', dark: '#9333ea', darkText: '#ffffff', lightDe: 'hellflieder', darkDe: 'dunkelflieder', lightAr: 'أرجواني فاتح جداً', darkAr: 'أرجواني غامق' },
+    { ar: 'بيج', de: 'Beige', quizDe: 'beige', className: 'card-beige', light: '#fef3c7', lightText: '#1e293b', dark: '#d97706', darkText: '#ffffff', lightDe: 'hellbeige', darkDe: 'dunkelbeige', lightAr: 'بيج فاتح', darkAr: 'بيج غامق' },
     { ar: 'ذهبي', de: 'Gold', quizDe: 'gold', className: 'card-gold' },
     { ar: 'نحاسي', de: 'Kupfer', quizDe: 'kupfer', className: 'card-copper' },
     { ar: 'فضي', de: 'Silber', quizDe: 'silber', className: 'card-silver' }
@@ -457,7 +458,7 @@ export default function Colors() {
                       width: '100%',
                       animation: 'fadeIn 0.3s ease'
                     }}>
-                      {/* الفاتح (يمين) */}
+                      {/* الفاتح (يمين) - يظهر النص العربي للون الأول (الأحمر) فقط */}
                       <div
                         onClick={() => speakText(item.lightDe)}
                         style={{
@@ -475,11 +476,11 @@ export default function Colors() {
                           boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)'
                         }}
                       >
-                        {item.lightAr && <span style={{ fontSize: '1rem', fontWeight: 600 }}>{item.lightAr}</span>}
+                        {index === 0 && item.lightAr && <span style={{ fontSize: '1rem', fontWeight: 600 }}>{item.lightAr}</span>}
                         <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>{item.lightDe}</span>
                       </div>
 
-                      {/* الغامق (شمال) */}
+                      {/* الغامق (شمال) - يظهر النص العربي للون الأول (الأحمر) فقط */}
                       <div
                         onClick={() => speakText(item.darkDe)}
                         style={{
@@ -497,7 +498,7 @@ export default function Colors() {
                           boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)'
                         }}
                       >
-                        {item.darkAr && <span style={{ fontSize: '1rem', fontWeight: 600 }}>{item.darkAr}</span>}
+                        {index === 0 && item.darkAr && <span style={{ fontSize: '1rem', fontWeight: 600 }}>{item.darkAr}</span>}
                         <span style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', fontFamily: "'Courgette', cursive, sans-serif" }}>{item.darkDe}</span>
                       </div>
                     </div>
@@ -661,7 +662,7 @@ export default function Colors() {
                       }}
                     >
                       <span style={{ fontSize: '1.2rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>
-                        {item.lightAr || ''}
+                        {item.lightAr || `${item.ar} فاتح`}
                       </span>
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '55%' }}>
@@ -741,7 +742,7 @@ export default function Colors() {
                       }}
                     >
                       <span style={{ fontSize: '1.2rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>
-                        {item.darkAr || ''}
+                        {item.darkAr || `${item.ar} غامق`}
                       </span>
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '55%' }}>
@@ -829,6 +830,7 @@ export default function Colors() {
         .card-copper { background-color: #c2410c; color: #ffffff; }
         .card-pink-hot { background-color: #ec4899; color: #ffffff; }
         .card-flieder { background-color: #c084fc; color: #ffffff; }
+        .card-beige { background-color: #fef3c7; color: #1e293b; }
 
         /* إطار أبيض للون الأسود في الوضع المظلم */
         @media (prefers-color-scheme: dark) {
