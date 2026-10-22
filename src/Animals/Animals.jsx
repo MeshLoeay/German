@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const animalsData = [
   // 1. مجموعة der (المذكر - حيوانات)
-  { id: 1, name: "der Löwe", plural: "die Löwen", ar: "انا", cat: "wild", article: "der", emoji: "🦁" },
+  { id: 1, name: "der Löwe", plural: "die Löwen", ar: "اسد", cat: "wild", article: "der", emoji: "🦁" },
   { id: 2, name: "der Elefant", plural: "die Elefanten", ar: "فيل", cat: "wild", article: "der", emoji: "🐘" },
   { id: 3, name: "der Tiger", plural: "die Tiger", ar: "نمر", cat: "wild", article: "der", emoji: "🐅" },
   { id: 4, name: "der Hund", plural: "die Hunde", ar: "كلب", cat: "pet", article: "der", emoji: "🐕" },
