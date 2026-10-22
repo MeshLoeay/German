@@ -172,7 +172,7 @@ export default function Colors() {
           style={{
             flex: 1,
             padding: '10px 20px',
-            borderRadius: '12px',
+            borderRadius: '30px 2px',
             border: 'none',
             fontSize: '1.1rem',
             fontWeight: 'bold',
@@ -190,7 +190,7 @@ export default function Colors() {
           style={{
             flex: 1,
             padding: '10px 20px',
-            borderRadius: '12px',
+            borderRadius: '2px 30px',
             border: 'none',
             fontSize: '1.1rem',
             fontWeight: 'bold',
