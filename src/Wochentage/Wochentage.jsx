@@ -252,6 +252,7 @@ export default function Wochentage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginBottom:"20px",
                 gap: '8px',
                 transition: 'all 0.2s ease'
               }}
@@ -318,7 +319,7 @@ export default function Wochentage() {
           </div>
 
           {/* الزران اللذان تم إضافتهما قبل أيام الأسبوع */}
-          <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '40px' }}>
             {/* زر أيام الأسبوع */}
             <div
               onClick={(e) => speakText('Die Wochentage', e)}
@@ -331,7 +332,7 @@ export default function Wochentage() {
                 borderRadius: '30px 6px 30px 6px',
                 padding: '12px 16px',
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: 'column-reverse',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '10px',
@@ -363,7 +364,7 @@ export default function Wochentage() {
                 borderRadius: '30px 6px 30px 6px',
                 padding: '12px 16px',
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: 'column-reverse',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '10px',

@@ -236,7 +236,7 @@ export default function Colors() {
           </h3>
 
           {/* أزرار التحكم بالنطق الجماعي */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', margin: '20px 0 30px' }}>
             <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
               <button
                 onClick={speakAllColors}
@@ -352,7 +352,7 @@ export default function Colors() {
             display: 'flex',
             gap: '8px',
             width: '100%',
-            marginBottom: '20px'
+            marginBottom: '40px'
           }}>
             <div
               onClick={() => speakText('hell')}
