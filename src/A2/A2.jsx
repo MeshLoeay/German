@@ -9,7 +9,7 @@ export default function A2() {
       links: [
         {
           to: "/A2/A2Sentences",
-          label: "🔥 أهم 150 جمله فى المستوى",
+          label: "🔥 أهم 150 جمله فى A1 - A2",
           isSpecial: true
         },
         // {
