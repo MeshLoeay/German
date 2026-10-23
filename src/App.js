@@ -408,7 +408,7 @@ function App() {
                    <span style={{fontSize: "25px"}}> من فضلك تابع القناه </span>
                 </h4>
                 <a
-                  href="https://whatsapp.com/channel/0029VaX"
+                  href="https://whatsapp.com/channel/0029VbE7UOpDp2Q0tNDSzy18"
                   target="_blank"
                   rel="noreferrer"
                   className="nav-link-item"
