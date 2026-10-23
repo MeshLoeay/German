@@ -35,7 +35,7 @@ export default function MeinKoerperApp() {
             { de: "kleine Finger", ar: "الخنصر", img: "https://static.aljamila.com/pictures/69/coloured-fingers5.jpg", speakWith: "der kleine Finger" },
             { de: "Po / Popo", ar: "المؤخرة", img: process.env.PUBLIC_URL + "/2.jpg", speakWith: "der Po" },
             { de: "Oberschenkel", ar: "الفخذ", img: process.env.PUBLIC_URL + "/2.jpg", speakWith: "der Oberschenkel" },
-            { de: "Unterschenkel", ar: "أسفل الساق", img: process.env.PUBLIC_URL + "/2.jpg", speakWith: "der Unterschenkel" },
+            { de: "Unterschenkel", ar: "أسفل الساق", img: process.env.PUBLIC_URL + "/7.jpg", speakWith: "der Unterschenkel" },
             { de: "Unterarm", ar: "الساعد", img: "https://img.youm7.com/ArticleImgs/2019/4/25/4594-%D8%B9%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%B9%D8%B6%D8%AF.jpg", speakWith: "der Unterarm" },
 
             { de: "Fingernagel", ar: "ظفر الأصبع", img:  process.env.PUBLIC_URL + "/6.jpg", speakWith: "der Fingernagel" },
