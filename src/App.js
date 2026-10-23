@@ -406,6 +406,8 @@ function App() {
                   قناه الواتس اهم من الموقع نفسه لان دى اللى بينزل عليها كل جديد فى الموقع
                   <br/>
                    <span style={{fontSize: "25px"}}> من فضلك تابع القناه </span>
+                   <br/>
+                   <span style={{fontSize: "25px"}}> من الزرار البمبه</span>
                 </h4>
                 <a
                   href="https://whatsapp.com/channel/0029VbE7UOpDp2Q0tNDSzy18"
