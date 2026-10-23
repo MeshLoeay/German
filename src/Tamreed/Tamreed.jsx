@@ -18,12 +18,11 @@ export default function MeinKoerperApp() {
             { de: "Zahn", ar: "سن / ضرس", img: "https://png.pngtree.com/png-vector/20240910/ourlarge/pngtree-cute-happy-tooth-3d-dentist-strong-healthy-teeth-png-image_13803217.png", speakWith: "der Zahn" },
             { de: "Zeh", ar: "إصبع القدم", img: "https://www.shutterstock.com/image-vector/foot-thumb-cartoon-vector-toe-260nw-1278011215.jpg", speakWith: "der Zeh" },
             { de: "Arm", ar: "ذراع", img: "https://png.pngtree.com/png-vector/20240309/ourlarge/pngtree-sticker-of-a-flexing-strong-arm-cartoon-png-image_11911722.png", speakWith: "der Arm" },
-            { de: "Bauch", ar: "بطن", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/854881443_2844247895952635_7178199479484303821_n.jpg?stp=dst-jpg_tt6&cstp=mx228x221&ctp=s228x221&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=AQZ7MjeEPOQQ7kNvwG0l3ab&_nc_oc=AdpWfc9w9VWm1lswJYYpriRvz_NXLxsXuOoNilaQX06ynMZlyq_L8H9iUDTWIYQfvXo&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=wv6M-on1TXuPh9Q7qeujnw&_nc_ss=7d2a8&oh=00_AQPOCyOhJ9WRoXKih7iBylU13exXErvXdrLJbSUvDD1mAQ&oe=6AD9D731", speakWith: "der Bauch" },
+            { de: "Bauch", ar: "بطن", img: "./الاعضاء الخارجيه/tamreed51.jpg", speakWith: "der Bauch" },
             { de: "Hals", ar: "رقبة", img: "https://png.pngtree.com/png-vector/20191123/ourmid/pngtree-neck-plastic-correction-icon-cartoon-style-png-image_2007449.jpg", speakWith: "der Hals" },
             { de: "Kopf", ar: "رأس", img: "https://png.pngtree.com/png-vector/20191122/ourlarge/pngtree-a-long-neck-vector-or-color-illustration-png-image_2017474.jpg", speakWith: "der Kopf" },
             { de: "Fuß", ar: "قدم", img: "https://png.pngtree.com/recommend-works/png-clipart/20250101/ourlarge/pngtree-five-fingers-on-the-soles-of-both-feet-png-image_14982373.png", speakWith: "der Fuß" },
             { de: "Rücken", ar: "ظهر", img: "https://columbiaclinic.us/wp-content/uploads/2020/05/unnamed-file-1-1-768x576.jpg", speakWith: "der Rücken" },
-
             { de: "Nacken", ar: "مؤخرة الرقبة", img: "https://png.pngtree.com/background/20230728/original/pngtree-back-of-the-head-occiput-teenager-nucha-photo-picture-image_4322571.jpg", speakWith: "der Nacken" },
             { de: "Ellbogen", ar: "المرفق", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPKRxaIjMQMfTCIHsXA2zDljoRGlOh7vomkwmdNwAqlvhhGnwDdriecuc&s", speakWith: "der Ellbogen" },
             { de: "Nabel", ar: "السرة", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFIP0bFg3qquzXmxXi_Ot58rsC6OVdZ4pPDxRpX9FA8w&s", speakWith: "der Nabel" },
@@ -35,14 +34,12 @@ export default function MeinKoerperApp() {
             { de: "kleine Finger", ar: "الخنصر", img: "https://static.aljamila.com/pictures/69/coloured-fingers5.jpg", speakWith: "der kleine Finger" },
             { de: "Po / Popo", ar: "المؤخرة", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "der Po" },
             { de: "Oberschenkel", ar: "الفخذ", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "der Oberschenkel" },
-            { de: "Unterschenkel", ar: "أسفل الساق", img: "https://drhusseinelwan.com/wp-content/uploads/2020/11/Picture18-400x332.jpg  https://clinicaelgeadi.com/wp-content/uploads/2023/10/dolor-en-el-talon-por-la-fascitis-plantar.jpg", speakWith: "der Unterschenkel" },
+            { de: "Unterschenkel", ar: "أسفل الساق", img: "https://drhusseinelwan.com/wp-content/uploads/2020/11/Picture18-400x332.jpg", speakWith: "der Unterschenkel" },
             { de: "Unterarm", ar: "الساعد", img: "https://img.youm7.com/ArticleImgs/2019/4/25/4594-%D8%B9%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%B9%D8%B6%D8%AF.jpg", speakWith: "der Unterarm" },
-
             { de: "Fingernagel", ar: "ظفر الأصبع", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/854416353_2844267189284039_8557599246219142565_n.webp?stp=dst-jpg_tt6&cstp=mx1440x1440&ctp=s1440x1440&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=Mk35HDTHeBsQ7kNvwGIRBqG&_nc_oc=AdqPy69IZiHv5FkoSpKgFO0ykMtOldD68IP5qEOHLw_wMIn_xAqK3dkgMeiA8WHeQO8&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=olruSK-E7fogA57NtM2WxQ&_nc_ss=7d2a8&oh=00_AQNyaVrQxHuEDAnwv1cSCmRH21Omq1CQF0s07EyjP0-7sg&oe=6AD9C9F1", speakWith: "der Fingernagel" },
             { de: "Zehennagel", ar: "ظفر إصبع القدم", img: "https://www.shutterstock.com/image-vector/foot-thumb-cartoon-vector-toe-260nw-1278011215.jpg", speakWith: "der Zehennagel" },
             { de: "Rumpf", ar: "الجذع", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/854781212_2844249632619128_3816147512389822177_n.jpg?stp=dst-jpg_tt6&cstp=mx800x800&ctp=s800x800&_nc_cat=100&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=Oa65mWZI-dIQ7kNvwFTJEvd&_nc_oc=Adrqn1gQ6R2iaUpsw2dNDxnPXz5xmxuIGBuaSGjDayxK5ddD_JVFanTWSeMk_BGdTZ4&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=IQdThh0gItnNYLapDzRKyQ&_nc_ss=7d2a8&oh=00_AQNV-0knJcIujqe5RdvuwSFsOGDLitieEhUPNel1SM4RaQ&oe=6AD9CF17", speakWith: "der Rumpf" },
             { de: "Muskel", ar: "العضلة", img: "", speakWith: "der Muskel" },
-
             { de: "Penis", ar: "العضو الذكري", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "der Penis" },
             { de: "Hodensack", ar: "كيس الخصية", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "der Hodensack" },
             { de: "Bart", ar: "اللحية / الذقن (للرجال)", img: "https://png.pngtree.com/png-clipart/20200701/original/pngtree-hand-drawn-beard-fake-mustache-bearded-png-image_5362366.jpg", speakWith: "der Bart" },
@@ -61,19 +58,16 @@ export default function MeinKoerperApp() {
             { de: "Ohr", ar: "أذن", img: "https://cdn.prod.website-files.com/639994c60c9babedd27b9981/67ac74c34ff82573acbf0501_Causes%20of%20Hearing%20Loss%20in%20One%20Ear.jpg", speakWith: "das Ohr" },
             { de: "Bein", ar: "ساق", img: "https://i.pinimg.com/736x/68/7d/30/687d30dccea8c3f51f85ea0093dd90ea.jpg", speakWith: "das Bein" },
             { de: "Gesicht", ar: "وجه", img: "https://png.pngtree.com/png-vector/20240624/ourlarge/pngtree-a-cartoon-girl-face-png-image_12840717.png", speakWith: "das Gesicht" },
-
             { de: "Knie", ar: "الركبة", img: "https://cdn.prod.website-files.com/639994c60c9babedd27b9981/67039a9ea260b82f3a555cbb_%D8%B9%D9%85%D9%84%D9%8A%D8%A9%20%D8%AA%D8%A8%D8%AF%D9%8A%D9%84%20%D9%85%D9%81%D8%B5%D9%84%20%D8%A7%D9%84%D8%B1%D9%83%D8%A8%D8%A9.jpg", speakWith: "das Knie" },
             { de: "Gesäß", ar: "المؤخرة (رسمي/طبي)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "das Gesäß" },
             { de: "Kinn", ar: "الذقن", img: "https://static.webteb.net/images/content/slideshowslide_sss_8645_51110543a8-613f-43e1-9890-c2277b096477.jpg", speakWith: "das Kinn" },
             { de: "Becken", ar: "الحوض", img: "https://orthopedic-knee-hip.com/wp-content/uploads/2020/09/%D9%85%D9%81%D8%B5%D9%84-%D8%A7%D9%84%D8%AD%D9%88%D8%B6.png", speakWith: "das Becken" },
-
             { de: "Handgelenk", ar: "معصم اليد / الرسغ", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855174066_2844273365950088_79656518691398347_n.jpg?stp=dst-jpg_tt6&cstp=mx522x522&ctp=s522x522&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=Qv7cy7rlmIAQ7kNvwH1zvly&_nc_oc=AdqsmkWbLR1e7-Jpyx4OzqUdJNoDWTZC_4hsdlzCWh9RWnAIqo5JDvesdY7bG-DR600&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=w5_5ktZIJGeJ4v-Si7Zk7g&_nc_ss=7d2a8&oh=00_AQNKb5QBZuwPbILyKevDn81cnxaO1uoYEkCCQ3uJFEn64Q&oe=6AD9F108", speakWith: "das Handgelenk" },
             { de: "Sprunggelenk", ar: "مفصل الكاحل", img: "https://dralshouli.com/wp-content/uploads/2024/05/ankle-pain-2048x1966.jpg", speakWith: "das Sprunggelenk" },
             { de: "Ohrläppchen", ar: "شحمة الأذن", img: "https://cdn.prod.website-files.com/639994c60c9babedd27b9981/67ac74c34ff82573acbf0501_Causes%20of%20Hearing%20Loss%20in%20One%20Ear.jpg", speakWith: "das Ohrläppchen" },
             { de: "Augenlid", ar: "جفن العين", img: "https://png.pngtree.com/png-vector/20240124/ourlarge/pngtree-cartoon-eyes-free-png-png-image_11482599.png", speakWith: "das Augenlid" },
             { de: "Schlüsselbein", ar: "عظمة الترقوة", img: "https://www.orthopedics-sportsmedicine.com/wp-content/uploads/2018/02/Clavicle_-_animation2-300x300.gif", speakWith: "das Schlüsselbein" },
             { de: "Dekolleté", ar: "منطقة أعلى الصدر", img: "https://img.magnific.com/premium-vector/human-chest-muscles_1162360-11493.jpg?w=1060", speakWith: "das Dekolleté" },
-
             { de: "Glied", ar: "العضو التناسلي الذكري", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "das Glied" },
             { de: "Schamhaar", ar: "شعر العانة", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "das Schamhaar" }
           ]
@@ -87,7 +81,6 @@ export default function MeinKoerperApp() {
             { de: "Hand", ar: "يد", img: "https://png.pngtree.com/png-vector/20240628/ourlarge/pngtree-cartoon-of-a-cute-hand-png-image_12740911.png", speakWith: "die Hand" },
             { de: "Nase", ar: "أنف", img: "https://png.pngtree.com/png-vector/20240621/ourlarge/pngtree-a-cartoon-nose-with-an-exaggeratedly-large-size-featuring-comical-and-png-image_12751007.png", speakWith: "die Nase" },
             { de: "Brust", ar: "صدر / ثدي", img: "https://img.magnific.com/premium-vector/human-chest-muscles_1162360-11493.jpg?w=1060", speakWith: "die Brust" },
-
             { de: "Stirn", ar: "الجبهة", img: "https://kmadri.com/wp-content/uploads/2024/07/%D8%AA%D8%AC%D8%A7%D8%B9%D9%8A%D8%AF-%D8%A7%D9%84%D8%AC%D8%A8%D9%87%D8%A9-%D9%84%D9%84%D8%B1%D8%AC%D8%A7%D9%84.jpg.webp", speakWith: "die Stirn" },
             { de: "Schulter", ar: "الكتف", img: "https://img.magnific.com/premium-vector/human-shoulder-icon-cartoon-illustration-human-shoulder-vector-icon-web-design_96318-24158.jpg?w=2000", speakWith: "die Schulter" },
             { de: "Taille", ar: "الخصر", img: "https://png.pngtree.com/element_our/20200609/ourlarge/pngtree-thin-waist-image_2233898.jpg", speakWith: "die Taille" },
@@ -97,13 +90,11 @@ export default function MeinKoerperApp() {
             { de: "Wange", ar: "الخد", img: "https://png.pngtree.com/png-vector/20240624/ourlarge/pngtree-a-cartoon-girl-face-png-image_12840717.png", speakWith: "die Wange" },
             { de: "Lippe", ar: "الشفة", img: "https://png.pngtree.com/element_our/20190603/ourlarge/pngtree-mouth-teeth-human-organs-image_1440716.jpg", speakWith: "die Lippe" },
             { de: "Ferse", ar: "كعب القدم", img: "https://png.pngtree.com/recommend-works/png-clipart/20250101/ourlarge/pngtree-five-fingers-on-the-soles-of-both-feet-png-image_14982373.png", speakWith: "die Ferse" },
-
             { de: "Haut", ar: "الجلد / البشرة", img: "https://static.webteb.net/images/content/tbl_articles_article_36561_477f08fec29-56ed-4ebc-8cdb-ae5bd99395c4.jpg", speakWith: "die Haut" },
             { de: "Achsel", ar: "الإبط", img: "https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-men-s-armpit-sweating-original-hand-painted-cartoon-png-image_4167348.png", speakWith: "die Achsel" },
             { de: "Wade", ar: "ربلة الساق / العضلة الخلفية للساق", img: "https://i.pinimg.com/736x/68/7d/30/687d30dccea8c3f51f85ea0093dd90ea.jpg", speakWith: "die Wade" },
             { de: "Brustwarze", ar: "حلمة الثدي", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Brustwarze" },
             { de: "Fußsohle", ar: "باطن القدم", img: "https://png.pngtree.com/recommend-works/png-clipart/20250101/ourlarge/pngtree-five-fingers-on-the-soles-of-both-feet-png-image_14982373.png", speakWith: "die Fußsohle" },
-
             { de: "Vagina / Scheide", ar: "العضو التاسلى للمراه", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Vagina" },
             { de: "Gebärmutter", ar: "الرحم (للنساء)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Gebärmutter" },
             { de: "Klitoris", ar: "البظر (للنساء)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Klitoris" },
@@ -120,7 +111,6 @@ export default function MeinKoerperApp() {
           items: [
             { de: "Haare", ar: "شعر", img: "https://png.pngtree.com/element_our/20190530/ourlarge/pngtree-cartoon-red-scorpion-head-image_1234217.jpg", speakWith: "die Haare" },
             { de: "Zähne", ar: "أسنان", img: "https://vid.alarabiya.net/images/2016/11/07/460c0ca7-ae3c-4425-916c-f4c94ee85601/460c0ca7-ae3c-4425-916c-f4c94ee85601_16x9_1200x676.jpg?width=1120", speakWith: "die Zähne" },
-
             { de: "Augen", ar: "عيون", img: "https://png.pngtree.com/png-vector/20240124/ourlarge/pngtree-cartoon-eyes-free-png-png-image_11482599.png", speakWith: "die Augen" },
             { de: "Ohren", ar: "آذان", img: "https://cdn.prod.website-files.com/639994c60c9babedd27b9981/67ac74c34ff82573acbf0501_Causes%20of%20Hearing%20Loss%20in%20One%20Ear.jpg", speakWith: "die Ohren" },
             { de: "Hände", ar: "أيدٍ", img: "https://png.pngtree.com/png-vector/20240628/ourlarge/pngtree-cartoon-of-a-cute-hand-png-image_12740911.png", speakWith: "die Hände" },
@@ -134,13 +124,11 @@ export default function MeinKoerperApp() {
             { de: "Augenbrauen", ar: "حواجب", img: "https://png.pngtree.com/png-clipart/20220329/ourlarge/pngtree-brown-eyebrows-png-image_4519509.png", speakWith: "die Augenbrauen" },
             { de: "Schultern", ar: "أكتاف", img: "https://img.magnific.com/premium-vector/human-shoulder-icon-cartoon-illustration-human-shoulder-vector-icon-web-design_96318-24158.jpg?w=2000", speakWith: "die Schultern" },
             { de: "Brüste", ar: "أثداء", img: "https://img.magnific.com/premium-vector/human-chest-muscles_1162360-11493.jpg?w=1060", speakWith: "die Brüste" },
-
             { de: "Wimpern", ar: "رموش", img: "https://png.pngtree.com/png-vector/20240124/ourlarge/pngtree-cartoon-eyes-free-png-png-image_11482599.png", speakWith: "die Wimpern" },
             { de: "Fingernägel", ar: "أظافر اليدين", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/854416353_2844267189284039_8557599246219142565_n.webp?stp=dst-jpg_tt6&cstp=mx1440x1440&ctp=s1440x1440&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=Mk35HDTHeBsQ7kNvwGIRBqG&_nc_oc=AdqPy69IZiHv5FkoSpKgFO0ykMtOldD68IP5qEOHLw_wMIn_xAqK3dkgMeiA8WHeQO8&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=olruSK-E7fogA57NtM2WxQ&_nc_ss=7d2a8&oh=00_AQNyaVrQxHuEDAnwv1cSCmRH21Omq1CQF0s07EyjP0-7sg&oe=6AD9C9F1", speakWith: "die Fingernägel" },
             { de: "Zehennägel", ar: "أظافر القدمين", img: "https://www.shutterstock.com/image-vector/foot-thumb-cartoon-vector-toe-260nw-1278011215.jpg", speakWith: "die Zehennägel" },
             { de: "Achseln", ar: "إبطين", img: "https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-men-s-armpit-sweating-original-hand-painted-cartoon-png-image_4167348.png", speakWith: "die Achseln" },
             { de: "Poren", ar: "مسام الجلد", img: "https://cdn.maruderm.com/site-media/site/marudermcosmetics/assets/blog/skin-pores.jpg", speakWith: "die Poren" },
-
             { de: "Hoden", ar: "الخصيتين (للرجال)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Hoden" },
             { de: "Eierstöcke", ar: "المبايض (للنساء)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Eierstöcke" },
             { de: "Schamlippen", ar: "أشفار الفرج (للنساء)", img: "https://scontent.fpsd2-1.fna.fbcdn.net/v/t39.30808-6/855833268_2844212832622808_3383047317041986257_n.jpg?stp=dst-jpg_tt6&cstp=mx360x360&ctp=s360x360&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=bd9a62&_nc_ohc=kv2qqcyCSZsQ7kNvwEwjsys&_nc_oc=Adq2G9irtZthLV85vQcqX_pgwsF0MOLP_EuNOqgo-4zIWwcBl2-ZfI6CLeziXeoQcow&_nc_zt=23&_nc_ht=scontent.fpsd2-1.fna&_nc_gid=0u0mbGY4yFWSGvZIK4BFVg&_nc_ss=7d2a8&oh=00_AQN77Rl_hg1HlwbuNYKAugKSaaYQTLeuDYDYEE4F6VzIIQ&oe=6AD9B618", speakWith: "die Schamlippen" }
@@ -172,6 +160,15 @@ export default function MeinKoerperApp() {
       setTimeout(() => {
         if (card) card.classList.remove('speaking');
       }, 800);
+    }
+  };
+
+  // التعامل مع خطأ تحميل الصور المعطلة
+  const handleImageError = (e) => {
+    e.target.onerror = null; // يمنع تكرار الـ loop
+    e.target.style.display = 'none'; // يخفي الصورة المعطلة
+    if (e.target.parentNode) {
+      e.target.parentNode.innerHTML = '<span style="font-size:10px; color:#ef4444; text-align:center;">عذراً، الصورة حُظرت من المصدر</span>';
     }
   };
 
@@ -571,7 +568,13 @@ export default function MeinKoerperApp() {
 
                       {item.img ? (
                         <div className="img-box">
-                          <img src={item.img} alt={item.de} loading="lazy" />
+                          <img
+                            src={item.img}
+                            alt={item.de}
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                            onError={handleImageError}
+                          />
                         </div>
                       ) : (
                         <div style={{ height: '30px' }}></div>
