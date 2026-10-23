@@ -807,18 +807,35 @@ export default function Colors() {
         .card-grey { background-color: #64748b; color: #ffffff; }
         .card-turquoise { background-color: #14b8a6; color: #ffffff; }
 
-        /* ضبط الموضع للألوان المعدنية الثلاثة */
-        .card-gold, .card-silver, .card-copper {
-            position: relative;
-            overflow: hidden;
-        }
+        // .card-silver {
+        //     background: linear-gradient(135deg, #64748b 0%, #f1f5f9 50%, #334155 100%);
+        //     color: #ffffff;
+        //     box-shadow: 0 4px 15px rgba(148, 163, 184, 0.35);
+        //     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        // }
 
+        // .card-copper {
+        //     background: linear-gradient(135deg, #9a3412 0%, #ffedd5 50%, #7c2d12 100%);
+        //     color: #ffffff;
+        //     box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
+        //     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        // }
+
+        /* اللون الذهبي: ينور بنسبة 10% (يزيد السطوع والـ Glow) ويعود طبيعياً خلال 4 ثوانٍ */
         .card-gold {
             background: linear-gradient(135deg, #d97706 0%, #fef08a 50%, #b45309 100%);
             color: #ffffff;
             box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            animation: goldPulse 4s infinite ease-in-out;
         }
+
+// .card-gold {
+//             background: linear-gradient(135deg, #d97706 0%, #fef08a 50%, #b45309 100%);
+//             color: #ffffff;
+//             box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
+//             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+//         }
 
         .card-silver {
             background: linear-gradient(135deg, #64748b 0%, #f1f5f99d 50%, #334155 100%);
@@ -828,85 +845,22 @@ export default function Colors() {
         }
 
         .card-copper {
-            background: linear-gradient(135deg, #9a3412 0%, rgba(255, 237, 213, 0.38) 50%, #7c2d12 100%);
+            background: linear-gradient(135deg, #9a3412 0%, rgba(255, 237, 213, 0.42) 50%, #7c2d12 100%);
             color: #ffffff;
             box-shadow: 0 4px 15px rgba(194, 64, 12, 0.40);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
-        /* 1. لمعة الذهبي (ساطعة وواضحة) */
-        .card-gold::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -150%;
-            width: 50%;
-            height: 200%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.15) 40%,
-                rgba(255, 255, 255, 0.45) 50%,
-                rgba(255, 255, 255, 0.15) 60%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(25deg);
-            pointer-events: none;
-            animation: sequentialShine 6s infinite ease-in-out 0s;
-        }
 
-        /* 2. لمعة الفضي (تم خفض حدة السطوع في المنتصف إلى النمط الهادئ 0.09) */
-        .card-silver::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -150%;
-            width: 50%;
-            height: 200%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.03) 40%,
-                rgba(255, 255, 255, 0.09) 50%,
-                rgba(255, 255, 255, 0.03) 60%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(25deg);
-            pointer-events: none;
-            animation: sequentialShine 6s infinite ease-in-out 2s;
-        }
-
-        /* 3. لمعة النحاسي (تم خفض حدة السطوع في المنتصف إلى النمط الهادئ 0.09) */
-        .card-copper::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -150%;
-            width: 50%;
-            height: 200%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.03) 40%,
-                rgba(255, 255, 255, 0.09) 50%,
-                rgba(255, 255, 255, 0.03) 60%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(25deg);
-            pointer-events: none;
-            animation: sequentialShine 6s infinite ease-in-out 4s;
-        }
-
-        /* توقيت التتابع المتناسق (كل ثانيتين لون) */
-        @keyframes sequentialShine {
-            0% {
-                left: -150%;
+        /* أنيميشن النبض والإضاءة (تكبير الإضاءة بنسبة 10% عبر السطوع والظل) */
+        @keyframes goldPulse {
+            0%, 100% {
+                filter: brightness(1);
+                box-shadow: 0 4px 15px rgba(217, 119, 6, 0.30);
             }
-            33.33% {
-                left: 150%;
-            }
-            100% {
-                left: 150%;
+            50% {
+                filter: brightness(1.1); /* زيادة السطوع بنسبة 10% في منتصف المدة (بعد ثانيتين) */
+                box-shadow: 0 6px 22px rgba(253, 224, 71, 0.25); /* توهج ذهبي خفيف وناعم */
             }
         }
 
