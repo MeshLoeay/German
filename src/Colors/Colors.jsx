@@ -807,19 +807,11 @@ export default function Colors() {
         .card-grey { background-color: #64748b; color: #ffffff; }
         .card-turquoise { background-color: #14b8a6; color: #ffffff; }
 
-        // .card-silver {
-        //     background: linear-gradient(135deg, #64748b 0%, #f1f5f9 50%, #334155 100%);
-        //     color: #ffffff;
-        //     box-shadow: 0 4px 15px rgba(148, 163, 184, 0.35);
-        //     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        // }
-
-        // .card-copper {
-        //     background: linear-gradient(135deg, #9a3412 0%, #ffedd5 50%, #7c2d12 100%);
-        //     color: #ffffff;
-        //     box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
-        //     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        // }
+        /* ضبط الموضع واحتواء اللمعة السريعة داخل الكروت المعدنية */
+        .card-gold, .card-silver, .card-copper {
+            position: relative;
+            overflow: hidden;
+        }
 
         /* اللون الذهبي: ينور بنسبة 10% (يزيد السطوع والـ Glow) ويعود طبيعياً خلال 4 ثوانٍ */
         .card-gold {
@@ -829,13 +821,6 @@ export default function Colors() {
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
             animation: goldPulse 4s infinite ease-in-out;
         }
-
-// .card-gold {
-//             background: linear-gradient(135deg, #d97706 0%, #fef08a 50%, #b45309 100%);
-//             color: #ffffff;
-//             box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
-//             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-//         }
 
         .card-silver {
             background: linear-gradient(135deg, #64748b 0%, #f1f5f99d 50%, #334155 100%);
@@ -851,7 +836,6 @@ export default function Colors() {
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
-
         /* أنيميشن النبض والإضاءة (تكبير الإضاءة بنسبة 10% عبر السطوع والظل) */
         @keyframes goldPulse {
             0%, 100% {
@@ -861,6 +845,41 @@ export default function Colors() {
             50% {
                 filter: brightness(1.1); /* زيادة السطوع بنسبة 10% في منتصف المدة (بعد ثانيتين) */
                 box-shadow: 0 6px 22px rgba(253, 224, 71, 0.25); /* توهج ذهبي خفيف وناعم */
+            }
+        }
+
+        /* إنشاء اللمعة الضوئية السريعة التي تعبر من الشمال إلى اليمين (للذهبي فقط وبمدة ثانية واحدة) */
+        .card-gold::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 45%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.2) 30%,
+                rgba(255, 255, 255, 0.55) 50%,
+                rgba(255, 255, 255, 0.2) 70%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            pointer-events: none;
+            /* مدة العبور ثانية واحدة (1s) من أصل 4 ثوانٍ للدورة الكلية */
+            animation: fastShine 4s infinite ease-in-out;
+        }
+
+        /* حركة العبور السريعة في مدة قدرها ثانية واحدة */
+        @keyframes fastShine {
+            0% {
+                left: -150%;
+            }
+            25% { /* (ثانية واحدة من أصل 4 ثوانٍ إجمالية للدورة) */
+                left: 150%;
+            }
+            100% {
+                left: 150%;
             }
         }
 
