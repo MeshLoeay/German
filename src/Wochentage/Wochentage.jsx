@@ -52,6 +52,7 @@ export default function Wochentage() {
         ...timeUnitsData.map(item => item.de),
         'Die Wochentage',
         'die Monate',
+        'das Wochenende',
         ...daysData.map(item => item.de)
       ];
 
@@ -70,7 +71,13 @@ export default function Wochentage() {
 
   const checkAnswers = () => {
     const newResults = {};
-    const allItems = [...timeUnitsData, ...daysData];
+    const allItems = [
+      ...timeUnitsData,
+      ...daysData,
+      { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
+      { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
+      { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' }
+    ];
     allItems.forEach((item, index) => {
       const userVal = (answers[index] || '').trim().toLowerCase();
       newResults[index] = userVal === item.quizDe.toLowerCase();
@@ -161,10 +168,10 @@ export default function Wochentage() {
             🔊 اضغط على أي يوم أو وحدة زمنية لكي تستمع إليها.
           </p>
 
-          {/* قسم التحكم بالنطق والسرعات بالترتيب المطلوب */}
+          {/* قسم التحكم بالنطق والسرعات */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '15px' }}>
 
-            {/* الصف الأول: أزرار السرعة جنب بعض */}
+            {/* أزرار السرعة */}
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
               <button
                 onClick={() => setSpeechRate(0.85)}
@@ -211,7 +218,7 @@ export default function Wochentage() {
               </button>
             </div>
 
-            {/* الصف الثاني: زر نطق الكلمات كلها */}
+            {/* زر نطق الكلمات كلها */}
             <button
               onClick={speakAll}
               style={{
@@ -236,7 +243,7 @@ export default function Wochentage() {
               <span>نطق جميع الكلمات والأيام بالترتيب</span>
             </button>
 
-            {/* الصف الثالث: زر إيقاف النطق */}
+            {/* زر إيقاف النطق */}
             <button
               onClick={stopSpeech}
               style={{
@@ -252,7 +259,7 @@ export default function Wochentage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom:"20px",
+                marginBottom: "20px",
                 gap: '8px',
                 transition: 'all 0.2s ease'
               }}
@@ -261,7 +268,7 @@ export default function Wochentage() {
             </button>
           </div>
 
-          {/* وحدات الزمن (شبكة مربعات) */}
+          {/* وحدات الزمن: كل كلمتين في سطر والعربي جمب الألماني */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '15px' }}>
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
               {timeUnitsData.slice(0, 2).map((item, index) => (
@@ -274,20 +281,25 @@ export default function Wochentage() {
                     border: '1.5px solid #e2e8f0',
                     borderRadius: '30px 6px 30px 6px',
                     padding: '10px 8px',
-                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
                     cursor: 'pointer',
                     userSelect: 'none',
                     position: 'relative'
                   }}
                 >
-                  <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '1rem' }} title="استمع">🔊</span>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#2563eb', direction: 'ltr', marginBottom: '3px' }}>
+                  <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '0.9rem' }} title="استمع">🔊</span>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 'bold', color: '#2563eb', direction: 'ltr' }}>
                     {item.de}
                   </div>
-                  <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
                 </div>
               ))}
             </div>
+
             <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
               {timeUnitsData.slice(2, 4).map((item, index) => {
                 const actualIndex = index + 2;
@@ -301,41 +313,45 @@ export default function Wochentage() {
                       border: '1.5px solid #e2e8f0',
                       borderRadius: '30px 6px 30px 6px',
                       padding: '10px 8px',
-                      textAlign: 'center',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
                       cursor: 'pointer',
                       userSelect: 'none',
                       position: 'relative'
                     }}
                   >
-                    <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '1rem' }} title="استمع">🔊</span>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#2563eb', direction: 'ltr', marginBottom: '3px' }}>
+                    <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '0.9rem' }} title="استمع">🔊</span>
+                    <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: 'bold', color: '#2563eb', direction: 'ltr' }}>
                       {item.de}
                     </div>
-                    <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* الزران اللذان تم إضافتهما قبل أيام الأسبوع */}
-          <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '40px' }}>
+          {/* زر أيام الأسبوع، بعده كلمة شهور، وبعدهما عطلة نهاية الأسبوع */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '40px' }}>
             {/* زر أيام الأسبوع */}
             <div
               onClick={(e) => speakText('Die Wochentage', e)}
               className="day-card"
               style={{
-                flex: 1,
+                width: '100%',
                 position: 'relative',
                 backgroundColor: 'transparent',
                 border: '2px solid #cbd5e1',
                 borderRadius: '30px 6px 30px 6px',
                 padding: '12px 16px',
                 display: 'flex',
-                flexDirection: 'column-reverse',
+                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
+                gap: '15px',
                 textAlign: 'center',
                 boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
                 cursor: 'pointer',
@@ -343,31 +359,31 @@ export default function Wochentage() {
                 userSelect: 'none'
               }}
             >
-              <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
               <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
                 أيام الأسبوع
               </span>
-              <span className="de-text" style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', color: '#3b82f6' }}>
+              <span className="de-text" style={{ fontSize: '1.3rem', fontWeight: 'bold', direction: 'ltr', color: '#3b82f6' }}>
                 Die Wochentage
               </span>
             </div>
 
-            {/* زر الشهور */}
+            {/* زر شهور (مضاف بعد أيام الأسبوع) */}
             <div
               onClick={(e) => speakText('die Monate', e)}
               className="day-card"
               style={{
-                flex: 1,
+                width: '100%',
                 position: 'relative',
                 backgroundColor: 'transparent',
                 border: '2px solid #cbd5e1',
                 borderRadius: '30px 6px 30px 6px',
                 padding: '12px 16px',
                 display: 'flex',
-                flexDirection: 'column-reverse',
+                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
+                gap: '15px',
                 textAlign: 'center',
                 boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
                 cursor: 'pointer',
@@ -375,17 +391,49 @@ export default function Wochentage() {
                 userSelect: 'none'
               }}
             >
-              <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
               <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
                 شهور
               </span>
-              <span className="de-text" style={{ fontSize: '1.2rem', fontWeight: 'bold', direction: 'ltr', color: '#8b5cf6' }}>
+              <span className="de-text" style={{ fontSize: '1.3rem', fontWeight: 'bold', direction: 'ltr', color: '#8b5cf6' }}>
                 die Monate
+              </span>
+            </div>
+
+            {/* زر عطلة نهاية الأسبوع */}
+            <div
+              onClick={(e) => speakText('das Wochenende', e)}
+              className="day-card"
+              style={{
+                width: '100%',
+                position: 'relative',
+                backgroundColor: 'transparent',
+                border: '2px solid #cbd5e1',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '12px 16px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '15px',
+                textAlign: 'center',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
+                cursor: 'pointer',
+                minHeight: '58px',
+                userSelect: 'none'
+              }}
+            >
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
+                عطلة نهاية الأسبوع
+              </span>
+              <span className="de-text" style={{ fontSize: '1.3rem', fontWeight: 'bold', direction: 'ltr', color: '#10b981' }}>
+                das Wochenende
               </span>
             </div>
           </div>
 
-          {/* قائمة الأيام */}
+          {/* قائمة أيام الأسبوع (العربي جمب الألماني) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
             {daysData.map((item, index) => (
               <div
@@ -436,10 +484,10 @@ export default function Wochentage() {
             marginBottom: '8px',
             userSelect: 'none'
           }}>
-            اختبر نفسك: أيام الأسبوع
+            اختبر نفسك: أيام الأسبوع والشهور
           </h1>
           <p style={{ textAlign: 'center', color: '#64748b', fontSize: '1.05rem', fontStyle: 'italic', marginBottom: '25px', fontWeight: 500 }}>
-            ملاحظة: في ألمانيا، يبدأ الأسبوع رسمياً يوم الإثنين (Montag)، وتكتب أيام الأسبوع بحرف كبير.
+            ملاحظة: في ألمانيا، يبدأ الأسبوع رسمياً يوم الإثنين (Montag)، وتكتب الأسماء الألمانية بحرف كبير.
           </p>
 
           <button onClick={checkAnswers} style={{
@@ -458,7 +506,13 @@ export default function Wochentage() {
           </button>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
-            {[...timeUnitsData, ...daysData].map((item, index) => {
+            {[
+              ...timeUnitsData,
+              ...daysData,
+              { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
+              { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
+              { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' }
+            ].map((item, index) => {
               const isChecked = results[index] !== undefined;
               const isCorrect = results[index];
 
