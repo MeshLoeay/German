@@ -57,11 +57,12 @@ import './style2.css';
 // Start A1
 import A1 from './A1/A1';
 import A1GermanQuestions from './A1/A1GermanQuestions';
+import A1Sentences from './A1/A1Sentences';
 // End A1
 
 // Start A2
-import A2 from './A2/A2';
-import A2Sentences from './A2/A2Sentences';
+// import A2 from './A2/A2';
+// import A2Sentences from './A2/A2Sentences';
 // End A2
 
 // Start Aus
@@ -614,9 +615,10 @@ function App() {
 
         <Route path="/A1" element={<A1 />} />
         <Route path="/A1/A1GermanQuestions" element={<A1GermanQuestions />} />
+        <Route path="/A1/A1Sentences" element={<A1Sentences />} />
 
-        <Route path="/A2" element={<A2 />} />
-        <Route path="/A2/A2Sentences" element={<A2Sentences />} />
+        {/* <Route path="/A2" element={<A2 />} /> */}
+        {/* <Route path="/A2/A2Sentences" element={<A2Sentences />} /> */}
 
         <Route path="/Aus/GermanJobsTable" element={<GermanJobsTable />} />
 

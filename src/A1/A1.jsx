@@ -12,6 +12,11 @@ export default function A1() {
           label: "🔥 أهم 135 سؤال في اللغة الألمانية (A1)",
           isSpecial: true
         },
+        {
+          to: "/A1/A1Sentences",
+          label: "🔥 أهم 600 جمله في اللغة الألمانية (A1)",
+          isSpecial: true
+        },
         // {
         //   to: "/A1/important-words",
         //   label: "📚 أهم الكلمات والمفردات - A1",
