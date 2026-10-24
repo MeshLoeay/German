@@ -720,8 +720,7 @@ export default function GermanSentencesPage() {
 
     return { germanRender, arabicRender };
   };
-
-  return (
+return (
     <div style={{ padding: '15px 10px 40px 10px', color: 'currentColor', background: 'transparent', width: '100%', boxSizing: 'border-box' }}>
       <style>{`
         .page-title {

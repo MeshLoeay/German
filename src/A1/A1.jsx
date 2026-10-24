@@ -9,17 +9,17 @@ export default function A1() {
       links: [
         {
           to: "/A1/A1GermanQuestions",
-          label: "🔥 أهم 135 سؤال في اللغة الألمانية (A1)",
+          label: "🔥 أهم 135 سؤال في المستوى  (A1)",
           isSpecial: true
         },
         {
           to: "/A1/A1Sentences",
-          label: "🔥 أهم 600 جمله في اللغة الألمانية (A1)",
+          label: "🔥🔥 أهم 600 جمله في المستوى  (A1)",
           isSpecial: true
         },
         {
           to: "/A1/A1Story",
-          label: "تعلم من خلال قصه (A1)",
+          label: "🔥🔥🔥 تعلم من خلال قصه (A1)",
           isSpecial: true
         },
         // {
