@@ -58,6 +58,7 @@ import './style2.css';
 import A1 from './A1/A1';
 import A1GermanQuestions from './A1/A1GermanQuestions';
 import A1Sentences from './A1/A1Sentences';
+import A1Story from './A1/A1Story';
 // End A1
 
 // Start A2
@@ -618,6 +619,7 @@ function App() {
         <Route path="/A1" element={<A1 />} />
         <Route path="/A1/A1GermanQuestions" element={<A1GermanQuestions />} />
         <Route path="/A1/A1Sentences" element={<A1Sentences />} />
+        <Route path="/A1/A1Story" element={<A1Story />} />
 
         {/* <Route path="/A2" element={<A2 />} /> */}
         {/* <Route path="/A2/A2Sentences" element={<A2Sentences />} /> */}

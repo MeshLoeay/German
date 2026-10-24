@@ -17,6 +17,11 @@ export default function A1() {
           label: "🔥 أهم 600 جمله في اللغة الألمانية (A1)",
           isSpecial: true
         },
+        {
+          to: "/A1/A1Story",
+          label: "تعلم من خلال قصه (A1)",
+          isSpecial: true
+        },
         // {
         //   to: "/A1/important-words",
         //   label: "📚 أهم الكلمات والمفردات - A1",
