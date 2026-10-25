@@ -404,7 +404,7 @@ function App() {
               </div>
 
               <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
+                {/* <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
                  تم تحديث الموقع و اضافه حجات مهمه
                   <br/>
                   لمتابعه ااخر تحديث يرجى الدخول ل قناه الواتس
@@ -412,6 +412,13 @@ function App() {
                   هتندم لو مدخلتش
                   <br/>
                   لا تلومن الا نفسك انا بقولك اهو
+                </h4> */}
+                <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
+                قناه الواتس معموله عشان لو ضفنا حاجه فى الموقع انت تعرف
+                <br/>
+                ادخل عالقناه
+                <br/>
+                من الزرار البمبه 😍😍
                 </h4>
                 <a
                   href="https://whatsapp.com/channel/0029VbE7UOpDp2Q0tNDSzy18"
