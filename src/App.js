@@ -152,6 +152,18 @@ function HomeButton() {
 function App() {
   const [showSplash, setShowSplash] = useState(true);
 
+  // عدد المتصلين المتغير بين 70 و 250 كل 5 دقائق
+  const [onlineUsers, setOnlineUsers] = useState(() => Math.floor(Math.random() * (250 - 70 + 1)) + 70);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomUsers = Math.floor(Math.random() * (250 - 70 + 1)) + 70;
+      setOnlineUsers(randomUsers);
+    }, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
@@ -273,9 +285,37 @@ function App() {
       )}
 
       <div className="top-right-tools" style={{
-        position: 'relative', width: '100%', maxWidth: '540px', display: 'flex',
+        position: 'relative', width: '100%', maxWidth: '540px', display: 'flex',direction:'ltr',
         justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
       }}>
+        {/* ديف متصل الآن أصبح على الشمال تماماً */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '6px 10px',
+          borderRadius: '20px',
+          border: '1px solid rgba(128,128,128,0.3)',
+          backgroundColor: 'var(--card-bg, rgba(0, 0, 0, 0.2))',
+          color: 'var(--text-color, inherit)',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          fontFamily: "'Cairo', sans-serif",
+          whiteSpace: 'nowrap',
+          direction:"rtl",
+        }}>
+          <span style={{
+            width: '9px',
+            height: '9px',
+            backgroundColor: '#22c55e',
+            borderRadius: '50%',
+            display: 'inline-block',
+            boxShadow: '0 0 8px #22c55e'
+          }}></span>
+          <span>متصل الآن: {onlineUsers}</span>
+        </div>
+
+        {/* مجموعة أزرار الشمس والقمر وأزرار التنقل أصبحت على اليمين */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <HomeButton />
           <button id="themeToggle" onClick={cycleTheme} className="tool-icon-btn" title={themeTitles[themeLevel]} style={{
@@ -290,8 +330,6 @@ function App() {
           }}>
             <span id="modeEmoji">{isChildMode ? '🧔🏻' : '👶🏻'}</span>
           </button>
-        </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
           <BackButton />
         </div>
       </div>
@@ -404,15 +442,6 @@ function App() {
               </div>
 
               <div style={{ marginTop: '20px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                {/* <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
-                 تم تحديث الموقع و اضافه حجات مهمه
-                  <br/>
-                  لمتابعه ااخر تحديث يرجى الدخول ل قناه الواتس
-                  <br/>
-                  هتندم لو مدخلتش
-                  <br/>
-                  لا تلومن الا نفسك انا بقولك اهو
-                </h4> */}
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
                 قناه الواتس معموله عشان لو ضفنا حاجه فى الموقع انت تعرف
                 <br/>
