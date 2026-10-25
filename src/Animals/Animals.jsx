@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const animalsData = [
-  // 1. مجموعة der (المذكر - حيوانات)
+const Animals = [
+  // 1. مجموعة der (المذكر - حيوانات وطيور)
   { id: 1, name: "der Löwe", plural: "die Löwen", ar: "اسد", cat: "wild", article: "der", emoji: "🦁" },
   { id: 2, name: "der Elefant", plural: "die Elefanten", ar: "فيل", cat: "wild", article: "der", emoji: "🐘" },
   { id: 3, name: "der Tiger", plural: "die Tiger", ar: "نمر", cat: "wild", article: "der", emoji: "🐅" },
@@ -41,8 +41,16 @@ const animalsData = [
   { id: 82, name: "der Truthahn", plural: "die Truthähne", ar: "ديك رومي", cat: "farm", article: "der", emoji: "🦃" },
   { id: 83, name: "der Seehund", plural: "die Seehunde", ar: "عجل البحر", cat: "water", article: "der", emoji: "🦭" },
   { id: 96, name: "der Panther", plural: "die Panther", ar: "نمر أسود / فهد أسود", cat: "wild", article: "der", emoji: "🐈‍⬛" },
+  // الإضافات الجديدة في der:
+  { id: 102, name: "der Rabe", plural: "die Raben", ar: "غراب", cat: "wild", article: "der", emoji: "🐦‍⬛" },
+  { id: 103, name: "der Storch", plural: "die Störche", ar: "لقلق", cat: "wild", article: "der", emoji: "🦩" },
+  { id: 104, name: "der Specht", plural: "die Spechte", ar: "نكار الخشب", cat: "wild", article: "der", emoji: "🐦" },
+  { id: 105, name: "der Uhu", plural: "die Uhus", ar: "بومة قرناء / بوهة", cat: "wild", article: "der", emoji: "🦉" },
+  { id: 106, name: "der Otter", plural: "die Otter", ar: "قضاعة / ثعلب الماء", cat: "water", article: "der", emoji: "🦦" },
+  { id: 107, name: "der Waschbär", plural: "die Waschbären", ar: "راكون", cat: "wild", article: "der", emoji: "🦝" },
+  { id: 108, name: "der Skunk", plural: "die Skunks", ar: "ظربان أمريكي", cat: "wild", article: "der", emoji: "🦨" },
 
-  // 2. مجموعة das (المحايد - حيوانات)
+  // 2. مجموعة das (المحايد - حيوانات وطيور)
   { id: 33, name: "das Zebra", plural: "die Zebras", ar: "حمار وحشي", cat: "wild", article: "das", emoji: "🦓" },
   { id: 34, name: "das Pferd", plural: "die Pferde", ar: "حصان", cat: "farm", article: "das", emoji: "🐎" },
   { id: 35, name: "das Schwein", plural: "die Schweine", ar: "خنزير", cat: "farm", article: "das", emoji: "🐖" },
@@ -69,8 +77,11 @@ const animalsData = [
   { id: 87, name: "das Wildschwein", plural: "die Wildschweine", ar: "خنزير بري", cat: "wild", article: "das", emoji: "🐗" },
   { id: 88, name: "das Stinktier", plural: "die Stinktiere", ar: "ظربان", cat: "wild", article: "das", emoji: "🦨" },
   { id: 98, name: "das Aquarium", plural: "die Aquarien", ar: "حوض سمك", cat: "water", article: "das", emoji: "🐠" },
+  // الإضافات الجديدة في das:
+  { id: 109, name: "das Gürteltier", plural: "die Gürteltiere", ar: "مدرع", cat: "wild", article: "das", emoji: "🦔" },
+  { id: 110, name: "das Schnabeltier", plural: "die Schnabeltiere", ar: "خلد الماء", cat: "water", article: "das", emoji: "🦆" },
 
-  // 3. مجموعة die (المؤنث - حيوانات)
+  // 3. مجموعة die (المؤنث - حيوانات وطيور)
   { id: 53, name: "die Giraffe", plural: "die Giraffen", ar: "زرافة", cat: "wild", article: "die", emoji: "🦒" },
   { id: 54, name: "die Kuh", plural: "die Kühe", ar: "بقرة", cat: "farm", article: "die", emoji: "🐄" },
   { id: 55, name: "die Katze", plural: "die Katzen", ar: "قطة", cat: "pet", article: "die", emoji: "🐈" },
@@ -88,6 +99,13 @@ const animalsData = [
   { id: 92, name: "die Hyäne", plural: "die Hyänen", ar: "ضبع", cat: "wild", article: "die", emoji: "🦊" },
   { id: 100, name: "die Qualle", plural: "die Quallen", ar: "قنديل البحر", cat: "water", article: "die", emoji: "🪼" },
   { id: 101, name: "die Meise", plural: "die Meisen", ar: "طائر القيقب / عصفور دوري", cat: "wild", article: "die", emoji: "🐦" },
+  // الإضافات الجديدة في die:
+  { id: 111, name: "die Krähe", plural: "die Krähen", ar: "غراب (عقعق / غراب الزرع)", cat: "wild", article: "die", emoji: "🐦‍⬛" },
+  { id: 112, name: "die Möwe", plural: "die Möwen", ar: "نورس", cat: "water", article: "die", emoji: "🐦" },
+  { id: 113, name: "die Schwalbe", plural: "die Schwalben", ar: "سنونو / السنونو", cat: "wild", article: "die", emoji: "🐦" },
+  { id: 114, name: "die Wachtel", plural: "die Wachteln", ar: "سمان", cat: "wild", article: "die", emoji: "🐦" },
+  { id: 115, name: "die Elster", plural: "die Elstern", ar: "عقعق", cat: "wild", article: "die", emoji: "🐦" },
+  { id: 116, name: "die Ratte", plural: "die Ratten", ar: "جرذ / جرذ كبير", cat: "pet", article: "die", emoji: "🐀" },
 
   // 4. مجموعة الحشرات (توضع في الآخر)
   { id: 64, name: "der Schmetterling", plural: "die Schmetterlinge", ar: "فراشة", cat: "insect", article: "der", emoji: "🦋" },
@@ -106,7 +124,12 @@ const animalsData = [
   { id: 75, name: "die Libelle", plural: "die Libellen", ar: "يعسوب", cat: "insect", article: "die", emoji: "🪲" },
   { id: 76, name: "die Heuschrecke", plural: "die Heuschrecken", ar: "جرادة", cat: "insect", article: "die", emoji: "🦗" },
   { id: 77, name: "die Raupe", plural: "die Raupen", ar: "يرقة الفراشة", cat: "insect", article: "die", emoji: "🐛" },
-  { id: 95, name: "die Schabe", plural: "die Schaben", ar: "صرصور", cat: "insect", article: "die", emoji: "🪳" }
+  // الإضافات الجديدة في الحشرات:
+  { id: 117, name: "der Tausendfüßler", plural: "die Tausendfüßler", ar: "أم أربعة وأربعين / أم 44", cat: "insect", article: "der", emoji: "🐛" },
+  { id: 118, name: "die Hornisse", plural: "die Hornissen", ar: "دبور كبير", cat: "insect", article: "die", emoji: "🐝" },
+  { id: 119, name: "die Termite", plural: "die Termiten", ar: "نمل أبيض / نملة بيضاء", cat: "insect", article: "die", emoji: "🐜" },
+  { id: 120, name: "die Zecke", plural: "die Zecken", ar: "قرادة", cat: "insect", article: "die", emoji: "🕷️" },
+  { id: 95, name: "die Schabe", plural: "die Schaben", ar: "صرصور", cat: "insect", article: "die", emoji: "🪳" },
 ];
 
 export default function Animals() {
