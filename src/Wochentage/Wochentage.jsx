@@ -53,6 +53,7 @@ export default function Wochentage() {
         'Die Wochentage',
         'die Monate',
         'das Wochenende',
+        'der Urlaub',
         ...daysData.map(item => item.de)
       ];
 
@@ -76,7 +77,8 @@ export default function Wochentage() {
       ...daysData,
       { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
       { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
-      { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' }
+      { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' },
+      { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' }
     ];
     allItems.forEach((item, index) => {
       const userVal = (answers[index] || '').trim().toLowerCase();
@@ -334,7 +336,7 @@ export default function Wochentage() {
             </div>
           </div>
 
-          {/* زر أيام الأسبوع، بعده كلمة شهور، وبعدهما عطلة نهاية الأسبوع */}
+          {/* زر أيام الأسبوع، شهور، عطلة نهاية الأسبوع، وبعدها عطلة */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '40px' }}>
             {/* زر أيام الأسبوع */}
             <div
@@ -368,7 +370,7 @@ export default function Wochentage() {
               </span>
             </div>
 
-            {/* زر شهور (مضاف بعد أيام الأسبوع) */}
+            {/* زر شهور */}
             <div
               onClick={(e) => speakText('die Monate', e)}
               className="day-card"
@@ -431,6 +433,38 @@ export default function Wochentage() {
                 das Wochenende
               </span>
             </div>
+
+            {/* زر عطلة (مضاف حديثاً بعد عطلة نهاية الأسبوع) */}
+            <div
+              onClick={(e) => speakText('der Urlaub', e)}
+              className="day-card"
+              style={{
+                width: '100%',
+                position: 'relative',
+                backgroundColor: 'transparent',
+                border: '2px solid #cbd5e1',
+                borderRadius: '30px 6px 30px 6px',
+                padding: '12px 16px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '15px',
+                textAlign: 'center',
+                boxShadow: '0 3px 8px rgba(0, 0, 0, 0.05)',
+                cursor: 'pointer',
+                minHeight: '58px',
+                userSelect: 'none'
+              }}
+            >
+              <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }} title="استمع">🔊</span>
+              <span style={{ fontSize: '1.1rem', fontWeight: 600, opacity: 0.95 }}>
+                عطلة
+              </span>
+              <span className="de-text" style={{ fontSize: '1.3rem', fontWeight: 'bold', direction: 'ltr', color: '#f59e0b' }}>
+                der Urlaub
+              </span>
+            </div>
           </div>
 
           {/* قائمة أيام الأسبوع (العربي جمب الألماني) */}
@@ -484,7 +518,7 @@ export default function Wochentage() {
             marginBottom: '8px',
             userSelect: 'none'
           }}>
-            اختبر نفسك: أيام الأسبوع والشهور
+            اختبر نفسك: أيام الأسبوع والكلمات
           </h1>
           <p style={{ textAlign: 'center', color: '#64748b', fontSize: '1.05rem', fontStyle: 'italic', marginBottom: '25px', fontWeight: 500 }}>
             ملاحظة: في ألمانيا، يبدأ الأسبوع رسمياً يوم الإثنين (Montag)، وتكتب الأسماء الألمانية بحرف كبير.
@@ -511,7 +545,8 @@ export default function Wochentage() {
               ...daysData,
               { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
               { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
-              { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' }
+              { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' },
+              { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' }
             ].map((item, index) => {
               const isChecked = results[index] !== undefined;
               const isCorrect = results[index];
@@ -603,7 +638,7 @@ export default function Wochentage() {
       <style>{`
         .card-monday .de-text { color: #3b82f6; }
         .card-tuesday .de-text { color: #ec4899; }
-        .card-wednesday .de-text { color: #10b981; }
+        .card-wednesday ._de-text { color: #10b981; }
         .card-thursday .de-text { color: #f97316; }
         .card-friday .de-text { color: #8b5cf6; }
         .card-saturday .de-text { color: #06b6d4; }
