@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Animals = [
+const animalsData = [
   // 1. مجموعة der (المذكر - حيوانات وطيور)
   { id: 1, name: "der Löwe", plural: "die Löwen", ar: "اسد", cat: "wild", article: "der", emoji: "🦁" },
   { id: 2, name: "der Elefant", plural: "die Elefanten", ar: "فيل", cat: "wild", article: "der", emoji: "🐘" },
