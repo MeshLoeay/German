@@ -336,7 +336,7 @@ export default function Wochentage() {
             </div>
           </div>
 
-          {/* زر أيام الأسبوع، شهور، عطلة نهاية الأسبوع، وبعدها عطلة */}
+          {/* أزرار أيام الأسبوع، شهور، عطلة نهاية الأسبوع، عطلة */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '40px' }}>
             {/* زر أيام الأسبوع */}
             <div
@@ -434,7 +434,7 @@ export default function Wochentage() {
               </span>
             </div>
 
-            {/* زر عطلة (مضاف حديثاً بعد عطلة نهاية الأسبوع) */}
+            {/* زر عطلة */}
             <div
               onClick={(e) => speakText('der Urlaub', e)}
               className="day-card"
@@ -467,7 +467,7 @@ export default function Wochentage() {
             </div>
           </div>
 
-          {/* قائمة أيام الأسبوع (العربي جمب الألماني) */}
+          {/* قائمة أيام الأسبوع */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
             {daysData.map((item, index) => (
               <div
@@ -635,11 +635,12 @@ export default function Wochentage() {
         </div>
       )}
 
+      {/* ألوان أيام الأسبوع */}
       <style>{`
-        .card-monday .de-text { color: #3b82f6; }
-        .card-tuesday .de-text { color: #ec4899; }
-        .card-wednesday ._de-text { color: #10b981; }
-        .card-thursday .de-text { color: #f97316; }
+        .card-monday .de-text { color: #ec4899; }
+        .card-tuesday .de-text { color: #f97316; }
+        .card-wednesday .de-text { color: #10b981; }
+        .card-thursday .de-text { color: #ec4899; }
         .card-friday .de-text { color: #8b5cf6; }
         .card-saturday .de-text { color: #06b6d4; }
         .card-sunday .de-text { color: #eab308; }
