@@ -416,7 +416,7 @@ function App() {
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '18px', fontWeight: 'bold', color: 'var(--text-color, inherit)', lineHeight: '1.6', fontFamily: "'Cairo', sans-serif" }}>
                 قناه الواتس معموله عشان لو ضفنا حاجه فى الموقع انت تعرف
                 <br/>
-                ادخل عالقناه
+                اشترك بالقناه
                 <br/>
                 من الزرار البمبه 😍😍
                 </h4>
