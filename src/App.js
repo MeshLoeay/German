@@ -152,18 +152,6 @@ function HomeButton() {
 function App() {
   const [showSplash, setShowSplash] = useState(true);
 
-  // عدد المتصلين المتغير بين 70 و 250 كل 5 دقائق
-  const [onlineUsers, setOnlineUsers] = useState(() => Math.floor(Math.random() * (250 - 70 + 1)) + 70);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomUsers = Math.floor(Math.random() * (250 - 70 + 1)) + 70;
-      setOnlineUsers(randomUsers);
-    }, 5 * 60 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
@@ -285,38 +273,16 @@ function App() {
       )}
 
       <div className="top-right-tools" style={{
-        position: 'relative', width: '100%', maxWidth: '540px', display: 'flex',direction:'ltr',
+        position: 'relative', width: '100%', maxWidth: '540px', display: 'flex', direction: 'ltr',
         justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
       }}>
-        {/* ديف متصل الآن أصبح على الشمال تماماً */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '6px 10px',
-          borderRadius: '20px',
-          border: '1px solid rgba(128,128,128,0.3)',
-          backgroundColor: 'var(--card-bg, rgba(0, 0, 0, 0.2))',
-          color: 'var(--text-color, inherit)',
-          fontSize: '12px',
-          fontWeight: 'bold',
-          fontFamily: "'Cairo', sans-serif",
-          whiteSpace: 'nowrap',
-          direction:"rtl",
-        }}>
-          <span style={{
-            width: '9px',
-            height: '9px',
-            backgroundColor: '#22c55e',
-            borderRadius: '50%',
-            display: 'inline-block',
-            boxShadow: '0 0 8px #22c55e'
-          }}></span>
-          <span>متصل الآن: {onlineUsers}</span>
+        {/* زرار رجوع أصبح في أقصى اليسار */}
+        <div style={{ display: 'flex', alignItems: 'center', direction: 'rtl' }}>
+          <BackButton />
         </div>
 
-        {/* مجموعة أزرار الشمس والقمر وأزرار التنقل أصبحت على اليمين */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        {/* مجموعة أزرار الرئيسية والشمس والقمر أصبحت في أقصى اليمين */}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', direction: 'rtl' }}>
           <HomeButton />
           <button id="themeToggle" onClick={cycleTheme} className="tool-icon-btn" title={themeTitles[themeLevel]} style={{
             cursor: 'pointer', width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', border: '1px solid rgba(128,128,128,0.4)', background: 'transparent', fontSize: '16px',
@@ -330,7 +296,6 @@ function App() {
           }}>
             <span id="modeEmoji">{isChildMode ? '🧔🏻' : '👶🏻'}</span>
           </button>
-          <BackButton />
         </div>
       </div>
 
@@ -694,12 +659,10 @@ function App() {
 
         @keyframes glowAnimation {
           0% {
-            box-shadow: 0 0 10px rgba(68, 239, 77, 0.7), 0 0 20px white;
-            transform: scale(1);
+            box-shadow: 0 0 10px rgba(68, 239, 68, 0.8);
           }
           100% {
-            box-shadow: 0 0 22px rgba(68, 239, 77, 0.7), 0 0 35px white;
-            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(246, 246, 246, 0.9);
           }
         }
       `}</style>
