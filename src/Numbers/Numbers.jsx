@@ -18,8 +18,9 @@ export default function GermanNumbersApp() {
   const [trainingList, setTrainingList] = useState([]);
   const [checkedAnswers, setCheckedAnswers] = useState(false);
 
-  // مرجع للتحكم في استمرار أو إيقاف السلسلة الصوتية
+  // مراجع للتحكم في المؤتمرات الصوتية والسلسلة المتتابعة تماماً مثل الألوان
   const isSpeakingRef = useRef(false);
+  const timersRef = useRef([]);
 
   const getArabicWord = (n) => {
     const arabicWords = {
@@ -53,13 +54,21 @@ export default function GermanNumbersApp() {
     generateRandomList(0, 100, 15);
   }, []);
 
+  // دالة إيقاف وتفريغ الصوت والمؤقتات تماماً
+  const stopSpeech = () => {
+    isSpeakingRef.current = false;
+    setIsPlayingSequence(false);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    timersRef.current.forEach(timer => clearTimeout(timer));
+    timersRef.current = [];
+  };
+
   // إيقاف الصوت في حال تغيير الصفحة أو إغلاق المكون
   useEffect(() => {
     return () => {
-      isSpeakingRef.current = false;
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      stopSpeech();
     };
   }, []);
 
@@ -70,17 +79,14 @@ export default function GermanNumbersApp() {
     return 0.8; // normal
   };
 
-  // تحسين محرك النطق لمنع التعليق على الهواتف المحمولة عبر إلغاء وتفريغ الـ Queue بشكل صحيح
+  // تحسين محرك النطق الفردي
   const speakText = (text, onEndCallback = null) => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
 
-      // استخدام setTimeout قصير لتجنب تعليق طاقم النطق (SpeechSynthesis Engine Freeze) على بعض أجهزة الجوال
       setTimeout(() => {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'de-DE';
-
-        // ضبط السرعة بناءً على اختيار المستخدم
         utterance.rate = getRateValue();
         utterance.pitch = 1.0;
 
@@ -123,7 +129,7 @@ export default function GermanNumbersApp() {
     }
   };
 
-  // وظيفة تشغيل قراءة سلسلة من الأرقام بالتتابع
+  // وظيفة تشغيل قراءة سلسلة الأرقام بالتتابع تماماً مثل نظام الألوان المطلوب
   const playSequence = (fromNum, toNum) => {
     const start = parseInt(fromNum);
     const end = parseInt(toNum);
@@ -133,39 +139,65 @@ export default function GermanNumbersApp() {
       return;
     }
 
+    // إذا كان يعمل بالفعل وتضغط مرة أخرى: يتم الإيقاف تماماً
     if (isPlayingSequence) {
-      isSpeakingRef.current = false;
-      setIsPlayingSequence(false);
-      window.speechSynthesis.cancel();
+      stopSpeech();
       return;
     }
 
+    stopSpeech();
     setIsPlayingSequence(true);
     isSpeakingRef.current = true;
 
-    let current = start;
+    if ('speechSynthesis' in window) {
+      let delay = 0;
+      // تحديد معدل التأخير الزمني بناءً على السرعة المختارة
+      let stepDelay = 850;
+      if (speechSpeed === 'fast') stepDelay = 550;
+      if (speechSpeed === 'veryFast') stepDelay = 350;
 
-    const speakNext = () => {
-      if (!isSpeakingRef.current || current > end) {
-        setIsPlayingSequence(false);
-        isSpeakingRef.current = false;
-        return;
-      }
+      for (let i = start; i <= end; i++) {
+        const currentNum = i;
+        const numData = getGermanNumberData(currentNum);
 
-      const numData = getGermanNumberData(current);
-      speakText(numData.pure, () => {
-        current++;
-        let delay = 300;
-        if (speechSpeed === 'fast') delay = 150;
-        if (speechSpeed === 'veryFast') delay = 50;
+        const timer = setTimeout(() => {
+          if (!isSpeakingRef.current) return;
 
-        setTimeout(() => {
-          speakNext();
+          const utterance = new SpeechSynthesisUtterance(numData.pure);
+          utterance.lang = 'de-DE';
+          utterance.rate = getRateValue();
+          utterance.pitch = 1.0;
+
+          // التحقق من وصولنا للنهاية لإيقاف حالة التشغيل تلقائياً
+          if (currentNum === end) {
+            utterance.onend = () => {
+              setIsPlayingSequence(false);
+              isSpeakingRef.current = false;
+            };
+          }
+
+          const voices = window.speechSynthesis.getVoices();
+          const bestVoice = voices.find(v =>
+            v.lang.startsWith('de') && (
+              v.name.toLowerCase().includes('natural') ||
+              v.name.toLowerCase().includes('google') ||
+              v.name.toLowerCase().includes('online') ||
+              v.name.toLowerCase().includes('premium') ||
+              v.name.toLowerCase().includes('enhanced')
+            )
+          ) || voices.find(v => v.lang.startsWith('de'));
+
+          if (bestVoice) {
+            utterance.voice = bestVoice;
+          }
+
+          window.speechSynthesis.speak(utterance);
         }, delay);
-      });
-    };
 
-    speakNext();
+        timersRef.current.push(timer);
+        delay += stepDelay;
+      }
+    }
   };
 
   const units = ["Null", "Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun"];
@@ -296,7 +328,7 @@ export default function GermanNumbersApp() {
       flexDirection: 'column',
       alignItems: 'center',
       direction: 'rtl',
-      overflowX: 'hidden', // منع تمدد الشاشة أفقياً بالكامل
+      overflowX: 'hidden',
       width: '100%',
       boxSizing: 'border-box'
     }}>
@@ -330,7 +362,7 @@ export default function GermanNumbersApp() {
         boxSizing: 'border-box'
       }}>
         <button
-          onClick={() => setActiveTab('numbers')}
+          onClick={() => { stopSpeech(); setActiveTab('numbers'); }}
           style={{
             ...buttonStyle,
             opacity: activeTab === 'numbers' ? 1 : 0.6,
@@ -340,7 +372,7 @@ export default function GermanNumbersApp() {
           الأرقام
         </button>
         <button
-          onClick={() => setActiveTab('training')}
+          onClick={() => { stopSpeech(); setActiveTab('training'); }}
           style={{
             ...buttonStyle,
             opacity: activeTab === 'training' ? 1 : 0.6,
