@@ -591,7 +591,7 @@ function App() {
               </Link>
 
               <Link to="/tamreed4" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                جمل - اه من الوجع
+                جمل - انا مش قادر 🥺
               </Link>
             </div>
           </>
