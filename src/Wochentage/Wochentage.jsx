@@ -13,6 +13,15 @@ export default function Wochentage() {
     { ar: 'شهر', de: 'der Monat', quizDe: 'der monat', className: 'card-time' }
   ];
 
+  // بيانات الأيام والزمنية الجديدة بنفس تنسيق الكروت الزوجية مع السماعة البارزة
+  const extraDaysData = [
+    { ar: 'أول امس', de: 'vorgestern', quizDe: 'vorgestern', color: '#10b981' },
+    { ar: 'بعد غد', de: 'übermorgen', quizDe: 'übermorgen', color: '#10b981' },
+    { ar: 'امس', de: 'gestern', quizDe: 'gestern', color: '#ec4899' },
+    { ar: 'الغد', de: 'morgen', quizDe: 'morgen', color: '#ec4899' },
+    { ar: 'اليوم', de: 'heute', quizDe: 'heute', color: '#f97316' }
+  ];
+
   const daysData = [
     { ar: 'الاثنين', de: 'Montag', quizDe: 'montag', className: 'card-monday' },
     { ar: 'الثلاثاء', de: 'Dienstag', quizDe: 'dienstag', className: 'card-tuesday' },
@@ -54,6 +63,7 @@ export default function Wochentage() {
         'die Monate',
         'das Wochenende',
         'der Urlaub',
+        ...extraDaysData.map(item => item.de),
         ...daysData.map(item => item.de)
       ];
 
@@ -78,7 +88,8 @@ export default function Wochentage() {
       { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
       { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
       { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' },
-      { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' }
+      { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' },
+      ...extraDaysData.map(item => ({ ...item, className: 'card-time' }))
     ];
     allItems.forEach((item, index) => {
       const userVal = (answers[index] || '').trim().toLowerCase();
@@ -337,7 +348,7 @@ export default function Wochentage() {
           </div>
 
           {/* أزرار أيام الأسبوع، شهور، عطلة نهاية الأسبوع، عطلة */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', marginBottom: '20px' }}>
             {/* زر أيام الأسبوع */}
             <div
               onClick={(e) => speakText('Die Wochentage', e)}
@@ -467,6 +478,104 @@ export default function Wochentage() {
             </div>
           </div>
 
+          {/* الأزرار الـ 5 الأخيرة بالتنسيقات المطلوبة */}
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100%', marginBottom: '40px', marginTop: '10px' }}>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '5px' }}>
+              {extraDaysData.slice(0, 2).map((item, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => speakText(item.de, e)}
+                  style={{
+                    width: '200px',
+                    backgroundColor: 'transparent',
+                    border: '1.5px solid rgb(226, 232, 240)',
+                    borderRadius: '30px 6px',
+                    padding: '10px 8px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    position: 'relative',
+                    marginTop: '7px',
+                    flex: '1 1 0%'
+                  }}
+                >
+                  <span style={{ position: 'absolute', left: '50%', top: '0', transform: 'translate(-50%, -50%)', fontSize: '1rem', backgroundColor: 'var(--bg-color, #0b1329)', padding: '0 4px', borderRadius: '4px' }} title="استمع">🔊</span>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 'bold', color: item.color, direction: 'ltr' }}>
+                    {item.de}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '5px' }}>
+              {extraDaysData.slice(2, 4).map((item, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => speakText(item.de, e)}
+                  style={{
+                    width: '200px',
+                    backgroundColor: 'transparent',
+                    border: '1.5px solid rgb(226, 232, 240)',
+                    borderRadius: '30px 6px',
+                    padding: '10px 8px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    position: 'relative',
+                    marginTop: '7px',
+                    flex: '1 1 0%'
+                  }}
+                >
+                  <span style={{ position: 'absolute', left: '50%', top: '0', transform: 'translate(-50%, -50%)', fontSize: '1rem', backgroundColor: 'var(--bg-color, #0b1329)', padding: '0 4px', borderRadius: '4px' }} title="استمع">🔊</span>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 'bold', color: item.color, direction: 'ltr' }}>
+                    {item.de}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              {extraDaysData.slice(4, 5).map((item, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => speakText(item.de, e)}
+                  style={{
+                    width: '200px',
+                    backgroundColor: 'transparent',
+                    border: '1.5px solid rgb(226, 232, 240)',
+                    borderRadius: '30px 6px',
+                    padding: '10px 8px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    position: 'relative',
+                    marginTop: '7px'
+                  }}
+                >
+                  <span style={{ position: 'absolute', left: '50%', top: '0', transform: 'translate(-50%, -50%)', fontSize: '1rem', backgroundColor: 'var(--bg-color, #0b1329)', padding: '0 4px', borderRadius: '4px' }} title="استمع">🔊</span>
+                  <div style={{ fontSize: '0.95rem', color: '#475569', fontWeight: 600 }}>{item.ar}</div>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 'bold', color: item.color, direction: 'ltr' }}>
+                    {item.de}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* قائمة أيام الأسبوع */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
             {daysData.map((item, index) => (
@@ -546,7 +655,8 @@ export default function Wochentage() {
               { ar: 'أيام الأسبوع', de: 'Die Wochentage', quizDe: 'die wochentage', className: 'card-time' },
               { ar: 'شهور', de: 'die Monate', quizDe: 'die monate', className: 'card-time' },
               { ar: 'عطلة نهاية الأسبوع', de: 'das Wochenende', quizDe: 'das wochenende', className: 'card-time' },
-              { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' }
+              { ar: 'عطلة', de: 'der Urlaub', quizDe: 'der urlaub', className: 'card-time' },
+              ...extraDaysData.map(item => ({ ...item, className: 'card-time' }))
             ].map((item, index) => {
               const isChecked = results[index] !== undefined;
               const isCorrect = results[index];
