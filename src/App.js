@@ -153,9 +153,18 @@ function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const totalMinutes = hours * 60 + minutes;
+
+    // من بعد الساعة 12 بالليل (00:00) لحد 6:30 صباحاً (390 دقيقة)
+    const isSpecialTime = totalMinutes >= 0 && totalMinutes <= 390;
+    const splashDuration = isSpecialTime ? 5000 : 3000;
+
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 3000);
+    }, splashDuration);
     return () => clearTimeout(timer);
   }, []);
 
@@ -266,6 +275,10 @@ function App() {
               صلى على محمد
               <br/>
               ❤️ متنساش ❤️ تدعيلى ❤️
+              <br/>
+              و متنساش تصلى الفجر
+              <br/>
+و قيام الليل
             </span>
             <img src="https://meshloeay.github.io/Your-Age/My-img/5.png" alt="Decoration" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(56,189,248,0.7))', flexShrink: 0 }} />
           </div>
@@ -670,4 +683,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
