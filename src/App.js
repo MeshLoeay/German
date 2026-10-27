@@ -579,7 +579,7 @@ function App() {
               </h3>
 
               <Link to="/tamreed" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                أضاء الجسم الخارجية - Äußere Körperteile
+                أعضاء الجسم الخارجية - Äußere Körperteile
               </Link>
 
               <Link to="/tamreed2" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
