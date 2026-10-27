@@ -70,53 +70,56 @@ export default function GermanNumbersApp() {
     return 0.8; // normal
   };
 
-  // تحسين محرك النطق وجودة الصوت مع دعم السرعات المتعددة
+  // تحسين محرك النطق لمنع التعليق على الهواتف المحمولة عبر إلغاء وتفريغ الـ Queue بشكل صحيح
   const speakText = (text, onEndCallback = null) => {
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel(); // إلغاء أي نطق معلق سابقاً
+      window.speechSynthesis.cancel();
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'de-DE';
+      // استخدام setTimeout قصير لتجنب تعليق طاقم النطق (SpeechSynthesis Engine Freeze) على بعض أجهزة الجوال
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
 
-      // ضبط السرعة بناءً على اختيار المستخدم
-      utterance.rate = getRateValue();
-      utterance.pitch = 1.0;
+        // ضبط السرعة بناءً على اختيار المستخدم
+        utterance.rate = getRateValue();
+        utterance.pitch = 1.0;
 
-      const setBestVoiceAndSpeak = () => {
+        const setBestVoiceAndSpeak = () => {
+          const voices = window.speechSynthesis.getVoices();
+          const bestVoice = voices.find(v =>
+            v.lang.startsWith('de') && (
+              v.name.toLowerCase().includes('natural') ||
+              v.name.toLowerCase().includes('google') ||
+              v.name.toLowerCase().includes('online') ||
+              v.name.toLowerCase().includes('premium') ||
+              v.name.toLowerCase().includes('enhanced')
+            )
+          ) || voices.find(v => v.lang.startsWith('de'));
+
+          if (bestVoice) {
+            utterance.voice = bestVoice;
+          }
+
+          if (onEndCallback) {
+            utterance.onend = onEndCallback;
+            utterance.onerror = () => {
+              setIsPlayingSequence(false);
+              isSpeakingRef.current = false;
+            };
+          }
+
+          window.speechSynthesis.speak(utterance);
+        };
+
         const voices = window.speechSynthesis.getVoices();
-        const bestVoice = voices.find(v =>
-          v.lang.startsWith('de') && (
-            v.name.toLowerCase().includes('natural') ||
-            v.name.toLowerCase().includes('google') ||
-            v.name.toLowerCase().includes('online') ||
-            v.name.toLowerCase().includes('premium') ||
-            v.name.toLowerCase().includes('enhanced')
-          )
-        ) || voices.find(v => v.lang.startsWith('de'));
-
-        if (bestVoice) {
-          utterance.voice = bestVoice;
-        }
-
-        if (onEndCallback) {
-          utterance.onend = onEndCallback;
-          utterance.onerror = () => {
-            setIsPlayingSequence(false);
-            isSpeakingRef.current = false;
+        if (voices.length > 0) {
+          setBestVoiceAndSpeak();
+        } else {
+          window.speechSynthesis.onvoiceschanged = () => {
+            setBestVoiceAndSpeak();
           };
         }
-
-        window.speechSynthesis.speak(utterance);
-      };
-
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        setBestVoiceAndSpeak();
-      } else {
-        window.speechSynthesis.onvoiceschanged = () => {
-          setBestVoiceAndSpeak();
-        };
-      }
+      }, 50);
     }
   };
 
@@ -131,7 +134,6 @@ export default function GermanNumbersApp() {
     }
 
     if (isPlayingSequence) {
-      // إذا كان يعمل بالفعل وتضغط مرة أخرى: يتم الإيقاف
       isSpeakingRef.current = false;
       setIsPlayingSequence(false);
       window.speechSynthesis.cancel();
@@ -153,7 +155,6 @@ export default function GermanNumbersApp() {
       const numData = getGermanNumberData(current);
       speakText(numData.pure, () => {
         current++;
-        // مهلة قصيرة بين كل رقم والتالي لنطق سلس وطبيعي (تتأثر بالسرعة)
         let delay = 300;
         if (speechSpeed === 'fast') delay = 150;
         if (speechSpeed === 'veryFast') delay = 50;
@@ -281,7 +282,6 @@ export default function GermanNumbersApp() {
     setTrainingList(updated);
   };
 
-  // نص الزر الخاص بالسرعة الحالية
   const getSpeedLabel = () => {
     if (speechSpeed === 'veryFast') return 'سريع جداً';
     if (speechSpeed === 'fast') return 'سريع';
@@ -295,7 +295,10 @@ export default function GermanNumbersApp() {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      direction: 'rtl'
+      direction: 'rtl',
+      overflowX: 'hidden', // منع تمدد الشاشة أفقياً بالكامل
+      width: '100%',
+      boxSizing: 'border-box'
     }}>
 
       <h1
@@ -323,7 +326,8 @@ export default function GermanNumbersApp() {
         width: '100%',
         maxWidth: '450px',
         marginBottom: '30px',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        boxSizing: 'border-box'
       }}>
         <button
           onClick={() => setActiveTab('numbers')}
@@ -349,7 +353,7 @@ export default function GermanNumbersApp() {
 
       {/* محتوى قسم الأرقام */}
       {activeTab === 'numbers' && (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxSizing: 'border-box' }}>
 
           {/* قسم الاستماع لنطاق خاص من الأرقام بالصوت بالتتابع */}
           <div style={{
@@ -363,7 +367,8 @@ export default function GermanNumbersApp() {
             flexDirection: 'column',
             alignItems: 'center',
             gap: '12px',
-            backgroundColor: 'rgba(56, 189, 248, 0.05)'
+            backgroundColor: 'rgba(56, 189, 248, 0.05)',
+            boxSizing: 'border-box'
           }}>
             <div style={{ fontWeight: 'bold', fontSize: '1rem', textAlign: 'center' }}>
               🎧 اسمع الارقام من الرقم اللى انتا عاوزه للرقم اللى انتا عاوزه
@@ -419,7 +424,7 @@ export default function GermanNumbersApp() {
               </button>
             </div>
 
-            {/* أزرار سريعة للنطاقات (من 0 لـ 20) و (من 0 لـ 100) */}
+            {/* أزرار سريعة للنطاقات */}
             <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center' }}>
               <button
                 onClick={() => { setListenFrom('0'); setListenTo('20'); }}
@@ -436,7 +441,7 @@ export default function GermanNumbersApp() {
             </div>
 
             {/* الإنبوت الأول والثاني لتحديد الرقمين */}
-            <div style={{ display: 'flex', gap: '10px', width: '100%', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', alignItems: 'center', boxSizing: 'border-box' }}>
               <input
                 type="number"
                 value={listenFrom}
@@ -480,6 +485,7 @@ export default function GermanNumbersApp() {
             maxWidth: '450px',
             marginBottom: '40px',
             alignItems: 'center',
+            boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button onClick={() => handleRender('0-100')} style={buttonStyle}>
@@ -510,6 +516,7 @@ export default function GermanNumbersApp() {
             gap: '55px',
             width: '100%',
             maxWidth: '420px',
+            boxSizing: 'border-box'
           }}>
             {currentList.map((item, index) => {
               const gerData = getGermanNumberData(item.num);
@@ -523,7 +530,8 @@ export default function GermanNumbersApp() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     userSelect: 'none',
-                    marginTop: '25px'
+                    marginTop: '25px',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <div style={{
@@ -532,7 +540,10 @@ export default function GermanNumbersApp() {
                     zIndex: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    maxWidth: '100%',
+                    padding: '0 10px',
+                    boxSizing: 'border-box'
                   }}>
                     <span
                       onClick={() => speakText(gerData.pure)}
@@ -541,14 +552,17 @@ export default function GermanNumbersApp() {
                         fontWeight: '800',
                         color: '#38bdf8',
                         lineHeight: 1,
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                        wordBreak: 'break-all',
+                        overflowWrap: 'break-word',
+                        maxWidth: '100%'
                       }}
                       title="اضغط لسماع النطق"
                     >
                       {item.num}
                     </span>
 
-                    {/* أيقونة السماعة مع الشادو للتوافق مع الـ Light والـ Dark Mode */}
                     <span
                       style={{
                         fontSize: '1.1rem',
@@ -568,6 +582,7 @@ export default function GermanNumbersApp() {
                       position: 'relative',
                       zIndex: 2,
                       width: '100%',
+                      boxSizing: 'border-box',
                       border: '2px solid',
                       borderColor: 'inherit',
                       borderRadius: '30px 6px',
@@ -580,13 +595,21 @@ export default function GermanNumbersApp() {
                       gap: '15px',
                       textAlign: 'center',
                       boxShadow: 'none',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      overflow: 'hidden'
                     }}
                   >
-                    <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>
+                    <span style={{ fontSize: '1.2rem', fontWeight: '600', flexShrink: 0 }}>
                       {item.ar}
                     </span>
-                    <span style={{ fontSize: '1.4rem', fontWeight: 'bold', direction: 'ltr' }}>
+                    <span style={{
+                      fontSize: '1.4rem',
+                      fontWeight: 'bold',
+                      direction: 'ltr',
+                      overflowX: 'auto',
+                      maxWidth: '100%',
+                      wordBreak: 'break-word'
+                    }}>
                       {gerData.html}
                     </span>
                   </div>
@@ -599,7 +622,7 @@ export default function GermanNumbersApp() {
 
       {/* محتوى قسم التدريب */}
       {activeTab === 'training' && (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxSizing: 'border-box' }}>
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -608,6 +631,7 @@ export default function GermanNumbersApp() {
             maxWidth: '450px',
             marginBottom: '30px',
             alignItems: 'center',
+            boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button onClick={() => generateRandomList(0, 100, 15)} style={buttonStyle}>
@@ -631,7 +655,7 @@ export default function GermanNumbersApp() {
               اكتب انتا عاوز تسمع الارقام من كام ل كام
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+            <div style={{ display: 'flex', gap: '10px', width: '100%', boxSizing: 'border-box' }}>
               <input
                 type="number"
                 value={minRange}
@@ -656,7 +680,7 @@ export default function GermanNumbersApp() {
             </button>
           </div>
 
-          <div style={{ width: '100%', maxWidth: '420px', marginBottom: '35px' }}>
+          <div style={{ width: '100%', maxWidth: '420px', marginBottom: '35px', boxSizing: 'border-box' }}>
             <button
               onClick={() => setCheckedAnswers(true)}
               style={{
@@ -681,6 +705,7 @@ export default function GermanNumbersApp() {
             gap: '55px',
             width: '100%',
             maxWidth: '420px',
+            boxSizing: 'border-box'
           }}>
             {trainingList.map((item, index) => {
               const gerData = getGermanNumberData(item.num);
@@ -702,7 +727,8 @@ export default function GermanNumbersApp() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     userSelect: 'none',
-                    marginTop: '20px'
+                    marginTop: '20px',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <div
@@ -714,6 +740,12 @@ export default function GermanNumbersApp() {
                       zIndex: 1,
                       color: '#38bdf8',
                       lineHeight: 1,
+                      textAlign: 'center',
+                      wordBreak: 'break-all',
+                      overflowWrap: 'break-word',
+                      maxWidth: '100%',
+                      padding: '0 10px',
+                      boxSizing: 'border-box'
                     }}
                   >
                     {item.num}
@@ -723,6 +755,7 @@ export default function GermanNumbersApp() {
                     position: 'relative',
                     zIndex: 2,
                     width: '100%',
+                    boxSizing: 'border-box',
                     border: '2px solid',
                     borderColor: 'inherit',
                     borderRadius: '30px 6px',
@@ -733,7 +766,8 @@ export default function GermanNumbersApp() {
                     alignItems: 'center',
                     gap: '15px',
                     textAlign: 'center',
-                    boxShadow: 'none'
+                    boxShadow: 'none',
+                    overflow: 'hidden'
                   }}>
                     <input
                       type="text"
@@ -742,6 +776,7 @@ export default function GermanNumbersApp() {
                       placeholder="اكتب الكلمات للتسميع هنا..."
                       style={{
                         width: '100%',
+                        boxSizing: 'border-box',
                         padding: '10px 12px',
                         fontSize: '1rem',
                         border: '2px solid',
@@ -778,11 +813,13 @@ const buttonStyle = {
   flex: 1,
   minWidth: '130px',
   backgroundColor: 'transparent',
-  color: 'inherit'
+  color: 'inherit',
+  boxSizing: 'border-box'
 };
 
 const inputStyle = {
   width: '100%',
+  boxSizing: 'border-box',
   padding: '12px 15px',
   fontSize: '1.1rem',
   border: '2px solid',
