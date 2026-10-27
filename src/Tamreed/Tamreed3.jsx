@@ -530,6 +530,33 @@ export default function WarumQuestionsFinalApp() {
           gap: 0.5rem;
         }
 
+        /* توهج خاص بالـ H3 الجديد المطلوب */
+        .glowing-title {
+          font-size: 1.15rem;
+          font-family: 'Cairo', sans-serif;
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 1.5rem;
+          width: 100%;
+          max-width: 1000px;
+          animation: h3GlowAnimation 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes h3GlowAnimation {
+          0% {
+            color: var(--primary-der);
+            text-shadow: 0 0 5px rgba(56, 189, 248, 0.4), 0 0 10px rgba(56, 189, 248, 0.2);
+          }
+          50% {
+            color: var(--primary-die);
+            text-shadow: 0 0 15px rgba(244, 114, 182, 0.7), 0 0 20px rgba(244, 114, 182, 0.4);
+          }
+          100% {
+            color: var(--primary-das);
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5), 0 0 15px rgba(74, 222, 128, 0.3);
+          }
+        }
+
         /* توهج خاص للأسئلة التمهيدية العليا فقط */
         .glowing-intro-card {
           animation: introGlowBorder 2.5s infinite alternate ease-in-out;
@@ -557,7 +584,7 @@ export default function WarumQuestionsFinalApp() {
           background: transparent;
           border: 2px solid var(--primary-die);
           padding: 1rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           box-shadow: 0 0 15px rgba(244, 114, 182, 0.4), var(--shadow);
           text-align: right;
           direction: rtl;
@@ -825,6 +852,14 @@ export default function WarumQuestionsFinalApp() {
           </li>
         </ul>
       </div>
+
+      {/* العنوان الجديد المطلوب بعد الملاحظة مباشرة (ينور ويتوهج) */}
+      <h3 className="glowing-title">
+        أتالم و لا اتكلم اااااااه<br />
+        فين الدكتور الحقووووونى
+        <br />
+        يالهوووووووى ااااااه
+      </h3>
 
       <div className="header-subtext">
         <p>اضغط على أي سؤال لسماع النطق الصحيح باللغة الألمانية 🇩🇪</p>
