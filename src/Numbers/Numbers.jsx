@@ -5,6 +5,7 @@ export default function GermanNumbersApp() {
   const [searchVal, setSearchVal] = useState('');
   const [minRange, setMinRange] = useState('');
   const [maxRange, setMaxRange] = useState('');
+  const [showNote, setShowNote] = useState(false); // حالة فتح/إغلاق الملحوظة
 
   // شريط الاستماع المتتابع للأرقام
   const [listenFrom, setListenFrom] = useState('0');
@@ -38,169 +39,6 @@ export default function GermanNumbersApp() {
     };
     if (arabicWords[n]) return arabicWords[n];
     return n.toLocaleString('ar-EG');
-  };
-
-  const generateRandomList = (min, max, count = 15) => {
-    let numbersSet = new Set();
-    while (numbersSet.size < count && numbersSet.size < (max - min + 1)) {
-      let randNum = Math.floor(Math.random() * (max - min + 1)) + min;
-      numbersSet.add(randNum);
-    }
-    let list = Array.from(numbersSet).map(num => ({
-      num: num,
-      ar: getArabicWord(num),
-      userAnswer: ''
-    }));
-    setTrainingList(list);
-    setCheckedAnswers(false);
-  };
-
-  useEffect(() => {
-    handleRender('0-100');
-    generateRandomList(0, 100, 15);
-  }, []);
-
-  // دالة إيقاف وتفريغ الصوت والمؤقتات تماماً
-  const stopSpeech = () => {
-    isSpeakingRef.current = false;
-    setIsPlayingSequence(false);
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-    timersRef.current.forEach(timer => clearTimeout(timer));
-    timersRef.current = [];
-  };
-
-  // إيقاف الصوت في حال تغيير الصفحة أو إغلاق المكون
-  useEffect(() => {
-    return () => {
-      stopSpeech();
-    };
-  }, []);
-
-  // تحديد قيمة معامل السرعة برمجياً
-  const getRateValue = () => {
-    if (speechSpeed === 'veryFast') return 1.5;
-    if (speechSpeed === 'fast') return 1.15;
-    return 0.8; // normal
-  };
-
-  // تحسين محرك النطق الفردي
-  const speakText = (text, onEndCallback = null) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-
-      setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'de-DE';
-        utterance.rate = getRateValue();
-        utterance.pitch = 1.0;
-
-        const setBestVoiceAndSpeak = () => {
-          const voices = window.speechSynthesis.getVoices();
-          const bestVoice = voices.find(v =>
-            v.lang.startsWith('de') && (
-              v.name.toLowerCase().includes('natural') ||
-              v.name.toLowerCase().includes('google') ||
-              v.name.toLowerCase().includes('online') ||
-              v.name.toLowerCase().includes('premium') ||
-              v.name.toLowerCase().includes('enhanced')
-            )
-          ) || voices.find(v => v.lang.startsWith('de'));
-
-          if (bestVoice) {
-            utterance.voice = bestVoice;
-          }
-
-          if (onEndCallback) {
-            utterance.onend = onEndCallback;
-            utterance.onerror = () => {
-              setIsPlayingSequence(false);
-              isSpeakingRef.current = false;
-            };
-          }
-
-          window.speechSynthesis.speak(utterance);
-        };
-
-        const voices = window.speechSynthesis.getVoices();
-        if (voices.length > 0) {
-          setBestVoiceAndSpeak();
-        } else {
-          window.speechSynthesis.onvoiceschanged = () => {
-            setBestVoiceAndSpeak();
-          };
-        }
-      }, 50);
-    }
-  };
-
-  // وظيفة تشغيل قراءة سلسلة الأرقام بالتتابع
-  const playSequence = (fromNum, toNum) => {
-    const start = parseInt(fromNum);
-    const end = parseInt(toNum);
-
-    if (isNaN(start) || isNaN(end) || start > end || start < 0) {
-      alert("برجاء أدخال نطاق أرقام صحيح (مثال: من 0 إلى 10)");
-      return;
-    }
-
-    if (isPlayingSequence) {
-      stopSpeech();
-      return;
-    }
-
-    stopSpeech();
-    setIsPlayingSequence(true);
-    isSpeakingRef.current = true;
-
-    if ('speechSynthesis' in window) {
-      let delay = 0;
-      let stepDelay = 850;
-      if (speechSpeed === 'fast') stepDelay = 550;
-      if (speechSpeed === 'veryFast') stepDelay = 350;
-
-      for (let i = start; i <= end; i++) {
-        const currentNum = i;
-        const numData = getGermanNumberData(currentNum);
-
-        const timer = setTimeout(() => {
-          if (!isSpeakingRef.current) return;
-
-          const utterance = new SpeechSynthesisUtterance(numData.pure);
-          utterance.lang = 'de-DE';
-          utterance.rate = getRateValue();
-          utterance.pitch = 1.0;
-
-          if (currentNum === end) {
-            utterance.onend = () => {
-              setIsPlayingSequence(false);
-              isSpeakingRef.current = false;
-            };
-          }
-
-          const voices = window.speechSynthesis.getVoices();
-          const bestVoice = voices.find(v =>
-            v.lang.startsWith('de') && (
-              v.name.toLowerCase().includes('natural') ||
-              v.name.toLowerCase().includes('google') ||
-              v.name.toLowerCase().includes('online') ||
-              v.name.toLowerCase().includes('premium') ||
-              v.name.toLowerCase().includes('enhanced')
-            )
-          ) || voices.find(v => v.lang.startsWith('de'));
-
-          if (bestVoice) {
-            utterance.voice = bestVoice;
-          }
-
-          window.speechSynthesis.speak(utterance);
-        }, delay);
-
-        timersRef.current.push(timer);
-        delay += stepDelay;
-      }
-    }
   };
 
   const units = ["Null", "Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun"];
@@ -270,6 +108,81 @@ export default function GermanNumbersApp() {
     return { html: deHTML, pure: dePure };
   };
 
+  // دالة لتوليد نطق العمر والسنوات (Neunzehn...)
+  const getAgeOrYearPronunciation = (n) => {
+    if (n >= 1900 && n < 2000) {
+      let remainder = n % 100;
+      let remData = getGermanNumberData(remainder);
+      let pureWord = `neunzehn${remData.pure}`;
+
+      return {
+        pure: pureWord,
+        html: (
+          <span style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
+            <span style={{ color: '#f97316', fontWeight: 'bold' }}>neunzehn</span>
+            <span style={{ color: '#4ade80', fontWeight: 'bold' }}>{remData.pure}</span>
+          </span>
+        )
+      };
+    } else if (n >= 2000 && n <= 2026) {
+      let remainder = n % 100;
+      let remData = getGermanNumberData(remainder);
+      let pureWord = `zweitausend${remData.pure}`;
+
+      return {
+        pure: pureWord,
+        html: (
+          <span style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
+            <span style={{ color: '#f97316', fontWeight: 'bold' }}>zwei</span>
+            <span style={{ color: '#4ade80', fontWeight: 'bold' }}>tausend</span>
+            {remainder > 0 && <span style={{ color: '#ec4899', fontWeight: 'bold' }}>{remData.pure}</span>}
+          </span>
+        )
+      };
+    }
+    if (n >= 1000 && n < 10000) {
+      let left = Math.floor(n / 100);
+      let right = n % 100;
+      let leftData = getGermanNumberData(left);
+      let rightData = getGermanNumberData(right);
+      let pureWord = `${leftData.pure}${rightData.pure}`;
+
+      return {
+        pure: pureWord,
+        html: (
+          <span style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
+            <span style={{ color: '#f97316', fontWeight: 'bold' }}>{leftData.pure}</span>
+            <span style={{ color: '#4ade80', fontWeight: 'bold' }}>{rightData.pure}</span>
+          </span>
+        )
+      };
+    }
+    return null;
+  };
+
+  // دالة لتوليد نطق الفلوس والأسعار والمبالغ (Neunzehnhundert...)
+  const getMoneyPronunciation = (n) => {
+    if (n >= 1100 && n < 2000) {
+      let hundreds = Math.floor(n / 100);
+      let remainder = n % 100;
+      let hundredData = getGermanNumberData(hundreds);
+      let remData = getGermanNumberData(remainder);
+      let pureWord = `${hundredData.pure}hundert${remData.pure}`;
+
+      return {
+        pure: pureWord,
+        html: (
+          <span style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px' }}>
+            <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{hundredData.pure}</span>
+            <span style={{ color: '#ec4899', fontWeight: 'bold' }}>hundert</span>
+            {remainder > 0 && <span style={{ color: '#4ade80', fontWeight: 'bold' }}>{remData.pure}</span>}
+          </span>
+        )
+      };
+    }
+    return null;
+  };
+
   const handleRender = (type) => {
     setSearchVal('');
     let list = [];
@@ -288,6 +201,164 @@ export default function GermanNumbersApp() {
       stepsArr.forEach(s => list.push({ num: s, ar: getArabicWord(s), userAnswer: '' }));
     }
     setCurrentList(list);
+  };
+
+  const generateRandomList = (min, max, count = 15) => {
+    let numbersSet = new Set();
+    while (numbersSet.size < count && numbersSet.size < (max - min + 1)) {
+      let randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+      numbersSet.add(randNum);
+    }
+    let list = Array.from(numbersSet).map(num => ({
+      num: num,
+      ar: getArabicWord(num),
+      userAnswer: ''
+    }));
+    setTrainingList(list);
+    setCheckedAnswers(false);
+  };
+
+  useEffect(() => {
+    handleRender('0-100');
+    generateRandomList(0, 100, 15);
+  }, []);
+
+  const stopSpeech = () => {
+    isSpeakingRef.current = false;
+    setIsPlayingSequence(false);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    timersRef.current.forEach(timer => clearTimeout(timer));
+    timersRef.current = [];
+  };
+
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
+  const getRateValue = () => {
+    if (speechSpeed === 'veryFast') return 1.5;
+    if (speechSpeed === 'fast') return 1.15;
+    return 0.8;
+  };
+
+  const speakText = (text, onEndCallback = null) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE';
+        utterance.rate = getRateValue();
+        utterance.pitch = 1.0;
+
+        const setBestVoiceAndSpeak = () => {
+          const voices = window.speechSynthesis.getVoices();
+          const bestVoice = voices.find(v =>
+            v.lang.startsWith('de') && (
+              v.name.toLowerCase().includes('natural') ||
+              v.name.toLowerCase().includes('google') ||
+              v.name.toLowerCase().includes('online') ||
+              v.name.toLowerCase().includes('premium') ||
+              v.name.toLowerCase().includes('enhanced')
+            )
+          ) || voices.find(v => v.lang.startsWith('de'));
+
+          if (bestVoice) {
+            utterance.voice = bestVoice;
+          }
+
+          if (onEndCallback) {
+            utterance.onend = onEndCallback;
+            utterance.onerror = () => {
+              setIsPlayingSequence(false);
+              isSpeakingRef.current = false;
+            };
+          }
+
+          window.speechSynthesis.speak(utterance);
+        };
+
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length > 0) {
+          setBestVoiceAndSpeak();
+        } else {
+          window.speechSynthesis.onvoiceschanged = () => {
+            setBestVoiceAndSpeak();
+          };
+        }
+      }, 50);
+    }
+  };
+
+  const playSequence = (fromNum, toNum) => {
+    const start = parseInt(fromNum);
+    const end = parseInt(toNum);
+
+    if (isNaN(start) || isNaN(end) || start > end || start < 0) {
+      alert("برجاء أدخال نطاق أرقام صحيح (مثال: من 0 إلى 10)");
+      return;
+    }
+
+    if (isPlayingSequence) {
+      stopSpeech();
+      return;
+    }
+
+    stopSpeech();
+    setIsPlayingSequence(true);
+    isSpeakingRef.current = true;
+
+    if ('speechSynthesis' in window) {
+      let delay = 0;
+      let stepDelay = 850;
+      if (speechSpeed === 'fast') stepDelay = 550;
+      if (speechSpeed === 'veryFast') stepDelay = 350;
+
+      for (let i = start; i <= end; i++) {
+        const currentNum = i;
+        const numData = getGermanNumberData(currentNum);
+
+        const timer = setTimeout(() => {
+          if (!isSpeakingRef.current) return;
+
+          const utterance = new SpeechSynthesisUtterance(numData.pure);
+          utterance.lang = 'de-DE';
+          utterance.rate = getRateValue();
+          utterance.pitch = 1.0;
+
+          if (currentNum === end) {
+            utterance.onend = () => {
+              setIsPlayingSequence(false);
+              isSpeakingRef.current = false;
+            };
+          }
+
+          const voices = window.speechSynthesis.getVoices();
+          const bestVoice = voices.find(v =>
+            v.lang.startsWith('de') && (
+              v.name.toLowerCase().includes('natural') ||
+              v.name.toLowerCase().includes('google') ||
+              v.name.toLowerCase().includes('online') ||
+              v.name.toLowerCase().includes('premium') ||
+              v.name.toLowerCase().includes('enhanced')
+            )
+          ) || voices.find(v => v.lang.startsWith('de'));
+
+          if (bestVoice) {
+            utterance.voice = bestVoice;
+          }
+
+          window.speechSynthesis.speak(utterance);
+        }, delay);
+
+        timersRef.current.push(timer);
+        delay += stepDelay;
+      }
+    }
   };
 
   const handleSearchChange = (e) => {
@@ -548,12 +619,12 @@ export default function GermanNumbersApp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '55px',
+            gap: '35px',
             width: '100%',
             maxWidth: '420px',
             boxSizing: 'border-box'
           }}>
-            {/* عرض كلمتي رقم وأرقام بجانب بعضهما في نفس السطر مع نطقها كاملاً بالأداة بدون سماعة */}
+            {/* عرض كلمتي رقم وأرقام بجانب بعضهما */}
             <div style={{
               width: '100%',
               display: 'flex',
@@ -569,7 +640,7 @@ export default function GermanNumbersApp() {
                     border: '2px solid',
                     borderColor: 'inherit',
                     borderRadius: '30px 6px',
-                    padding: ' 10px',
+                    padding: '16px 10px',
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
@@ -588,8 +659,67 @@ export default function GermanNumbersApp() {
               ))}
             </div>
 
+            {/* زر ملحوظة باللون الأخضر تحت كلمتي رقم وأرقام مباشرة */}
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <button
+                onClick={() => setShowNote(!showNote)}
+                style={{
+                  ...buttonStyle,
+                  width: '100%',
+                  backgroundColor: '#22c55e',
+                  borderColor: '#22c55e',
+                  color: '#fff',
+                  padding: '10px 15px',
+                  fontSize: '1rem'
+                }}
+              >
+                 (ملحوظة هامّة حول نطق الأرقام والسنوات والأسعار)
+                <br/>
+                اضغط هنا
+              </button>
+
+              {/* الشرح مع الأرقام بالألمانية يظهر فقط عند الضغط على زر الملحوظة */}
+              {showNote && (
+                <div style={{
+                  width: '100%',
+                  marginTop: '10px',
+                  padding: '15px',
+                  borderRadius: '20px 6px',
+                  border: '2px dashed #22c55e',
+                  backgroundColor: 'rgba(34, 197, 94, 0.05)',
+                  fontSize: '0.85rem',
+                  lineHeight: '1.6',
+                  textAlign: 'right',
+                  boxSizing: 'border-box'
+                }}>
+                  <strong style={{ color: '#22c55e' }}>💡 متى نستخدم كل طريقة والأرقام بالألمانية؟</strong>
+                  <ul style={{ paddingRight: '18px', marginTop: '6px', marginBottom: '0' }}>
+                    <li>
+                      <strong>في الرقم العادي (Standard):</strong> يُقرأ بالطريقة القياسية الحسابية التفصيلية.<br/>
+                      <span style={{ direction: 'ltr', display: 'inline-block', color: '#38bdf8', fontWeight: 'bold' }}>Tausendneunhundertneunundneunzig (1999)</span>
+                    </li>
+                    <li style={{ marginTop: '8px' }}>
+                      <strong>في حالة السن / العمر والسنوات (Jahre / Alter):</strong> تُقرأ باختصار مقسمة لجزأين بدون Hundert.<br/>
+                      <span style={{ direction: 'ltr', display: 'inline-block', color: '#f97316', fontWeight: 'bold' }}>Neunzehnneunundneunzig (1999)</span>
+                    </li>
+                    <li style={{ marginTop: '8px' }}>
+                      <strong>في حالة الفلوس والأسعار والمبالغ (Geld / Preise):</strong> تُقرأ بالمئات المقسمة لتحديد القيمة.<br/>
+                      <span style={{ direction: 'ltr', display: 'inline-block', color: '#ec4899', fontWeight: 'bold' }}>Neunzehnhundertneunundneunzig (1999)</span>
+                    </li>
+                  </ul>
+                  <h4 style={{ marginTop: '8px',textAlign:"center",color:"red" }}>اكتب فى خانه معرفه الارقام
+                    <br/>
+                    و هتفهم كلامى
+                  </h4>
+                </div>
+              )}
+            </div>
+
             {currentList.map((item, index) => {
               const gerData = getGermanNumberData(item.num);
+              const ageData = getAgeOrYearPronunciation(item.num);
+              const moneyData = getMoneyPronunciation(item.num);
+
               return (
                 <div
                   key={index}
@@ -646,6 +776,7 @@ export default function GermanNumbersApp() {
                     </span>
                   </div>
 
+                  {/* 1. المربع الأول (الرقم العادي) بدون جملة "في حالة الرقم العادي" */}
                   <div
                     onClick={() => speakText(gerData.pure)}
                     style={{
@@ -664,7 +795,6 @@ export default function GermanNumbersApp() {
                       justifyContent: 'space-between',
                       gap: '15px',
                       textAlign: 'center',
-                      boxShadow: 'none',
                       cursor: 'pointer',
                       overflow: 'hidden'
                     }}
@@ -683,6 +813,124 @@ export default function GermanNumbersApp() {
                       {gerData.html}
                     </span>
                   </div>
+
+                  {/* 2. المربع الثاني (في حالة العمر والسنوات) */}
+                  {ageData && (
+                    <div style={{ width: '100%', marginTop: '15px', boxSizing: 'border-box' }}>
+                      <div style={{
+                        fontWeight: 'bold',
+                        fontSize: 'calc(0.95rem + 4px)',
+                        marginBottom: '6px',
+                        textAlign: 'center',
+                        backgroundImage: 'linear-gradient(45deg, #4ade80, #f97316)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                      }}>
+                        في حالة السن / العمر والسنوات
+                        <div style={{
+                          fontSize: '0.8rem',
+                          fontWeight: 'normal',
+                          color: '#ec4899',
+                          WebkitTextFillColor: '#ec4899',
+                          marginTop: '2px'
+                        }}>
+                          (يعني لو هتقول سنك أو سنة ميلادك)
+                        </div>
+                      </div>
+                      <div
+                        onClick={() => speakText(ageData.pure)}
+                        style={{
+                          width: '100%',
+                          boxSizing: 'border-box',
+                          border: '2px dashed #f97316',
+                          borderRadius: '20px 6px',
+                          padding: '16px 15px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '8px',
+                          cursor: 'pointer',
+                          backgroundColor: 'rgba(249, 115, 22, 0.05)',
+                          textAlign: 'center',
+                          overflow: 'hidden'
+                        }}
+                        title="اضغط لسماع نطق العمر/السنة"
+                      >
+                        <span style={{ fontSize: '1.2rem', opacity: 0.9 }}>🔊</span>
+                        <div style={{
+                          fontSize: '1.3rem',
+                          fontWeight: 'bold',
+                          direction: 'ltr',
+                          wordBreak: 'keep-all',
+                          overflowWrap: 'break-word',
+                          whiteSpace: 'normal',
+                          maxWidth: '100%',
+                          lineHeight: '1.5'
+                        }}>
+                          {ageData.html}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 3. المربع الثالث (في حالة الفلوس والأسعار والمبالغ) */}
+                  {moneyData && (
+                    <div style={{ width: '100%', marginTop: '15px', boxSizing: 'border-box' }}>
+                      <div style={{
+                        fontWeight: 'bold',
+                        fontSize: 'calc(0.95rem + 4px)',
+                        marginBottom: '6px',
+                        textAlign: 'center',
+                        color: '#38bdf8'
+                      }}>
+                        في حالة الفلوس والأسعار والمبالغ
+                        <div style={{
+                          fontSize: '0.8rem',
+                          fontWeight: 'normal',
+                          opacity: 0.8,
+                          marginTop: '2px'
+                        }}>
+                          (طريقة المئات المقسمة)
+                        </div>
+                      </div>
+                      <div
+                        onClick={() => speakText(moneyData.pure)}
+                        style={{
+                          width: '100%',
+                          boxSizing: 'border-box',
+                          border: '2px dashed #38bdf8',
+                          borderRadius: '20px 6px',
+                          padding: '16px 15px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '8px',
+                          cursor: 'pointer',
+                          backgroundColor: 'rgba(56, 189, 248, 0.05)',
+                          textAlign: 'center',
+                          overflow: 'hidden'
+                        }}
+                        title="اضغط لسماع نطق المبالغ والفلوس"
+                      >
+                        <span style={{ fontSize: '1.2rem', opacity: 0.9 }}>🔊</span>
+                        <div style={{
+                          fontSize: '1.3rem',
+                          fontWeight: 'bold',
+                          direction: 'ltr',
+                          wordBreak: 'keep-all',
+                          overflowWrap: 'break-word',
+                          whiteSpace: 'normal',
+                          maxWidth: '100%',
+                          lineHeight: '1.5'
+                        }}>
+                          {moneyData.html}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               );
             })}
