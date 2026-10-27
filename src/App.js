@@ -73,6 +73,8 @@ import GermanJobsTable from './Aus/GermanJobsTable';
 // Start Tamreed
 import Tamreed from './Tamreed/Tamreed';
 import Tamreed2 from './Tamreed/Tamreed2';
+import Tamreed3 from './Tamreed/Tamreed3';
+import Tamreed4 from './Tamreed/Tamreed4';
 // End Tamreed
 
 // دالة نطق آمنة عالمية: تمنع أي انهيار أو ظهور رسائل خطأ إذا توقف النطق أو لم يدعمه المتصفح
@@ -583,6 +585,14 @@ function App() {
               <Link to="/tamreed2" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
                 الأعضاء الداخلية - Die inneren Organe
               </Link>
+
+              <Link to="/tamreed3" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+                اسئله - ااااااه من الوجع
+              </Link>
+
+              <Link to="/tamreed4" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+                جمل - اه من الوجع
+              </Link>
             </div>
           </>
         } />
@@ -649,6 +659,8 @@ function App() {
 
         <Route path="/tamreed" element={<Tamreed />} />
         <Route path="/tamreed2" element={<Tamreed2 />} />
+        <Route path="/tamreed3" element={<Tamreed3 />} />
+        <Route path="/tamreed4" element={<Tamreed4 />} />
 
         <Route path="*" element={<EmptyPage />} />
       </Routes>
