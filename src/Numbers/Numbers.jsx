@@ -18,9 +18,15 @@ export default function GermanNumbersApp() {
   const [trainingList, setTrainingList] = useState([]);
   const [checkedAnswers, setCheckedAnswers] = useState(false);
 
-  // مراجع للتحكم في المؤتمرات الصوتية والسلسلة المتتابعة تماماً مثل الألوان
+  // مراجع للتحكم في المؤتمرات الصوتية والسلسلة المتتابعة
   const isSpeakingRef = useRef(false);
   const timersRef = useRef([]);
+
+  // بيانات كلمتي رقم وأرقام مع النطق الكامل بالأداة (die Zahl / die Zahlen)
+  const numberWordsData = [
+    { ar: "رقم", de: "die Zahl", speakDe: "die Zahl" },
+    { ar: "أرقام", de: "die Zahlen", speakDe: "die Zahlen" }
+  ];
 
   const getArabicWord = (n) => {
     const arabicWords = {
@@ -129,7 +135,7 @@ export default function GermanNumbersApp() {
     }
   };
 
-  // وظيفة تشغيل قراءة سلسلة الأرقام بالتتابع تماماً مثل نظام الألوان المطلوب
+  // وظيفة تشغيل قراءة سلسلة الأرقام بالتتابع
   const playSequence = (fromNum, toNum) => {
     const start = parseInt(fromNum);
     const end = parseInt(toNum);
@@ -139,7 +145,6 @@ export default function GermanNumbersApp() {
       return;
     }
 
-    // إذا كان يعمل بالفعل وتضغط مرة أخرى: يتم الإيقاف تماماً
     if (isPlayingSequence) {
       stopSpeech();
       return;
@@ -151,7 +156,6 @@ export default function GermanNumbersApp() {
 
     if ('speechSynthesis' in window) {
       let delay = 0;
-      // تحديد معدل التأخير الزمني بناءً على السرعة المختارة
       let stepDelay = 850;
       if (speechSpeed === 'fast') stepDelay = 550;
       if (speechSpeed === 'veryFast') stepDelay = 350;
@@ -168,7 +172,6 @@ export default function GermanNumbersApp() {
           utterance.rate = getRateValue();
           utterance.pitch = 1.0;
 
-          // التحقق من وصولنا للنهاية لإيقاف حالة التشغيل تلقائياً
           if (currentNum === end) {
             utterance.onend = () => {
               setIsPlayingSequence(false);
@@ -351,7 +354,7 @@ export default function GermanNumbersApp() {
         Die Zahlen - الأرقام الألمانية
       </h1>
 
-      {/* الأزرار الأساسية (الأرقام - التدريب) */}
+      {/* الأزرار الأساسية (الأرقام - التدريب فقط) */}
       <div style={{
         display: 'flex',
         gap: '15px',
@@ -550,6 +553,41 @@ export default function GermanNumbersApp() {
             maxWidth: '420px',
             boxSizing: 'border-box'
           }}>
+            {/* عرض كلمتي رقم وأرقام بجانب بعضهما في نفس السطر مع نطقها كاملاً بالأداة بدون سماعة */}
+            <div style={{
+              width: '100%',
+              display: 'flex',
+              gap: '12px',
+              boxSizing: 'border-box'
+            }}>
+              {numberWordsData.map((item, index) => (
+                <div
+                  key={`word-${index}`}
+                  onClick={() => speakText(item.speakDe)}
+                  style={{
+                    flex: 1,
+                    border: '2px solid',
+                    borderColor: 'inherit',
+                    borderRadius: '30px 6px',
+                    padding: ' 10px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    boxSizing: 'border-box',
+                    backgroundColor: 'transparent',
+                    textAlign: 'center',
+                    gap: '5px'
+                  }}
+                  title="اضغط لسماع النطق"
+                >
+                  <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>{item.ar}</span>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 'bold', direction: 'ltr', color: '#38bdf8' }}>{item.de}</span>
+                </div>
+              ))}
+            </div>
+
             {currentList.map((item, index) => {
               const gerData = getGermanNumberData(item.num);
               return (
