@@ -478,7 +478,7 @@ export default function Wochentage() {
             </div>
           </div>
 
-          {/* الأزرار الـ 5 الأخيرة بالتنسيقات المطلوبة */}
+          {/* الأزرار الـ 5 الأخيرة بالتنسيقات المطلوبة مع عرض 50% لزر اليوم */}
           <div style={{ display: 'flex', flexDirection: 'column', width: '100%', marginBottom: '40px', marginTop: '10px' }}>
             <div style={{ display: 'flex', gap: '10px', width: '100%', marginBottom: '5px' }}>
               {extraDaysData.slice(0, 2).map((item, index) => (
@@ -486,7 +486,7 @@ export default function Wochentage() {
                   key={index}
                   onClick={(e) => speakText(item.de, e)}
                   style={{
-                    width: '200px',
+                    flex: 1,
                     backgroundColor: 'transparent',
                     border: '1.5px solid rgb(226, 232, 240)',
                     borderRadius: '30px 6px',
@@ -499,8 +499,7 @@ export default function Wochentage() {
                     cursor: 'pointer',
                     userSelect: 'none',
                     position: 'relative',
-                    marginTop: '7px',
-                    flex: '1 1 0%'
+                    marginTop: '7px'
                   }}
                 >
                   <span style={{ position: 'absolute', left: '50%', top: '0', transform: 'translate(-50%, -50%)', fontSize: '1rem', backgroundColor: 'var(--bg-color, #0b1329)', padding: '0 4px', borderRadius: '4px' }} title="استمع">🔊</span>
@@ -518,7 +517,7 @@ export default function Wochentage() {
                   key={index}
                   onClick={(e) => speakText(item.de, e)}
                   style={{
-                    width: '200px',
+                    flex: 1,
                     backgroundColor: 'transparent',
                     border: '1.5px solid rgb(226, 232, 240)',
                     borderRadius: '30px 6px',
@@ -531,8 +530,7 @@ export default function Wochentage() {
                     cursor: 'pointer',
                     userSelect: 'none',
                     position: 'relative',
-                    marginTop: '7px',
-                    flex: '1 1 0%'
+                    marginTop: '7px'
                   }}
                 >
                   <span style={{ position: 'absolute', left: '50%', top: '0', transform: 'translate(-50%, -50%)', fontSize: '1rem', backgroundColor: 'var(--bg-color, #0b1329)', padding: '0 4px', borderRadius: '4px' }} title="استمع">🔊</span>
@@ -550,7 +548,7 @@ export default function Wochentage() {
                   key={index}
                   onClick={(e) => speakText(item.de, e)}
                   style={{
-                    width: '200px',
+                    width: '50%',
                     backgroundColor: 'transparent',
                     border: '1.5px solid rgb(226, 232, 240)',
                     borderRadius: '30px 6px',
