@@ -1,6 +1,74 @@
 import React from 'react';
 
 export default function WarumQuestionsFinalApp() {
+  const introQuestions = [
+    {
+      qDe: "Wie stark sind deine Schmerzen von 1 bis 10?",
+      qAr: "كم هي نسبة الوجع لديك من 1 إلى 10؟",
+      answers: [
+        { de: "1 = Sehr leicht", ar: "1 = خفيف جداً", color: "das-color" },
+        { de: "2 = Leicht", ar: "2 = خفيف", color: "das-color" },
+        { de: "3 = Mäßig leicht", ar: "3 = متوسط الخفة", color: "das-color" },
+        { de: "4 = Mäßig", ar: "4 = متوسط", color: "der-color" },
+        { de: "5 = Mittelstark", ar: "5 = متوسط الشدة", color: "der-color" },
+        { de: "6 = Stark", ar: "6 = شديد", color: "plural-color" },
+        { de: "7 = Sehr stark", ar: "7 = شديد جداً", color: "plural-color" },
+        { de: "8 = Extrem stark", ar: "8 = شديد للغاية", color: "die-color" },
+        { de: "9 = Kaum auszuhalten", ar: "9 = يصعب تحمله", color: "die-color" },
+        { de: "10 = Unerträglich", ar: "10 = لا يطاق", color: "die-color" }
+      ]
+    },
+    {
+      qDe: "Welches Körperteil tut dir weh?",
+      qAr: "أي عضو هو الذي يؤلمك؟",
+      answers: [
+        { de: "Bitte wähle unten dein Körperteil aus.", ar: "الرجاء اختيار عضو الجسم من القائمة أدناه.", color: "der-color" }
+      ]
+    },
+    {
+      qDe: "Seit wann hast du diese Schmerzen?",
+      qAr: "منذ متى وأنت تعاني من هذا الألم؟",
+      answers: [
+        { de: "Seit gestern.", ar: "منذ أمس.", color: "das-color" },
+        { de: "Seit drei Tagen.", ar: "منذ ثلاثة أيام.", color: "plural-color" },
+        { de: "Seit einer Woche.", ar: "منذ أسبوع.", color: "die-color" }
+      ]
+    },
+    {
+      qDe: "Wie ist der Schmerz?",
+      qAr: "كيف هو نوع الألم؟",
+      answers: [
+        { de: "Der Schmerz ist stechend.", ar: "الألم كالوخز / حاد.", color: "der-color" },
+        { de: "Er ist pochend.", ar: "إنه ألم ينبض.", color: "der-color" },
+        { de: "Er ist konstant.", ar: "إنه ألم مستمر / ثابت.", color: "der-color" }
+      ]
+    },
+    {
+      qDe: "Musst du zum Arzt gehen?",
+      qAr: "هل يجب عليك الذهاب إلى الطبيب؟",
+      answers: [
+        { de: "Ja, ich muss einen Termin vereinbaren.", ar: "نعم، يجب أن أحجز موعداً.", color: "der-color" },
+        { de: "Nein, es ist nicht so schlimm.", ar: "لا، الأمر ليس سيئاً للغاية.", color: "das-color" }
+      ]
+    },
+    {
+      qDe: "Hast du Medikamente genommen?",
+      qAr: "هل أخذت دواءً؟",
+      answers: [
+        { de: "Ja, ich habe eine Tablette genommen.", ar: "نعم، لقد تناولت قرص دواء.", color: "das-color" },
+        { de: "Nein, noch nicht.", ar: "لا، ليس بعد.", color: "die-color" }
+      ]
+    },
+    {
+      qDe: "Warum nimmst du eine Tablette?",
+      qAr: "لماذا تأخذ قرص دواء؟",
+      answers: [
+        { de: "Gegen die Kopfschmerzen.", ar: "ضد الصداع / ألم الرأس.", color: "die-color" },
+        { de: "Weil mein Kopf so weh tut.", ar: "لأن رأسي يؤلمني بشدة.", color: "der-color" }
+      ]
+    }
+  ];
+
   const bodyData = [
     {
       categoryTitle: "Mein Körper (أسئلة لماذا لأعضاء الجسم)",
@@ -462,6 +530,26 @@ export default function WarumQuestionsFinalApp() {
           gap: 0.5rem;
         }
 
+        /* توهج خاص للأسئلة التمهيدية العليا فقط */
+        .glowing-intro-card {
+          animation: introGlowBorder 2.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes introGlowBorder {
+          0% {
+            border-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.4), var(--shadow);
+          }
+          50% {
+            border-color: #f472b6;
+            box-shadow: 0 0 18px rgba(244, 114, 182, 0.7), var(--shadow);
+          }
+          100% {
+            border-color: #4ade80;
+            box-shadow: 0 0 12px rgba(74, 222, 128, 0.5), var(--shadow);
+          }
+        }
+
         /* صندوق توضيحي بنور متوهج */
         .info-box {
           width: 100%;
@@ -742,8 +830,56 @@ export default function WarumQuestionsFinalApp() {
         <p>اضغط على أي سؤال لسماع النطق الصحيح باللغة الألمانية 🇩🇪</p>
       </div>
 
+      {/* قسم الأسئلة التمهيدية (ينور البوردر الخاص بها جميعاً فقط) */}
+      <div className="section-container" style={{ marginBottom: '2rem' }}>
+        <div className="grid">
+          {introQuestions.map((item, idx) => {
+            const fullSpoken = `${item.qDe}. ${item.answers.map(a => a.de).join('. ')}`;
+            return (
+              <div
+                key={idx}
+                className="card glowing-intro-card"
+                onClick={(e) => {
+                  speakText(fullSpoken);
+                  const card = e.currentTarget;
+                  if (card) {
+                    card.classList.add('speaking');
+                    setTimeout(() => { if (card) card.classList.remove('speaking'); }, 800);
+                  }
+                }}
+              >
+                <span className="absolute-number bg-der">
+                  {idx + 1}
+                </span>
+
+                <div className="words-container">
+                  <div className="qa-box" style={{ borderTop: 'none', paddingTop: 0, marginTop: 0 }}>
+                    <div className="qa-question-de">{item.qDe}</div>
+                    <div className="qa-question-ar">{item.qAr}</div>
+
+                    {item.answers.map((ans, aIdx) => (
+                      <div
+                        key={aIdx}
+                        style={{
+                          marginTop: '0.35rem',
+                          paddingTop: aIdx > 0 ? '0.25rem' : '0',
+                          borderTop: aIdx > 0 ? '1px dashed rgba(255,255,255,0.1)' : 'none'
+                        }}
+                      >
+                        <div className={`qa-answer-de ${ans.color}`}>{ans.de}</div>
+                        <div className={`qa-answer-ar ${ans.color}`}>{ans.ar}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* CONTAINER FOR SECTIONS */}
-      <div id="contentContainer">
+      <div id="contentContainer" style={{ width: '100%', maxWidth: '1000px' }}>
         {bodyData.map((cat, catIdx) => (
           <React.Fragment key={catIdx}>
             <div className="category-wrapper-center">
