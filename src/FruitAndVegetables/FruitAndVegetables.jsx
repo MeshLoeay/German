@@ -41,7 +41,7 @@ const produceData = [
   { id: 32, name: "die Guave", pluralWord: "Guaven", ar: "جوافة", cat: "fruit", article: "die", img: "https://alahmadiashop.com/eg/wp-content/uploads/2019/11/082-guava.jpg" },
   { id: 68, name: "die Physalis", pluralWord: "Physalis", ar: "الحرنكش", cat: "fruit", article: "die", img: "https://m.media-amazon.com/images/I/4178YVeNegL._AC_.jpg" },
 
-  // 2. الخضروات (Gemüse)
+ // 2. الخضروات (Gemüse)
   // Der (مذكر)
   { id: 33, name: "der Salat", pluralWord: "Salate", ar: "خس", cat: "veg", article: "der", img: "https://media.zid.store/a44a5136-8837-49cc-b57e-bca87eaa69ed/09af5efe-976a-4ccc-a59a-2e704908f0eb.webp" },
   { id: 34, name: "der Broccoli", pluralWord: "Broccolis", ar: "بروكلي", cat: "veg", article: "der", img: "https://i.ebayimg.com/images/g/kGAAAOSwGUlm7DIT/s-l1600.webp" },
@@ -67,24 +67,25 @@ const produceData = [
   { id: 50, name: "die Tomate", pluralWord: "Tomaten", ar: "طماطم / قوطه", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h6d/he2/13754262978590/1767482_main.jpg" },
   { id: 51, name: "die Gurke", pluralWord: "Gurken", ar: "خيار", cat: "veg", article: "die", img: "https://gardencells.com/files/original/products/100.jpg" },
   { id: 52, name: "die Kartoffel", pluralWord: "Kartoffeln", ar: "بطاطس", cat: "veg", article: "die", img: "https://www.expoegypt.gov.eg/uploads/2024/01/65b3f0ae5bebf.jpg" },
-  { id: 53, name: "die Zwiebel", pluralWord: "Zwiebeln", ar: "بصل", cat: "veg", article: "die", img: "https://mozare3.net/wp-content/uploads/2024/04/Red-Onion.jpg" },
-  { id: 54, name: "die Karotte", pluralWord: "Karotten", ar: "جزر", cat: "veg", article: "die", img: "https://5.imimg.com/data5/SELLER/Default/2025/3/495997683/HX/FF/FQ/66789684/fresh-vegetables-carrot-1000x1000.jpg" },
-  { id: 55, name: "die Zucchini", pluralWord: "Zucchinis", ar: "كوسة", cat: "veg", article: "die", img: "https://png.pngtree.com/png-vector/20241219/ourlarge/pngtree-zucchini-vegetable-3d-clipart-png-image_14814185.png" },
-  { id: 56, name: "die Paprika", pluralWord: "Paprikas", ar: "فلفل رومي / ألوان", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h07/hd0/28721378885662/583821_main.jpg" },
-  { id: 57, name: "die Petersilie", pluralWord: "", ar: "بقدونس", cat: "veg", article: "die", img: "https://png.pngtree.com/png-vector/20240626/ourlarge/pngtree-fresh-parsley-bunch-isolated-of-png-image_12780241.png" },
-  { id: 58, name: "die Olive", pluralWord: "Oliven", ar: "زيتون", cat: "veg", article: "die", img: "https://png.pngtree.com/png-clipart/20250821/original/pngtree-fresh-black-olive-cluster-png-image_22175730.png" },
-  { id: 59, name: "die Artischocke", pluralWord: "Artischocken", ar: "خرشوف", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h42/h71/14662035374110/78607_main.jpg" },
-  { id: 60, name: "die Erbse", pluralWord: "Erbsen", ar: "بسلة / بازلاء", cat: "veg", article: "die", img: "https://images.ninelife.io/products/HAB0DKV8DS2D/1_6116OTpHtKL_desktop.webp" },
-  { id: 61, name: "die Bohne", pluralWord: "Bohnen", ar: "فاصوليا", cat: "veg", article: "die", img: "https://i.ebayimg.com/images/g/RlgAAeSwWtdqNOUg/s-l1600.webp" },
-  { id: 62, name: "die Linse", pluralWord: "Linsen", ar: "عدس", cat: "veg", article: "die", img: "https://www.justfood.tv/UserFiles/orange80016012024.jpg" },
-  { id: 63, name: "die Okra", pluralWord: "Okras", ar: "بامية", cat: "veg", article: "die", img: "https://genenastore.com/wp-content/uploads/2023/11/okra.jpg" },
-  { id: 64, name: "die Malve", pluralWord: "Malven", ar: "ملوخية", cat: "veg", article: "die", img: "https://shopfreshway.com/wp-content/uploads/2020/05/MULOKHIA-BUNCH.jpg" },
-  { id: 65, name: "die Auberginen", pluralWord: "Auberginen", ar: "بتنجان / باذنجان", cat: "veg", article: "die", img: "https://kumquaty.com/public/uploads/all/6sjUgfAB8mDOjn7KqDtrWWjBq9GKPynkzsN4KRhD.jpg" },
-  { id: 66, name: "die Kichererbse", pluralWord: "Kichererbsen", ar: "حمص", cat: "veg", article: "die", img: "https://i.ebayimg.com/images/g/6zcAAOSwADxcBnJ9/s-l960.webp" },
+  { id: 53, name: "die Süßkartoffel", pluralWord: "Süßkartoffeln", ar: "بطاطا حلوة", cat: "veg", article: "die", img: "https://peitrade.com/wp-content/uploads/2025/11/Egyptian-Sweet-Potatoes.webp" },
+  { id: 54, name: "die Zwiebel", pluralWord: "Zwiebeln", ar: "بصل", cat: "veg", article: "die", img: "https://mozare3.net/wp-content/uploads/2024/04/Red-Onion.jpg" },
+  { id: 55, name: "die Karotte", pluralWord: "Karotten", ar: "جزر", cat: "veg", article: "die", img: "https://5.imimg.com/data5/SELLER/Default/2025/3/495997683/HX/FF/FQ/66789684/fresh-vegetables-carrot-1000x1000.jpg" },
+  { id: 56, name: "die Zucchini", pluralWord: "Zucchinis", ar: "كوسة", cat: "veg", article: "die", img: "https://png.pngtree.com/png-vector/20241219/ourlarge/pngtree-zucchini-vegetable-3d-clipart-png-image_14814185.png" },
+  { id: 57, name: "die Paprika", pluralWord: "Paprikas", ar: "فلفل رومي / ألوان", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h07/hd0/28721378885662/583821_main.jpg" },
+  { id: 58, name: "die Petersilie", pluralWord: "", ar: "بقدونس", cat: "veg", article: "die", img: "https://png.pngtree.com/png-vector/20240626/ourlarge/pngtree-fresh-parsley-bunch-isolated-of-png-image_12780241.png" },
+  { id: 59, name: "die Olive", pluralWord: "Oliven", ar: "زيتون", cat: "veg", article: "die", img: "https://png.pngtree.com/png-clipart/20250821/original/pngtree-fresh-black-olive-cluster-png-image_22175730.png" },
+  { id: 60, name: "die Artischocke", pluralWord: "Artischocken", ar: "خرشوف", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h42/h71/14662035374110/78607_main.jpg" },
+  { id: 61, name: "die Erbse", pluralWord: "Erbsen", ar: "بسلة / بازلاء", cat: "veg", article: "die", img: "https://images.ninelife.io/products/HAB0DKV8DS2D/1_6116OTpHtKL_desktop.webp" },
+  { id: 62, name: "die Bohne", pluralWord: "Bohnen", ar: "فاصوليا", cat: "veg", article: "die", img: "https://i.ebayimg.com/images/g/RlgAAeSwWtdqNOUg/s-l1600.webp" },
+  { id: 63, name: "die Linse", pluralWord: "Linsen", ar: "عدس", cat: "veg", article: "die", img: "https://www.justfood.tv/UserFiles/orange80016012024.jpg" },
+  { id: 64, name: "die Okra", pluralWord: "Okras", ar: "بامية", cat: "veg", article: "die", img: "https://genenastore.com/wp-content/uploads/2023/11/okra.jpg" },
+  { id: 65, name: "die Malve", pluralWord: "Malven", ar: "ملوخية", cat: "veg", article: "die", img: "https://shopfreshway.com/wp-content/uploads/2020/05/MULOKHIA-BUNCH.jpg" },
+  { id: 66, name: "die Auberginen", pluralWord: "Auberginen", ar: "بتنجان / باذنجان", cat: "veg", article: "die", img: "https://kumquaty.com/public/uploads/all/6sjUgfAB8mDOjn7KqDtrWWjBq9GKPynkzsN4KRhD.jpg" },
+  { id: 67, name: "die Kichererbse", pluralWord: "Kichererbsen", ar: "حمص", cat: "veg", article: "die", img: "https://i.ebayimg.com/images/g/6zcAAOSwADxcBnJ9/s-l960.webp" },
   // الإضافات الجديدة (الجرجير والخضروات/الأعشاب الإضافية)
-  { id: 69, name: "die Rucola", pluralWord: "Rucolas", ar: "جرجير", cat: "veg", article: "die", img: "https://cdn.salla.sa/NNKNq/2VLrknqVEeac7NucYL3hYGwGGfIVT91pQ2SVeT3J.jpg" },
-  { id: 70, name: "der Koriander", pluralWord: "", ar: "كزبرة", cat: "veg", article: "der", img: "https://www.elsupplier.com/_next/image?url=https%3A%2F%2Fportal.elsupplier.com%2Fbackend%2Fpublic%2Fstorage%2Fproducts%2F1605917533.jpeg&w=640&q=50" },
-  { id: 71, name: "die Minze", pluralWord: "", ar: "نعناع", cat: "veg", article: "die", img: "https://shopfreshway.com/wp-content/uploads/2020/05/MINT-LEAVES-BUNCH.jpg" }
+  { id: 68, name: "die Rucola", pluralWord: "Rucolas", ar: "جرجير", cat: "veg", article: "die", img: "https://cdn.salla.sa/NNKNq/2VLrknqVEeac7NucYL3hYGwGGfIVT91pQ2SVeT3J.jpg" },
+  { id: 69, name: "der Koriander", pluralWord: "", ar: "كزبرة", cat: "veg", article: "der", img: "https://www.elsupplier.com/_next/image?url=https%3A%2F%2Fportal.elsupplier.com%2Fbackend%2Fpublic%2Fstorage%2Fproducts%2F1605917533.jpeg&w=640&q=50" },
+  { id: 70, name: "die Minze", pluralWord: "", ar: "نعناع", cat: "veg", article: "die", img: "https://shopfreshway.com/wp-content/uploads/2020/05/MINT-LEAVES-BUNCH.jpg" }
 ];
 
 export default function FruitAndVegetables() {
