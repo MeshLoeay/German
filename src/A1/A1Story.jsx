@@ -922,7 +922,7 @@ return (
       </div>
 
       <div className="nav-header-box">
-        <div className="nav-instruction">اختر القصة للذهاب إليها مباشرة:</div>
+        <div className="nav-instruction">اضغط على القصة للذهاب إليها مباشرة :</div>
         <div className="nav-list">
           {categoriesData.map((cat) => (
             <button
