@@ -120,7 +120,8 @@ export default function ClockApp() {
 
   const germanSentence = getGermanTimeText(hour, minute);
   const formattedTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
-  const formellText = `formell: Es ist ${hour} Uhr ${minute > 0 ? minute : ''}`;
+  const formellSpeechText = `Es ist ${hour} Uhr ${minute > 0 ? minute : ''}`;
+  const formellText = `formell: ${formellSpeechText}`;
 
   return (
     <div style={containerStyle}>
@@ -258,18 +259,34 @@ export default function ClockApp() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                <p dir="ltr" style={{ textAlign: 'left', fontSize: '0.78rem', opacity: 0.7, margin: 0 }}>Wie spät ist es?</p>
+                {/* أزرار الأسئلة تحت بعضها مع align-items: flex-end وتكبير الخط 2 بكسل (أصبح 0.98rem) */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '6px', alignItems: 'flex-end' }}>
+                  <button onClick={() => speakText("Wie spät ist es?")} style={{ ...soundButtonStyle, width: 'fit-content', fontSize: '0.98rem' }}>
+                    <span style={{ fontSize: '1.05rem', filter: 'drop-shadow(0px 0px 2px rgba(255,255,255,0.8)) drop-shadow(0px 1px 3px rgba(0,0,0,0.3))' }}>🔊</span>
+                    <span>? Wie spät ist es</span>
+                  </button>
+                  <button onClick={() => speakText("Wie viel Uhr ist es?")} style={{ ...soundButtonStyle, width: 'fit-content', fontSize: '0.98rem' }}>
+                    <span style={{ fontSize: '1.05rem', filter: 'drop-shadow(0px 0px 2px rgba(255,255,255,0.8)) drop-shadow(0px 1px 3px rgba(0,0,0,0.3))' }}>🔊</span>
+                    <span>? Wie Viel Uhr ist es</span>
+                  </button>
+                </div>
+
                 <p dir="ltr" style={{ textAlign: 'left', fontSize: '1.3rem', fontWeight: '800', color: '#ef4444', lineHeight: 1.1, margin: 0 }}>
                   {germanSentence}
                 </p>
-                <p dir="ltr" style={{ textAlign: 'left', fontSize: '0.78rem', opacity: 0.75, margin: '0 0 2px 0' }}>
+                <p dir="ltr" style={{ textAlign: 'left', fontSize: '0.97rem', color: '#4ade80', margin: '0 0 2px 0' }}>
                   {formattedTime} · {formellText}
                 </p>
 
-                <div>
-                  <button onClick={() => speakText(germanSentence)} style={soundButtonStyle}>
+                {/* أزرار الإجابات */}
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '4px' }}>
+                  <button onClick={() => speakText(germanSentence)} style={{ ...soundButtonStyle, borderColor: '#ef4444' }}>
                     <span style={{ fontSize: '0.9rem', filter: 'drop-shadow(0px 0px 2px rgba(255,255,255,0.8)) drop-shadow(0px 1px 3px rgba(0,0,0,0.3))' }}>🔊</span>
                     <span>استمع للنطق</span>
+                  </button>
+                  <button onClick={() => speakText(formellSpeechText)} style={{ ...soundButtonStyle, borderColor: '#4ade80' }}>
+                    <span style={{ fontSize: '0.9rem', filter: 'drop-shadow(0px 0px 2px rgba(255,255,255,0.8)) drop-shadow(0px 1px 3px rgba(0,0,0,0.3))' }}>🔊</span>
+                    <span>نطق (Formell)</span>
                   </button>
                 </div>
 
