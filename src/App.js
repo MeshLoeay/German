@@ -50,6 +50,7 @@ import Logat from './AllTopic/Logat';
 import TimeAndDatePage from './AllTopic/TimeAndDatePage';
 import TravelPage from './AllTopic/TravelPage';
 import SchoolAndEducationPage from './AllTopic/SchoolAndEducationPage';
+import EssenUndWasser from './AllTopic/EssenUndWasser';
 //
 import './style.css';
 import './style2.css';
@@ -624,6 +625,7 @@ function App() {
         <Route path="/AllTopic/TimeAndDatePage" element={<TimeAndDatePage />} />
         <Route path="/AllTopic/TravelPage" element={<TravelPage />} />
         <Route path="/AllTopic/SchoolAndEducationPage" element={<SchoolAndEducationPage />} />
+        <Route path="/AllTopic/EssenUndWasser" element={<EssenUndWasser />} />
 
         <Route path="/grad4" element={<Grad4 />} />
         <Route path="/grad4/Lektion2X1" element={<Lektion2X1 />} />
