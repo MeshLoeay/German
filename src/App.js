@@ -78,21 +78,16 @@ import Tamreed3 from './Tamreed/Tamreed3';
 import Tamreed4 from './Tamreed/Tamreed4';
 // End Tamreed
 
-// دالة نطق آمنة عالمية: تمنع أي انهيار أو ظهور رسائل خطأ إذا توقف النطق أو لم يدعمه المتصفح
 export const safeSpeak = (text, lang = 'de-DE') => {
   try {
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel(); // إيقاف أي نطق سابق لمنع التداخل
+      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
-      utterance.onerror = (e) => {
-        // صمت تام عند حدوث خطأ في النطق لعدم إزعاج المستخدم
-      };
+      utterance.onerror = (e) => {};
       window.speechSynthesis.speak(utterance);
     }
-  } catch (error) {
-    // صمت تام - يستمر الموقع في العمل بشكل طبيعي كأن شيئاً لم يكن
-  }
+  } catch (error) {}
 };
 
 function EmptyPage() {
@@ -155,6 +150,24 @@ function HomeButton() {
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [isSpecialTime, setIsSpecialTime] = useState(false);
+  const videoRef = useRef(null);
+
+  // تشغيل آخر ثانية فقط (من الثانية 4 إلى 5)
+  const playLastOneSecond = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;  // تشغيل الصوت
+      videoRef.current.volume = 1.0;   // أعلى صوت
+      videoRef.current.currentTime = 4; // البدء من الثانية الرابعة (آخر ثانية في الفيديو)
+      videoRef.current.load();
+
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log("Playback error:", error);
+        });
+      }
+    }
+  };
 
   useEffect(() => {
     const now = new Date();
@@ -162,7 +175,6 @@ function App() {
     const minutes = now.getMinutes();
     const totalMinutes = hours * 60 + minutes;
 
-    // من بعد الساعة 12 بالليل (00:00) لحد 6:30 صباحاً (390 دقيقة)
     const special = totalMinutes >= 0 && totalMinutes <= 390;
     setIsSpecialTime(special);
 
@@ -224,6 +236,7 @@ function App() {
   const handleScrollButtonClick = () => {
     if (!isLongPressRef.current) {
       scrollToTop();
+      playLastOneSecond(); // تشغيل آخر ثانية فقط عند الضغط
     }
   };
 
@@ -262,6 +275,20 @@ function App() {
       fontFamily: "'Cairo', 'Courgette', sans-serif", WebkitTextSizeAdjust: '100%', textSizeAdjust: '100%'
     }}>
 
+      {/* عنصر الفيديو (يتم إيقافه فوراً بمجرد وصوله إلى الثانية الخامسة ليعمل آخر ثانية واحدة فقط) */}
+      <video
+        ref={videoRef}
+        src={process.env.PUBLIC_URL + "/111.mp4"}
+        style={{ display: 'none' }}
+        preload="auto"
+        playsInline
+        onTimeUpdate={() => {
+          if (videoRef.current && videoRef.current.currentTime >= 5) {
+            videoRef.current.pause();
+          }
+        }}
+      />
+
       {showSplash && (
         <div style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
@@ -299,12 +326,10 @@ function App() {
         position: 'relative', width: '100%', maxWidth: '540px', display: 'flex', direction: 'ltr',
         justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', zIndex: 10
       }}>
-        {/* زرار رجوع أصبح في أقصى اليسار */}
         <div style={{ display: 'flex', alignItems: 'center', direction: 'rtl' }}>
           <BackButton />
         </div>
 
-        {/* مجموعة أزرار الرئيسية والشمس والقمر أصبحت في أقصى اليمين */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', direction: 'rtl' }}>
           <HomeButton />
           <button id="themeToggle" onClick={cycleTheme} className="tool-icon-btn" title={themeTitles[themeLevel]} style={{
