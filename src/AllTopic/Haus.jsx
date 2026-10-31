@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// قائمة موسوعة المنزل الشاملة لكل ما يوجد في البيت باللغة الألمانية
+// قائمة موسوعة المنزل الشاملة لكل ما يوجد في البيت وما يحيط به باللغة الألمانية
 const allHouseItemsData = [
   // --- القسم الأول: غرف ومرافق وأقسام المنزل الأساسية ---
   { id: 1, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Haus', pronunciation: 'داس هاوس', arabic: 'المنزل' },
@@ -19,6 +19,17 @@ const allHouseItemsData = [
   { id: 14, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'der Balkon', pronunciation: 'در بالكون', arabic: 'الشرفة' },
   { id: 15, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'die Garage', pronunciation: 'دي غاراجِ', arabic: 'المرآب / الكراج' },
   { id: 16, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'die Terrasse', pronunciation: 'دي تراسه', arabic: 'التراس / الفناء' },
+  { id: 101, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Auto', pronunciation: 'داس أوتو', arabic: 'السيارة' },
+  { id: 102, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'der Stellplatz', pronunciation: 'در شتيل بلاتس', arabic: 'موقف / باكة السيارات' },
+  { id: 103, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'der Parkplatz', pronunciation: 'در بارك بلاتس', arabic: 'موقف السيارات العام / الخاص' },
+  { id: 104, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Garagentor', pronunciation: 'داس غاراجن طور', arabic: 'بوابة / باب الكراج' },
+  { id: 105, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'die Einfahrt', pronunciation: 'دي آين فارت', arabic: 'مدخل / مدق السيارات' },
+  { id: 106, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Fahrrad', pronunciation: 'داس فاراد', arabic: 'الدراجة الهوائية' },
+  { id: 107, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Motorrad', pronunciation: 'داس موتورراد', arabic: 'الدراجة النارية' },
+  { id: 108, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'der E-Scooter', pronunciation: 'در إي سكوتر', arabic: 'السكوتر الكهربائي' },
+  { id: 156, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'das Gäste-WC', pronunciation: 'داس غيسته في سي', arabic: 'حمام الضيوف الصغير' },
+  { id: 157, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'der Waschkeller', pronunciation: 'در فاش كيلر', arabic: 'غرفة الغسيل المشتركة / في البدروم' },
+  { id: 158, categoryNum: 1, categoryTitle: 'غرف ومرافق وأقسام المنزل', german: 'die Haustür', pronunciation: 'دي هاوس تيور', arabic: 'باب المنزل الرئيسي' },
 
   // --- القسم الثاني: هيكل البناء ومكونات الغرف ---
   { id: 17, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'die Tür', pronunciation: 'دي تيور', arabic: 'الباب' },
@@ -31,6 +42,9 @@ const allHouseItemsData = [
   { id: 24, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'die Treppe', pronunciation: 'دي تريبه', arabic: 'الدرج / السلم' },
   { id: 25, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'der Aufzug', pronunciation: 'در أوفتسوغ', arabic: 'المصعد' },
   { id: 26, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'der Zaun', pronunciation: 'در تساون', arabic: 'السياج' },
+  { id: 159, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'die Schwelle', pronunciation: 'دي شفيله', arabic: 'عتبة الباب' },
+  { id: 160, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'der Balkon', pronunciation: 'در بالكون', arabic: 'الشرفة' },
+  { id: 161, categoryNum: 2, categoryTitle: 'هيكل البناء ومكونات الغرف', german: 'die Dachrinne', pronunciation: 'دي داخبينه', arabic: 'مزراب تصريف مياه الأمطار بالسقف' },
 
   // --- القسم الثالث: المطبخ وأدواته ومستلزماته الكاملة ---
   { id: 27, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'die Küche', pronunciation: 'دي كيوشه', arabic: 'المطبخ' },
@@ -57,6 +71,9 @@ const allHouseItemsData = [
   { id: 48, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'die Kaffeemaschine', pronunciation: 'دي كافيه ماشينه', arabic: 'صانعة القهوة' },
   { id: 49, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'der Toaster', pronunciation: 'در توستر', arabic: 'محمصة الخبز' },
   { id: 50, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'die Schüssel', pronunciation: 'دي شويسيل', arabic: 'السلطانية / وعاء' },
+  { id: 162, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'das Schneidebrett', pronunciation: 'داس شنايد بريت', arabic: 'لوح تقطيع الخضروات' },
+  { id: 163, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'der Dosenöffner', pronunciation: 'در دوزن أوفنر', arabic: 'فتاحة العلب' },
+  { id: 164, categoryNum: 3, categoryTitle: 'المطبخ ومستلزماته', german: 'das Sieb', pronunciation: 'داس سيب', arabic: 'المصفاة' },
 
   // --- القسم الرابع: الحمام وأدواته ومستلزماته الكاملة ---
   { id: 51, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'das Badezimmer', pronunciation: 'داس بادتسيمر', arabic: 'الحمام' },
@@ -76,6 +93,9 @@ const allHouseItemsData = [
   { id: 65, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'der Föhn', pronunciation: 'در فيون', arabic: 'مجفف الشعر' },
   { id: 66, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'der Toilettenpapier', pronunciation: 'در تواليت بابير', arabic: 'ورق المرحاض' },
   { id: 67, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'die Waage', pronunciation: 'دي فاغه', arabic: 'ميزان الحمام' },
+  { id: 165, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'die Duschkabine', pronunciation: 'دي دوش كابينه', arabic: 'كبينة الاستحمام الزجاجية' },
+  { id: 166, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'der Toilettenbürste', pronunciation: 'دي تواليت بيورسته', arabic: 'فرشاة تنظيف المرحاض' },
+  { id: 167, categoryNum: 4, categoryTitle: 'الحمام ومستلزماته', german: 'die Duschvorhang', pronunciation: 'در دوش فور هانغ', arabic: 'ستارة الحمام' },
 
   // --- القسم الخامس: أثاث وغرفة النوم والمعيشة ---
   { id: 68, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'das Sofa', pronunciation: 'داس زوفا', arabic: 'الأريكة / الكنبة' },
@@ -93,6 +113,9 @@ const allHouseItemsData = [
   { id: 80, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'die Vorhänge', pronunciation: 'دي فور هينغه', arabic: 'الستائر' },
   { id: 81, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'das Bild', pronunciation: 'داس بيلد', arabic: 'الصورة / اللوحة الفنية' },
   { id: 82, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'die Vase', pronunciation: 'دي فازه', arabic: 'مزهرية الورود' },
+  { id: 168, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'das Doppelbett', pronunciation: 'داس دوبل بيت', arabic: 'سرير مزدوج / كبير' },
+  { id: 169, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'der Couchtisch', pronunciation: 'در كوتش تيش', arabic: 'طاولة القهوة الصغيرة أمام الكنبة' },
+  { id: 170, categoryNum: 5, categoryTitle: 'أثاث وغرف النوم والمعيشة', german: 'die Matratze', pronunciation: 'دي ماتراتسه', arabic: 'مرتبة السرير' },
 
   // --- القسم السادس: الأجهزة الكهربائية والأدوات المنزلية ---
   { id: 83, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'die Waschmaschine', pronunciation: 'دي فاشماشينه', arabic: 'الغسالة' },
@@ -112,8 +135,83 @@ const allHouseItemsData = [
   { id: 97, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'der Schlüssel', pronunciation: 'در شليوسل', arabic: 'المفتاح' },
   { id: 98, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'das Schloss', pronunciation: 'داس شلوس', arabic: 'القفل' },
   { id: 99, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'die Uhr', pronunciation: 'دي أوهر', arabic: 'الساعة' },
-  { id: 100, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'der Mülleimer', pronunciation: 'در مول إيمر', arabic: 'سلة المهملات' }
+  { id: 100, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'der Mülleimer', pronunciation: 'در مول إيمر', arabic: 'سلة المهملات' },
+  { id: 171, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'der Wasserkocher', pronunciation: 'در فاسركوخر', arabic: 'غلاية المياه' },
+  { id: 172, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'der Wecker', pronunciation: 'در فيكر', arabic: 'ساعة المنبه' },
+  { id: 173, categoryNum: 6, categoryTitle: 'الأجهزة الكهربائية والأدوات المنزلية', german: 'das Verlängerungskabel', pronunciation: 'داس فيرلينغروغس كابل', arabic: 'وصلة الكهرباء / المشترك' },
+
+  // --- القسم السابع: أدوات النظافة والغسيل ---
+  { id: 109, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Besen', pronunciation: 'در بيزن', arabic: 'المكنسة اليدوية / المقشة' },
+  { id: 110, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Mopp', pronunciation: 'در موب', arabic: 'الممسحة' },
+  { id: 111, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Eimer', pronunciation: 'در إيمر', arabic: 'الدلو / السطل' },
+  { id: 112, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'das Waschmittel', pronunciation: 'داس فاش ميتل', arabic: 'مسحوق الغسيل' },
+  { id: 113, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Weichspüler', pronunciation: 'در فايش شبيولر', arabic: 'منعم الأقمشة' },
+  { id: 114, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'das Reinigungsmittel', pronunciation: 'داس راينيغونغس ميتل', arabic: 'مستحضر التنظيف' },
+  { id: 115, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Schwamm', pronunciation: 'در شفام', arabic: 'الإسفنجة' },
+  { id: 116, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'das Putztuch', pronunciation: 'داس بوتس توخ', arabic: 'خرقة / قماش التنظيف' },
+  { id: 117, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Wäscheständer', pronunciation: 'در فيشه شتندر', arabic: 'منشر الغسيل' },
+  { id: 118, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'die Wäscheklammer', pronunciation: 'دي فيشه كلامر', arabic: 'مشبك الغسيل' },
+  { id: 174, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'der Staubsaugerbeutel', pronunciation: 'در شتاوبزاوغر بوتل', arabic: 'كيس المكنسة الكهربائية' },
+  { id: 175, categoryNum: 7, categoryTitle: 'أدوات النظافة والغسيل', german: 'die Müllbeutel', pronunciation: 'دي مول بوتل', arabic: 'أكياس القمامة' },
+
+  // --- القسم الثامن: أدوات الحديقة والزراعة ---
+  { id: 119, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'der Rasenmäher', pronunciation: 'در رازن ميهر', arabic: 'جازة العشب / آلة قص الحشائش' },
+  { id: 120, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'der Gartenschlauch', pronunciation: 'در غارتن شلاوخ', arabic: 'خرطوم المياه للحديقة' },
+  { id: 121, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Schaufel', pronunciation: 'دي شاوفل', arabic: 'المجرفة' },
+  { id: 122, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Gießkanne', pronunciation: 'دي غيس كانه', arabic: 'مرش النباتات / إبريق السقي' },
+  { id: 123, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Heckenschere', pronunciation: 'دي هيكن شيره', arabic: 'مقص السياج الشجري' },
+  { id: 124, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Schubkarre', pronunciation: 'دي شوب كاريه', arabic: 'عربة اليد للحديقة' },
+  { id: 125, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'der Blumentopf', pronunciation: 'در بلومن توبف', arabic: 'وعاء النباتات / أصيص الزهور' },
+  { id: 126, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Harke', pronunciation: 'دي هاركه', arabic: 'المشط / المذراة الزراعية' },
+  { id: 176, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'die Gartenbank', pronunciation: 'دي غارتن بانك', arabic: 'مقعد الحديقة' },
+  { id: 177, categoryNum: 8, categoryTitle: 'أدوات الحديقة والزراعة', german: 'der Grill', pronunciation: 'در غريل', arabic: 'شواية الحديقة' },
+
+  // --- القسم التاسع: أدوات الصيانة والورشة المنزلية ---
+  { id: 127, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'der Hammer', pronunciation: 'در هامر', arabic: 'المطرقة' },
+  { id: 128, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'der Schraubenzieher', pronunciation: 'در شراوبين تسيهر', arabic: 'المفك / مفك البراغي' },
+  { id: 129, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Zange', pronunciation: 'دي تسانغه', arabic: 'الزردية / الكماشة' },
+  { id: 130, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Bohrmaschine', pronunciation: 'دي بور ماشينه', arabic: 'مثقاب الكهرباء / الشيمور' },
+  { id: 131, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Schraube', pronunciation: 'دي شراوبه', arabic: 'المسمار القلاووظ' },
+  { id: 132, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'der Nagel', pronunciation: 'در ناغل', arabic: 'المسمار العادي' },
+  { id: 133, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Leiter', pronunciation: 'دي لايتر', arabic: 'السلم المتنقل' },
+  { id: 134, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'das Klebeband', pronunciation: 'داس كليبه باند', arabic: 'شريط اللصق اللاصق' },
+  { id: 135, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Säge', pronunciation: 'دي زاغه', arabic: 'المنشار' },
+  { id: 178, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'der Zollstock', pronunciation: 'در تسول شتوك', arabic: 'شريط القياس الخشبي / المتر' },
+  { id: 179, categoryNum: 9, categoryTitle: 'أدوات الصيانة والورشة المنزلية', german: 'die Taschenlampe', pronunciation: 'دي تاشين لامبه', arabic: 'الكشاف اليدوي' },
+
+  // --- القسم العاشر: مستلزمات مكتب العمل والتكنولوجيا ---
+  { id: 136, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Computer', pronunciation: 'در كمبيوتر', arabic: 'الحاسوب / الكمبيوتر' },
+  { id: 137, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Laptop', pronunciation: 'در لابتوب', arabic: 'الحاسوب المحمول' },
+  { id: 138, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Drucker', pronunciation: 'در دروكر', arabic: 'الطابعة' },
+  { id: 139, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Schreibtisch', pronunciation: 'در شرايب تيش', arabic: 'مكتب العمل' },
+  { id: 140, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Bürostuhl', pronunciation: 'در بيرو شتول', arabic: 'كرسي المكتب' },
+  { id: 141, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'die Schreibtischlampe', pronunciation: 'دي شرايب تيش لامبه', arabic: 'مصباح المكتب' },
+  { id: 142, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'das Papier', pronunciation: 'داس بابير', arabic: 'الورق' },
+  { id: 143, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Kugelschreiber', pronunciation: 'در كوجل شرايبر', arabic: 'القلم الجاف' },
+  { id: 144, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'die Schere', pronunciation: 'دي شيره', arabic: 'المقص المكتبي' },
+  { id: 145, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'der Router', pronunciation: 'در روتر', arabic: 'راوتر الإنترنت' },
+  { id: 180, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'die Tastatur', pronunciation: 'دي تاستاتور', arabic: 'لوحة المفاتيح' },
+  { id: 181, categoryNum: 10, categoryTitle: 'مستلزمات مكتب العمل والتكنولوجيا', german: 'die Maus', pronunciation: 'دي ماوس', arabic: 'فأرة الحاسوب' },
+
+  // --- القسم الحادي عشر: ألعاب وأنشطة التسلية المنزلية ---
+  { id: 146, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'das Spiel', pronunciation: 'داس سبيل', arabic: 'اللعبة' },
+  { id: 147, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'das Brettspiel', pronunciation: 'داس بريت سبيل', arabic: 'لعبة لوحية' },
+  { id: 148, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'die Spielkonsole', pronunciation: 'دي سبيل كونصوله', arabic: 'جهاز ألعاب الفيديو / السوني' },
+  { id: 149, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'der Controller', pronunciation: 'در كونتراولر', arabic: 'يد التحكم / دراع الألعاب' },
+  { id: 150, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'die Spielkarte', pronunciation: 'دي سبيل كارته', arabic: 'ورقة اللعب / الكوتشينة' },
+  { id: 151, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'das Puzzle', pronunciation: 'داس بوزل', arabic: 'لعبة التركيب / البازل' },
+  { id: 152, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'der Ball', pronunciation: 'در بال', arabic: 'الكرة' },
+  { id: 153, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'die Puppe', pronunciation: 'دي بوبه', arabic: 'الدمية / العروسة' },
+  { id: 154, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'das Buch', pronunciation: 'داس بوخ', arabic: 'الكتاب' },
+  { id: 155, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'die Schaukel', pronunciation: 'دي شاوكل', arabic: 'الأرجوحة' },
+  { id: 182, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'das Schachspiel', pronunciation: 'داس شاخ سبيل', arabic: 'لعبة الشطرنج' },
+  { id: 183, categoryNum: 11, categoryTitle: 'ألعاب وأنشطة التسلية المنزلية', german: 'die Tischtennisplatte', pronunciation: 'دي تيش تينيس بلاته', arabic: 'طاولة تنس الطاولة / البينج بونج' }
 ];
+
+// استخراج الأقسام الفريدة ديناميكياً مع أرقامها وعناوينها
+const categoriesList = Array.from(
+  new Set(allHouseItemsData.map((item) => JSON.stringify({ num: item.categoryNum, title: item.categoryTitle })))
+).map((str) => JSON.parse(str));
 
 export default function HousePage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -126,6 +224,13 @@ export default function HousePage() {
       utterance.lang = 'de-DE';
       utterance.rate = 0.85;
       window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const scrollToCategory = (catNum) => {
+    const element = document.getElementById(`category-${catNum}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -166,15 +271,56 @@ export default function HousePage() {
           text-align: center;
           font-size: 1.6rem;
           font-weight: 900;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           color: inherit;
         }
         .page-subtitle {
           text-align: center;
           font-size: 1.1rem;
           font-weight: 700;
-          margin-bottom: 25px;
+          margin-bottom: 20px;
           color: #00bfff;
+        }
+        .nav-instruction-title {
+          text-align: center;
+          font-size: 0.95rem;
+          font-weight: 800;
+          margin-bottom: 12px;
+          color: inherit;
+          opacity: 0.9;
+        }
+        .nav-index-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+          width: 90%;
+          max-width: 90%;
+          margin: 0 auto 25px auto;
+          padding: 8px;
+          box-sizing: border-box;
+        }
+        .nav-index-btn {
+          background-color: transparent;
+          border: 1px solid #00bfff;
+          color: inherit;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: bold;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.3s ease;
+        }
+        .nav-index-btn:hover {
+          background-color: #00bfff;
+          color: #ffffff;
+          box-shadow: 0 0 10px rgba(0, 191, 255, 0.45);
+        }
+        .nav-index-btn:active {
+          box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
         }
         .search-container {
           display: flex;
@@ -207,6 +353,7 @@ export default function HousePage() {
           align-items: center;
           gap: 8px;
           width: 100%;
+          scroll-margin-top: 20px;
         }
         .category-badge {
           background-color: #ff3333;
@@ -243,11 +390,12 @@ export default function HousePage() {
           box-sizing: border-box;
           cursor: pointer;
           user-select: none;
-          transition: border-color 0.2s ease;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
           min-height: 55px;
         }
         .vocab-card:hover {
           border-color: #00bfff;
+          box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
         }
         .vocab-main-row {
           display: flex;
@@ -324,7 +472,24 @@ export default function HousePage() {
       `}</style>
 
       <h1 className="page-title">المنزل</h1>
-      <p className="page-subtitle">كل ما يوجد في البيت باللغة الألمانية</p>
+      <p className="page-subtitle">كل ما يوجد في البيت وما يحيط به باللغة الألمانية</p>
+
+      {/* عنوان التوجيه */}
+      <div className="nav-instruction-title">اضغط على القسم الذي تود الذهاب إليه</div>
+
+      {/* فهرس الانتقال السريع للأقسام */}
+      <div className="nav-index-container">
+        {categoriesList.map((cat) => (
+          <button
+            key={cat.num}
+            className="nav-index-btn"
+            onClick={() => scrollToCategory(cat.num)}
+          >
+            <span className="category-badge">{cat.num}</span>
+            <span>{cat.title}</span>
+          </button>
+        ))}
+      </div>
 
       {/* حقل البحث */}
       <div className="search-container">
@@ -346,7 +511,7 @@ export default function HousePage() {
           return (
             <React.Fragment key={item.id}>
               {showHeading && (
-                <div className="category-heading">
+                <div id={`category-${item.categoryNum}`} className="category-heading">
                   <span className="category-badge">{item.categoryNum}</span>
                   <span>{item.categoryTitle}</span>
                 </div>
