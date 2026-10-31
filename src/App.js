@@ -620,11 +620,11 @@ function App() {
               </Link>
 
               <Link to="/tamreed3" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                اسئله - ااااااه من الوجع
+                اسئله - اوجاع الجسم
               </Link>
 
               <Link to="/tamreed4" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                جمل - انا مش قادر 🥺
+                جمل - انا مش كويس خالث 🥺
                 <br/>
               </Link>
             </div>
