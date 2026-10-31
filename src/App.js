@@ -51,6 +51,9 @@ import TimeAndDatePage from './AllTopic/TimeAndDatePage';
 import TravelPage from './AllTopic/TravelPage';
 import SchoolAndEducationPage from './AllTopic/SchoolAndEducationPage';
 import EssenUndWasser from './AllTopic/EssenUndWasser';
+import Shapes from './AllTopic/Shapes';
+import Haus from './AllTopic/Haus';
+import BodyAndHelthy from './AllTopic/BodyAndHelthy';
 //
 import './style.css';
 import './style2.css';
@@ -612,6 +615,10 @@ function App() {
                 الأعضاء الداخلية - Die inneren Organe
               </Link>
 
+              <Link to="/AllTopic/BodyAndHelthy" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
+               بنك كلمات الصحه و الجسم
+              </Link>
+
               <Link to="/tamreed3" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
                 اسئله - ااااااه من الوجع
               </Link>
@@ -651,6 +658,9 @@ function App() {
         <Route path="/AllTopic/TravelPage" element={<TravelPage />} />
         <Route path="/AllTopic/SchoolAndEducationPage" element={<SchoolAndEducationPage />} />
         <Route path="/AllTopic/EssenUndWasser" element={<EssenUndWasser />} />
+        <Route path="/AllTopic/Shapes" element={<Shapes />} />
+        <Route path="/AllTopic/Haus" element={<Haus />} />
+        <Route path="/AllTopic/BodyAndHelthy" element={<BodyAndHelthy />} />
 
         <Route path="/grad4" element={<Grad4 />} />
         <Route path="/grad4/Lektion2X1" element={<Lektion2X1 />} />

@@ -34,6 +34,16 @@ export default function AllTopic() {
       isSpecial: true
     },
     {
+      to: "/AllTopic/Shapes",
+      label: "الاشكال",
+      isSpecial: true
+    },
+    {
+      to: "/AllTopic/Haus",
+      label: "المنزل و الاثاث",
+      isSpecial: true
+    },
+    {
       to: "/AllTopic/TimeAndDatePage",
       label: "الوقت و التاريخ",
       isSpecial: true
@@ -41,6 +51,11 @@ export default function AllTopic() {
      {
       to: "/AllTopic/CityAndTransport",
       label: "🏙️ المدينة والمواصلات 🚌",
+      isSpecial: true
+    },
+     {
+      to: "/AllTopic/BodyAndHelthy",
+      label: "الجسم و الصحه",
       isSpecial: true
     },
 
