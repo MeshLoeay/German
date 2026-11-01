@@ -610,8 +610,28 @@ function App() {
                 نعم للتنمر 😂 😂
               </h3>
 
+              {/* مكان الصورة مع باك جراوند بيضاء */}
+              <div style={{
+                width: '100%',
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                padding: '15px',
+                margin: '15px 0',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                boxSizing: 'border-box'
+              }}>
+                <img
+                  src={ process.env.PUBLIC_URL + "/10.jpeg"}
+                  alt="موقع الصورة"
+                  style={{ maxWidth: '100%', height: 'auto', display: 'block', borderRadius: '8px' }}
+                />
+              </div>
+
               <Link to="/tamreed" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-                أعضاء الجسم الخارجية - Äußere Körperteile
+                أضاء الجسم الخارجية - Äußere Körperteile
               </Link>
 
               <Link to="/tamreed2" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
@@ -619,7 +639,7 @@ function App() {
               </Link>
 
               <Link to="/AllTopic/BodyAndHelthy" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
-               بنك كلمات الصحه و الجسم
+                بنك كلمات الصحه و الجسم
               </Link>
 
               <Link to="/tamreed3" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
