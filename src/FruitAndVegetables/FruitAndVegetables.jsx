@@ -65,7 +65,7 @@ const produceData = [
 
   // Die (مؤنث)
   { id: 50, name: "die Tomate", pluralWord: "Tomaten", ar: "طماطم / قوطه", cat: "veg", article: "die", img: "https://cdn.mafrservices.com/sys-master-root/h6d/he2/13754262978590/1767482_main.jpg" },
-  { id: 51, name: "die Gurke", pluralWord: "Gurken", ar: "خيار", cat: "veg", article: "die", img: "https://gardencells.com/files/original/products/100.jpg" },
+  { id: 51, name: "die Gurke", pluralWord: "Gurken", ar: "خيار", cat: "veg", article: "die", img: process.env.PUBLIC_URL + "/9.jpeg"},
   { id: 52, name: "die Kartoffel", pluralWord: "Kartoffeln", ar: "بطاطس", cat: "veg", article: "die", img: "https://www.expoegypt.gov.eg/uploads/2024/01/65b3f0ae5bebf.jpg" },
   { id: 53, name: "die Süßkartoffel", pluralWord: "Süßkartoffeln", ar: "بطاطا حلوة", cat: "veg", article: "die", img: "https://peitrade.com/wp-content/uploads/2025/11/Egyptian-Sweet-Potatoes.webp" },
   { id: 54, name: "die Zwiebel", pluralWord: "Zwiebeln", ar: "بصل", cat: "veg", article: "die", img: "https://mozare3.net/wp-content/uploads/2024/04/Red-Onion.jpg" },
