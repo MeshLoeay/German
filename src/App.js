@@ -54,6 +54,9 @@ import EssenUndWasser from './AllTopic/EssenUndWasser';
 import Shapes from './AllTopic/Shapes';
 import Haus from './AllTopic/Haus';
 import BodyAndHelthy from './AllTopic/BodyAndHelthy';
+import Clothes from './AllTopic/Clothes';
+import Weather from './AllTopic/Weather';
+import Internet from './AllTopic/Internet';
 //
 import './style.css';
 import './style2.css';
@@ -526,7 +529,7 @@ function App() {
                     animation: 'glowAnimation 1.5s infinite alternate'
                   }}
                 >
-                  جوايا حجات حلوه
+                  بنك الكلمات - 20 موضوع
                 </Link>
 
                 {[
@@ -661,6 +664,9 @@ function App() {
         <Route path="/AllTopic/Shapes" element={<Shapes />} />
         <Route path="/AllTopic/Haus" element={<Haus />} />
         <Route path="/AllTopic/BodyAndHelthy" element={<BodyAndHelthy />} />
+        <Route path="/AllTopic/Clothes" element={<Clothes />} />
+        <Route path="/AllTopic/Weather" element={<Weather />} />
+        <Route path="/AllTopic/Internet" element={<Internet />} />
 
         <Route path="/grad4" element={<Grad4 />} />
         <Route path="/grad4/Lektion2X1" element={<Lektion2X1 />} />
