@@ -15,7 +15,7 @@ const extendedClothesData = [
   { id: 10, categoryNum: 1, categoryTitle: 'الملابس العامة الأساسية', german: 'der Trainingsanzug', pronunciation: 'در تراينينغز‌أنتسوغ', arabic: 'بدلة رياضية (تريننج)' },
   { id: 11, categoryNum: 1, categoryTitle: 'الملابس العامة الأساسية', german: 'der Kapuzenpullover', pronunciation: 'در كابوتسن‌بولوفر', arabic: 'سويت شيرت بقلنسوة (هودي)' },
 
-  // --- القسم 2: ملابس النساء والفساتين ---
+// --- القسم 2: ملابس النساء والفساتين ---
   { id: 12, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'das Kleid', pronunciation: 'داس كلايد', arabic: 'الفستان' },
   { id: 13, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'der Rock', pronunciation: 'در روك', arabic: 'التنورة (الجونلة)' },
   { id: 14, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'die Bluse', pronunciation: 'دي بلوزه', arabic: 'البلوزة' },
@@ -23,7 +23,8 @@ const extendedClothesData = [
   { id: 16, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'das Abendkleid', pronunciation: 'داس آبندكلايد', arabic: 'فستان سهرة' },
   { id: 17, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'der Hosenanzug', pronunciation: 'در هوزين‌أنتسوغ', arabic: 'بدلة نسائية بنطال' },
   { id: 18, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'das Top', pronunciation: 'داس توب', arabic: 'بلوزة صيفية بدون أكمام (تاپ)' },
-
+  { id: 1801, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'die Binde', pronunciation: 'دي بينده', arabic: 'الفوطة الصحية للنساء' },
+  { id: 1802, categoryNum: 2, categoryTitle: 'ملابس النساء والفساتين', german: 'die Slipeinlage', pronunciation: 'دي شليب‌آينلاغه', arabic: 'فوطة يومية نسائية' },
   // --- القسم 3: ملابس الرجال والبدلات الرسمية ---
   { id: 19, categoryNum: 3, categoryTitle: 'ملابس الرجال والبدلات الرسمية', german: 'der Anzug', pronunciation: 'در آنتسوغ', arabic: 'البدلة الرجالي' },
   { id: 20, categoryNum: 3, categoryTitle: 'ملابس الرجال والبدلات الرسمية', german: 'die Krawatte', pronunciation: 'دي كرافاته', arabic: 'ربطة العنق (الكرفتة)' },
