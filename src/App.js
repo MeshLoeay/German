@@ -35,6 +35,7 @@ import FruitAndVegetables from './FruitAndVegetables/FruitAndVegetables';
 import Country from './Country/Country';
 import Uhr from './Uhr/Uhr';
 import Music from './Music/Music';
+import Gdwal from './Gdwal/Gdwal';
 //
 import AllTopic from './AllTopic/AllTopic';
 import ImportWords from './AllTopic/ImportWords';
@@ -650,6 +651,11 @@ function App() {
                 جمل - انا مش كويس خالث 🥺
                 <br/>
               </Link>
+
+              <Link to="/Gdwal" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" , display:"none"}}>
+              جدول
+                <br/>
+              </Link>
             </div>
           </>
         } />
@@ -665,6 +671,7 @@ function App() {
         <Route path="/Country" element={<Country />} />
         <Route path="/Uhr" element={<Uhr />} />
         <Route path="/Music" element={<Music />} />
+        <Route path="/Gdwal" element={<Gdwal />} />
 
         <Route path="/AllTopic" element={<AllTopic />} />
         <Route path="/AllTopic/ImportWords" element={<ImportWords />} />
