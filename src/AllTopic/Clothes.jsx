@@ -198,7 +198,7 @@ const extendedClothesData = [
   { id: 160, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'der Faden', pronunciation: 'در فادن', arabic: 'الخيط' },
   { id: 161, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'die Schere', pronunciation: 'دي شيره', arabic: 'المقص' },
   { id: 162, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'das Maßband', pronunciation: 'داس ماس‌باند', arabic: 'شريط القياس (المازورة)' },
-  { id: 163, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'در شْنور‌زنكل', german: 'der Schnürsenkel', pronunciation: 'در شْنور‌زنكل', arabic: 'رباط الحذاء' },
+  { id: 163, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'der Schnürsenkel', pronunciation: 'در شْنور‌زنكل', arabic: 'رباط الحذاء' },
   { id: 164, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'die Sohle', pronunciation: 'دي زوله', arabic: 'نعل الحذاء' },
   { id: 165, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'der Absatz', pronunciation: 'در أبزاتس', arabic: 'كعب الحذاء' },
   { id: 166, categoryNum: 17, categoryTitle: 'أدوات الخياطة والتفصيل وأجزاء الأحذية', german: 'die Schuhcreme', pronunciation: 'دي شويه‌كريم', arabic: 'ورنيش الأحذية' },
