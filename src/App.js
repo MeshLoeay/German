@@ -652,7 +652,7 @@ function App() {
                 <br/>
               </Link>
 
-              <Link to="/Gdwal" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" , display:"none"}}>
+              <Link to="/Gdwal" className="nav-link-item" style={{ width: '100%', textAlign: 'center', fontFamily: "'Cairo', 'Courgette', sans-serif" }}>
               جدول
                 <br/>
               </Link>
