@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 
 export default function Lektion4X1() {
   const [speakingWord, setSpeakingWord] = useState(null);

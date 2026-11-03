@@ -14,7 +14,7 @@ function Lektion3Exercises() {
   };
 
   const cleanText = (text) => {
-    return text.trim().toLowerCase().replace(/[؟\?]/g, '').trim();
+    return text.trim().toLowerCase().replace(/[؟?]/g, '').trim();
   };
 
   const checkExactAnswer = (inputId, correctAnswer) => {

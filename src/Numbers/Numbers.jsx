@@ -217,7 +217,7 @@ export default function GermanNumbersApp() {
     setTrainingList(list);
     setCheckedAnswers(false);
   };
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     handleRender('0-100');
     generateRandomList(0, 100, 15);

@@ -93,6 +93,7 @@ export default function ClockApp() {
     setIsCorrect(null);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     generateNewQuestion();
   }, []);
